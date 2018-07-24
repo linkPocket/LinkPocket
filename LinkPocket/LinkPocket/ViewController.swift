@@ -12,7 +12,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("euntae local test");
+        
+        let pasteboard = UIPasteboard.general
+        if let string = pasteboard.string {
+            print(string)
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
