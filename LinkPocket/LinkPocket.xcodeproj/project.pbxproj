@@ -15,6 +15,7 @@
 		4CFB8BB72107064E00E0259B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CFB8BB52107064E00E0259B /* LaunchScreen.storyboard */; };
 		4CFB8BC22107064E00E0259B /* LinkPocketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BC12107064E00E0259B /* LinkPocketTests.swift */; };
 		4CFB8BCD2107064E00E0259B /* LinkPocketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BCC2107064E00E0259B /* LinkPocketUITests.swift */; };
+		A65F8F2068CB82F1A4A9A577 /* libPods-LinkPocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 936C50DC162F949B2C32583F /* libPods-LinkPocket.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B2CB5FF3A6FBE7589E33C39 /* Pods-LinkPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkPocket.release.xcconfig"; path = "Pods/Target Support Files/Pods-LinkPocket/Pods-LinkPocket.release.xcconfig"; sourceTree = "<group>"; };
+		1134B03650F5B2D31AF79322 /* Pods-LinkPocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkPocket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LinkPocket/Pods-LinkPocket.debug.xcconfig"; sourceTree = "<group>"; };
 		4CFB8BA62107064E00E0259B /* LinkPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CFB8BA92107064E00E0259B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CFB8BAB2107064E00E0259B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		4CFB8BC82107064E00E0259B /* LinkPocketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkPocketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CFB8BCC2107064E00E0259B /* LinkPocketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPocketUITests.swift; sourceTree = "<group>"; };
 		4CFB8BCE2107064F00E0259B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		936C50DC162F949B2C32583F /* libPods-LinkPocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LinkPocket.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A65F8F2068CB82F1A4A9A577 /* libPods-LinkPocket.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		493D6DC28CEED4687B8B436C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				936C50DC162F949B2C32583F /* libPods-LinkPocket.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4CFB8B9D2107064E00E0259B = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +96,8 @@
 				4CFB8BC02107064E00E0259B /* LinkPocketTests */,
 				4CFB8BCB2107064E00E0259B /* LinkPocketUITests */,
 				4CFB8BA72107064E00E0259B /* Products */,
+				6C2A526278FB9A5FB2E8D2A4 /* Pods */,
+				493D6DC28CEED4687B8B436C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +143,15 @@
 			path = LinkPocketUITests;
 			sourceTree = "<group>";
 		};
+		6C2A526278FB9A5FB2E8D2A4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1134B03650F5B2D31AF79322 /* Pods-LinkPocket.debug.xcconfig */,
+				0B2CB5FF3A6FBE7589E33C39 /* Pods-LinkPocket.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +159,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4CFB8BD12107064F00E0259B /* Build configuration list for PBXNativeTarget "LinkPocket" */;
 			buildPhases = (
+				2D165F3F068D2DDE751F1238 /* [CP] Check Pods Manifest.lock */,
 				4CFB8BA22107064E00E0259B /* Sources */,
 				4CFB8BA32107064E00E0259B /* Frameworks */,
 				4CFB8BA42107064E00E0259B /* Resources */,
@@ -256,6 +281,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D165F3F068D2DDE751F1238 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LinkPocket-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4CFB8BA22107064E00E0259B /* Sources */ = {
@@ -428,6 +474,7 @@
 		};
 		4CFB8BD22107064F00E0259B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1134B03650F5B2D31AF79322 /* Pods-LinkPocket.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -443,6 +490,7 @@
 		};
 		4CFB8BD32107064F00E0259B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B2CB5FF3A6FBE7589E33C39 /* Pods-LinkPocket.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
