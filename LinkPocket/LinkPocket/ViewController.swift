@@ -12,7 +12,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("euntae local test");
+        
+        let pasteboard = UIPasteboard.general
+        if let string = pasteboard.string {
+            if let _ = URL(string: string) {
+                print("\(string) is url")
+            } else {
+                print("\(string) is not url")
+            }
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
