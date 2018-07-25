@@ -16,6 +16,9 @@
 		4CFB8BC22107064E00E0259B /* LinkPocketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BC12107064E00E0259B /* LinkPocketTests.swift */; };
 		4CFB8BCD2107064E00E0259B /* LinkPocketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BCC2107064E00E0259B /* LinkPocketUITests.swift */; };
 		A65F8F2068CB82F1A4A9A577 /* libPods-LinkPocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 936C50DC162F949B2C32583F /* libPods-LinkPocket.a */; };
+		CE5F8EA92108D6EF00C27671 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F8EA82108D6EF00C27671 /* ShareViewController.swift */; };
+		CE5F8EAC2108D6EF00C27671 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5F8EAA2108D6EF00C27671 /* MainInterface.storyboard */; };
+		CE5F8EB02108D6EF00C27671 /* ShareFromSafari.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE5F8EA62108D6EF00C27671 /* ShareFromSafari.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +36,28 @@
 			remoteGlobalIDString = 4CFB8BA52107064E00E0259B;
 			remoteInfo = LinkPocket;
 		};
+		CE5F8EAE2108D6EF00C27671 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CFB8B9E2107064E00E0259B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE5F8EA52108D6EF00C27671;
+			remoteInfo = ShareFromSafari;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE5F8EB42108D6EF00C27671 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CE5F8EB02108D6EF00C27671 /* ShareFromSafari.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0B2CB5FF3A6FBE7589E33C39 /* Pods-LinkPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkPocket.release.xcconfig"; path = "Pods/Target Support Files/Pods-LinkPocket/Pods-LinkPocket.release.xcconfig"; sourceTree = "<group>"; };
@@ -53,6 +77,12 @@
 		4CFB8BCC2107064E00E0259B /* LinkPocketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPocketUITests.swift; sourceTree = "<group>"; };
 		4CFB8BCE2107064F00E0259B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		936C50DC162F949B2C32583F /* libPods-LinkPocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LinkPocket.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE5F8EA62108D6EF00C27671 /* ShareFromSafari.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareFromSafari.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE5F8EA82108D6EF00C27671 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		CE5F8EAB2108D6EF00C27671 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		CE5F8EAD2108D6EF00C27671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE5F8EB52108D6FC00C27671 /* ShareFromSafari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareFromSafari.entitlements; sourceTree = "<group>"; };
+		CE5F8EB62108D70C00C27671 /* LinkPocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinkPocket.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +108,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE5F8EA32108D6EF00C27671 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,6 +132,7 @@
 				4CFB8BA82107064E00E0259B /* LinkPocket */,
 				4CFB8BC02107064E00E0259B /* LinkPocketTests */,
 				4CFB8BCB2107064E00E0259B /* LinkPocketUITests */,
+				CE5F8EA72108D6EF00C27671 /* ShareFromSafari */,
 				4CFB8BA72107064E00E0259B /* Products */,
 				6C2A526278FB9A5FB2E8D2A4 /* Pods */,
 				493D6DC28CEED4687B8B436C /* Frameworks */,
@@ -107,6 +145,7 @@
 				4CFB8BA62107064E00E0259B /* LinkPocket.app */,
 				4CFB8BBD2107064E00E0259B /* LinkPocketTests.xctest */,
 				4CFB8BC82107064E00E0259B /* LinkPocketUITests.xctest */,
+				CE5F8EA62108D6EF00C27671 /* ShareFromSafari.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +153,7 @@
 		4CFB8BA82107064E00E0259B /* LinkPocket */ = {
 			isa = PBXGroup;
 			children = (
+				CE5F8EB62108D70C00C27671 /* LinkPocket.entitlements */,
 				4CFB8BA92107064E00E0259B /* AppDelegate.swift */,
 				4CFB8BAB2107064E00E0259B /* ViewController.swift */,
 				4CFB8BAD2107064E00E0259B /* Main.storyboard */,
@@ -152,6 +192,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CE5F8EA72108D6EF00C27671 /* ShareFromSafari */ = {
+			isa = PBXGroup;
+			children = (
+				CE5F8EB52108D6FC00C27671 /* ShareFromSafari.entitlements */,
+				CE5F8EA82108D6EF00C27671 /* ShareViewController.swift */,
+				CE5F8EAA2108D6EF00C27671 /* MainInterface.storyboard */,
+				CE5F8EAD2108D6EF00C27671 /* Info.plist */,
+			);
+			path = ShareFromSafari;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,10 +214,12 @@
 				4CFB8BA22107064E00E0259B /* Sources */,
 				4CFB8BA32107064E00E0259B /* Frameworks */,
 				4CFB8BA42107064E00E0259B /* Resources */,
+				CE5F8EB42108D6EF00C27671 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CE5F8EAF2108D6EF00C27671 /* PBXTargetDependency */,
 			);
 			name = LinkPocket;
 			productName = LinkPocket;
@@ -209,19 +262,41 @@
 			productReference = 4CFB8BC82107064E00E0259B /* LinkPocketUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CE5F8EA52108D6EF00C27671 /* ShareFromSafari */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE5F8EB32108D6EF00C27671 /* Build configuration list for PBXNativeTarget "ShareFromSafari" */;
+			buildPhases = (
+				CE5F8EA22108D6EF00C27671 /* Sources */,
+				CE5F8EA32108D6EF00C27671 /* Frameworks */,
+				CE5F8EA42108D6EF00C27671 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareFromSafari;
+			productName = ShareFromSafari;
+			productReference = CE5F8EA62108D6EF00C27671 /* ShareFromSafari.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4CFB8B9E2107064E00E0259B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = LP;
 				TargetAttributes = {
 					4CFB8BA52107064E00E0259B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					4CFB8BBC2107064E00E0259B = {
 						CreatedOnToolsVersion = 9.2;
@@ -232,6 +307,15 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 4CFB8BA52107064E00E0259B;
+					};
+					CE5F8EA52108D6EF00C27671 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -251,6 +335,7 @@
 				4CFB8BA52107064E00E0259B /* LinkPocket */,
 				4CFB8BBC2107064E00E0259B /* LinkPocketTests */,
 				4CFB8BC72107064E00E0259B /* LinkPocketUITests */,
+				CE5F8EA52108D6EF00C27671 /* ShareFromSafari */,
 			);
 		};
 /* End PBXProject section */
@@ -277,6 +362,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE5F8EA42108D6EF00C27671 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE5F8EAC2108D6EF00C27671 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +423,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE5F8EA22108D6EF00C27671 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE5F8EA92108D6EF00C27671 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -342,6 +443,11 @@
 			isa = PBXTargetDependency;
 			target = 4CFB8BA52107064E00E0259B /* LinkPocket */;
 			targetProxy = 4CFB8BC92107064E00E0259B /* PBXContainerItemProxy */;
+		};
+		CE5F8EAF2108D6EF00C27671 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE5F8EA52108D6EF00C27671 /* ShareFromSafari */;
+			targetProxy = CE5F8EAE2108D6EF00C27671 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -360,6 +466,14 @@
 				4CFB8BB62107064E00E0259B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CE5F8EAA2108D6EF00C27671 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE5F8EAB2108D6EF00C27671 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -476,9 +590,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1134B03650F5B2D31AF79322 /* Pods-LinkPocket.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LinkPocket/LinkPocket.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TTE5TV8NZT;
+				DEVELOPMENT_TEAM = 32W5JEHP8L;
 				INFOPLIST_FILE = LinkPocket/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocket;
@@ -492,9 +608,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B2CB5FF3A6FBE7589E33C39 /* Pods-LinkPocket.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LinkPocket/LinkPocket.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TTE5TV8NZT;
+				DEVELOPMENT_TEAM = 32W5JEHP8L;
 				INFOPLIST_FILE = LinkPocket/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocket;
@@ -570,6 +688,46 @@
 			};
 			name = Release;
 		};
+		CE5F8EB12108D6EF00C27671 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_ENTITLEMENTS = ShareFromSafari/ShareFromSafari.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32W5JEHP8L;
+				INFOPLIST_FILE = ShareFromSafari/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocket.ShareFromSafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CE5F8EB22108D6EF00C27671 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_ENTITLEMENTS = ShareFromSafari/ShareFromSafari.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32W5JEHP8L;
+				INFOPLIST_FILE = ShareFromSafari/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocket.ShareFromSafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -605,6 +763,15 @@
 			buildConfigurations = (
 				4CFB8BD82107064F00E0259B /* Debug */,
 				4CFB8BD92107064F00E0259B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE5F8EB32108D6EF00C27671 /* Build configuration list for PBXNativeTarget "ShareFromSafari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE5F8EB12108D6EF00C27671 /* Debug */,
+				CE5F8EB22108D6EF00C27671 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
