@@ -1,14 +1,14 @@
 //
-//  ViewController.swift
+//  LPCategoryViewController.swift
 //  LinkPocket
 //
-//  Created by 내 맥북에어 on 2018. 7. 24..
+//  Created by user on 2018. 7. 31..
 //  Copyright © 2018년 LP. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class LPCategoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,18 +20,16 @@ class ViewController: UIViewController {
                 print("\(string) is not url")
             }
         }
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
 
-
-//MARK:- To check validity of URL
 extension String {
     var isValidURL: Bool {
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)

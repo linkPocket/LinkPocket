@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LPCustomTabBarController" customModule="LinkPocket" customModuleProvider="target">
+            <connections>
+                <outlet property="customTabBar" destination="0Y4-HS-bMN" id="TdT-dC-3Wh"/>
+                <outlet property="customView" destination="Zf7-Cp-Mcd" id="zXa-t5-MdV"/>
+                <outlet property="view" destination="aiD-RP-1jw" id="gNp-yo-t5Y"/>
+            </connections>
+        </placeholder>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="aiD-RP-1jw">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Y4-HS-bMN">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="9oE-Ab-MGm"/>
+                        <constraint firstAttribute="width" constant="375" id="Cqh-HN-w6c"/>
+                    </constraints>
+                    <items>
+                        <tabBarItem tag="1" id="0pF-tz-you"/>
+                        <tabBarItem tag="2" id="t5W-9Y-gXE"/>
+                    </items>
+                </tabBar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zf7-Cp-Mcd">
+                    <rect key="frame" x="0.0" y="30" width="375" height="637"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="637" id="a85-bJ-vtR"/>
+                        <constraint firstAttribute="width" constant="375" id="eJF-LW-vEN"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="0Y4-HS-bMN" firstAttribute="trailing" secondItem="hdu-IG-dBV" secondAttribute="trailing" id="0ow-hq-kV8"/>
+                <constraint firstItem="Zf7-Cp-Mcd" firstAttribute="trailing" secondItem="hdu-IG-dBV" secondAttribute="trailing" id="3ii-IG-QiU"/>
+                <constraint firstItem="0Y4-HS-bMN" firstAttribute="top" secondItem="aiD-RP-1jw" secondAttribute="top" id="94r-uy-fjq"/>
+                <constraint firstItem="0Y4-HS-bMN" firstAttribute="leading" secondItem="hdu-IG-dBV" secondAttribute="leading" id="9ZO-sB-umr"/>
+                <constraint firstItem="Zf7-Cp-Mcd" firstAttribute="top" secondItem="0Y4-HS-bMN" secondAttribute="bottom" id="BFV-p0-AhP"/>
+                <constraint firstItem="0Y4-HS-bMN" firstAttribute="leading" secondItem="hdu-IG-dBV" secondAttribute="leading" id="FI3-m4-DWM"/>
+                <constraint firstItem="Zf7-Cp-Mcd" firstAttribute="leading" secondItem="hdu-IG-dBV" secondAttribute="leading" id="TGw-oJ-GVQ"/>
+                <constraint firstItem="Zf7-Cp-Mcd" firstAttribute="bottom" secondItem="hdu-IG-dBV" secondAttribute="bottom" id="V6i-1C-D3b"/>
+                <constraint firstItem="0Y4-HS-bMN" firstAttribute="trailing" secondItem="hdu-IG-dBV" secondAttribute="trailing" id="hWX-Z4-0oe"/>
+                <constraint firstItem="0Y4-HS-bMN" firstAttribute="top" secondItem="aiD-RP-1jw" secondAttribute="top" id="jEk-4u-LFq"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="hdu-IG-dBV"/>
+            <point key="canvasLocation" x="-414.5" y="-12.5"/>
+        </view>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+    </objects>
+</document>

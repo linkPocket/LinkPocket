@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4CFB8BAA2107064E00E0259B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BA92107064E00E0259B /* AppDelegate.swift */; };
-		4CFB8BAC2107064E00E0259B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BAB2107064E00E0259B /* ViewController.swift */; };
+		4CFB8BAA2107064E00E0259B /* LPAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BA92107064E00E0259B /* LPAppDelegate.swift */; };
 		4CFB8BAF2107064E00E0259B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CFB8BAD2107064E00E0259B /* Main.storyboard */; };
 		4CFB8BB22107064E00E0259B /* LinkPocket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BB02107064E00E0259B /* LinkPocket.xcdatamodeld */; };
 		4CFB8BB42107064E00E0259B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFB8BB32107064E00E0259B /* Assets.xcassets */; };
@@ -19,6 +18,13 @@
 		CE5F8EA92108D6EF00C27671 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F8EA82108D6EF00C27671 /* ShareViewController.swift */; };
 		CE5F8EAC2108D6EF00C27671 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5F8EAA2108D6EF00C27671 /* MainInterface.storyboard */; };
 		CE5F8EB02108D6EF00C27671 /* ShareFromSafari.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE5F8EA62108D6EF00C27671 /* ShareFromSafari.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE80DE3E21106D5F00B2032F /* LPRecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE3C21106D5F00B2032F /* LPRecentViewController.swift */; };
+		CE80DE3F21106D5F00B2032F /* LPRecentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE80DE3D21106D5F00B2032F /* LPRecentViewController.xib */; };
+		CE80DE4221106D6E00B2032F /* LPCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE4021106D6E00B2032F /* LPCategoryViewController.swift */; };
+		CE80DE4321106D6E00B2032F /* LPCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE80DE4121106D6E00B2032F /* LPCategoryViewController.xib */; };
+		CE80DE4521106DD900B2032F /* LPParentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE4421106DD900B2032F /* LPParentNavigationController.swift */; };
+		CE80DE482110723A00B2032F /* LPCustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE462110723A00B2032F /* LPCustomTabBarController.swift */; };
+		CE80DE492110723A00B2032F /* LPCustomTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE80DE472110723A00B2032F /* LPCustomTabBarController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +69,7 @@
 		0B2CB5FF3A6FBE7589E33C39 /* Pods-LinkPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkPocket.release.xcconfig"; path = "Pods/Target Support Files/Pods-LinkPocket/Pods-LinkPocket.release.xcconfig"; sourceTree = "<group>"; };
 		1134B03650F5B2D31AF79322 /* Pods-LinkPocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkPocket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LinkPocket/Pods-LinkPocket.debug.xcconfig"; sourceTree = "<group>"; };
 		4CFB8BA62107064E00E0259B /* LinkPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CFB8BA92107064E00E0259B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4CFB8BAB2107064E00E0259B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4CFB8BA92107064E00E0259B /* LPAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPAppDelegate.swift; sourceTree = "<group>"; };
 		4CFB8BAE2107064E00E0259B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4CFB8BB12107064E00E0259B /* LinkPocket.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LinkPocket.xcdatamodel; sourceTree = "<group>"; };
 		4CFB8BB32107064E00E0259B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,6 +88,13 @@
 		CE5F8EAD2108D6EF00C27671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE5F8EB52108D6FC00C27671 /* ShareFromSafari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareFromSafari.entitlements; sourceTree = "<group>"; };
 		CE5F8EB62108D70C00C27671 /* LinkPocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinkPocket.entitlements; sourceTree = "<group>"; };
+		CE80DE3C21106D5F00B2032F /* LPRecentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPRecentViewController.swift; sourceTree = "<group>"; };
+		CE80DE3D21106D5F00B2032F /* LPRecentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPRecentViewController.xib; sourceTree = "<group>"; };
+		CE80DE4021106D6E00B2032F /* LPCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPCategoryViewController.swift; sourceTree = "<group>"; };
+		CE80DE4121106D6E00B2032F /* LPCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPCategoryViewController.xib; sourceTree = "<group>"; };
+		CE80DE4421106DD900B2032F /* LPParentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPParentNavigationController.swift; sourceTree = "<group>"; };
+		CE80DE462110723A00B2032F /* LPCustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPCustomTabBarController.swift; sourceTree = "<group>"; };
+		CE80DE472110723A00B2032F /* LPCustomTabBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPCustomTabBarController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,14 +165,12 @@
 		4CFB8BA82107064E00E0259B /* LinkPocket */ = {
 			isa = PBXGroup;
 			children = (
+				CE80DE3621106C1400B2032F /* Global */,
+				CE80DE3721106C2600B2032F /* CustomTabBarController */,
+				CE80DE4C211074FB00B2032F /* Storyboard */,
+				CE80DE4B211073C200B2032F /* Support */,
+				CE80DE4A211073B700B2032F /* Resource */,
 				CE5F8EB62108D70C00C27671 /* LinkPocket.entitlements */,
-				4CFB8BA92107064E00E0259B /* AppDelegate.swift */,
-				4CFB8BAB2107064E00E0259B /* ViewController.swift */,
-				4CFB8BAD2107064E00E0259B /* Main.storyboard */,
-				4CFB8BB32107064E00E0259B /* Assets.xcassets */,
-				4CFB8BB52107064E00E0259B /* LaunchScreen.storyboard */,
-				4CFB8BB82107064E00E0259B /* Info.plist */,
-				4CFB8BB02107064E00E0259B /* LinkPocket.xcdatamodeld */,
 			);
 			path = LinkPocket;
 			sourceTree = "<group>";
@@ -201,6 +211,70 @@
 				CE5F8EAD2108D6EF00C27671 /* Info.plist */,
 			);
 			path = ShareFromSafari;
+			sourceTree = "<group>";
+		};
+		CE80DE3421106BFE00B2032F /* Recent */ = {
+			isa = PBXGroup;
+			children = (
+				CE80DE3C21106D5F00B2032F /* LPRecentViewController.swift */,
+				CE80DE3D21106D5F00B2032F /* LPRecentViewController.xib */,
+			);
+			path = Recent;
+			sourceTree = "<group>";
+		};
+		CE80DE3521106C0A00B2032F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				CE80DE4021106D6E00B2032F /* LPCategoryViewController.swift */,
+				CE80DE4121106D6E00B2032F /* LPCategoryViewController.xib */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		CE80DE3621106C1400B2032F /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				CE80DE4421106DD900B2032F /* LPParentNavigationController.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		CE80DE3721106C2600B2032F /* CustomTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				CE80DE462110723A00B2032F /* LPCustomTabBarController.swift */,
+				CE80DE472110723A00B2032F /* LPCustomTabBarController.xib */,
+				CE80DE3521106C0A00B2032F /* Category */,
+				CE80DE3421106BFE00B2032F /* Recent */,
+			);
+			path = CustomTabBarController;
+			sourceTree = "<group>";
+		};
+		CE80DE4A211073B700B2032F /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				4CFB8BB32107064E00E0259B /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CE80DE4B211073C200B2032F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				4CFB8BA92107064E00E0259B /* LPAppDelegate.swift */,
+				4CFB8BB82107064E00E0259B /* Info.plist */,
+				4CFB8BB02107064E00E0259B /* LinkPocket.xcdatamodeld */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		CE80DE4C211074FB00B2032F /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				4CFB8BAD2107064E00E0259B /* Main.storyboard */,
+				4CFB8BB52107064E00E0259B /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +360,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = LP;
 				TargetAttributes = {
 					4CFB8BA52107064E00E0259B = {
@@ -345,6 +419,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE80DE492110723A00B2032F /* LPCustomTabBarController.xib in Resources */,
+				CE80DE4321106D6E00B2032F /* LPCategoryViewController.xib in Resources */,
+				CE80DE3F21106D5F00B2032F /* LPRecentViewController.xib in Resources */,
 				4CFB8BB72107064E00E0259B /* LaunchScreen.storyboard in Resources */,
 				4CFB8BB42107064E00E0259B /* Assets.xcassets in Resources */,
 				4CFB8BAF2107064E00E0259B /* Main.storyboard in Resources */,
@@ -401,9 +478,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CFB8BAC2107064E00E0259B /* ViewController.swift in Sources */,
+				CE80DE3E21106D5F00B2032F /* LPRecentViewController.swift in Sources */,
+				CE80DE482110723A00B2032F /* LPCustomTabBarController.swift in Sources */,
 				4CFB8BB22107064E00E0259B /* LinkPocket.xcdatamodeld in Sources */,
-				4CFB8BAA2107064E00E0259B /* AppDelegate.swift in Sources */,
+				CE80DE4521106DD900B2032F /* LPParentNavigationController.swift in Sources */,
+				CE80DE4221106D6E00B2032F /* LPCategoryViewController.swift in Sources */,
+				4CFB8BAA2107064E00E0259B /* LPAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +573,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -500,6 +581,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -550,6 +632,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -557,6 +640,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -595,7 +679,7 @@
 				CODE_SIGN_ENTITLEMENTS = LinkPocket/LinkPocket.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32W5JEHP8L;
-				INFOPLIST_FILE = LinkPocket/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/LinkPocket/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -613,7 +697,7 @@
 				CODE_SIGN_ENTITLEMENTS = LinkPocket/LinkPocket.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32W5JEHP8L;
-				INFOPLIST_FILE = LinkPocket/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/LinkPocket/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -628,7 +712,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TTE5TV8NZT;
+				DEVELOPMENT_TEAM = 32W5JEHP8L;
 				INFOPLIST_FILE = LinkPocketTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocketTests;
@@ -645,7 +729,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TTE5TV8NZT;
+				DEVELOPMENT_TEAM = 32W5JEHP8L;
 				INFOPLIST_FILE = LinkPocketTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocketTests;
@@ -661,7 +745,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TTE5TV8NZT;
+				DEVELOPMENT_TEAM = 32W5JEHP8L;
 				INFOPLIST_FILE = LinkPocketUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocketUITests;
@@ -677,7 +761,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TTE5TV8NZT;
+				DEVELOPMENT_TEAM = 32W5JEHP8L;
 				INFOPLIST_FILE = LinkPocketUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = etsy.LinkPocketUITests;
