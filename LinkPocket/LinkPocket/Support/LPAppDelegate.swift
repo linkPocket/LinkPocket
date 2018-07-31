@@ -10,13 +10,39 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+
+class LPAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let tabBarVC: LPCustomTabBarController = LPCustomTabBarController()
+        let parentNavi = LPParentNavigationController.sharedInstance
+        let vc1: LPRecentViewController = LPRecentViewController()
+        let vc2: LPCategoryViewController = LPCategoryViewController()
+        
+        vc1.tabBarItem.title = "RECENT"
+        vc2.tabBarItem.title = "CATEGORY"
+        
+        tabBarVC.viewControllers = (NSArray(array: [vc1, vc2]) as? [UIViewController])!
+        
+        parentNavi.pushViewController(tabBarVC, animated: false)
+        parentNavi.navigationBar.topItem?.title = "LINK POCKET"
+        parentNavi.navigationBar.isTranslucent = false
+        parentNavi.navigationBar.shadowImage = UIImage()
+        parentNavi.navigationBar.backIndicatorImage = UIImage()
+        
+        window? = UIWindow.init(frame: UIScreen.main.bounds)
+        window?.rootViewController = parentNavi
+        
+        self.window?.makeKeyAndVisible()
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.black], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.black], for: .normal)
+        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
+        UITabBar.appearance().tintColor = UIColor.white
+        UITabBar.appearance().layer.borderWidth = 0
+        UITabBar.appearance().clipsToBounds = true
+
         return true
     }
 
@@ -88,6 +114,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
-
