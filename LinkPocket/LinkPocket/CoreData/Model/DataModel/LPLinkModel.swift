@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct LinkModel {
+struct LPLinkModel {
     var url: String?
     var title: String?
-    var image_name: String?
+    var imageName: String?
     var date: NSDate?
-    var category: CategoryModel?
+    var category: LPCategoryModel?
     
     func printLinks() {
-        print("url : \(String(describing: url)) title : \(String(describing: title)) image_name: \(String(describing: image_name)) date: \(String(describing: date)) category:")
+        print("url : \(String(describing: url)) title : \(String(describing: title)) image_name: \(String(describing: imageName)) date: \(String(describing: date)) category:")
         category?.printCategory()
     }
 }

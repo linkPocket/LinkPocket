@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CategoryModel {
+struct LPCategoryModel {
     var name: String?
     var r: Double?
     var g: Double?
