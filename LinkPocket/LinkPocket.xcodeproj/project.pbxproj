@@ -25,6 +25,13 @@
 		CE80DE4521106DD900B2032F /* LPParentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE4421106DD900B2032F /* LPParentNavigationController.swift */; };
 		CE80DE482110723A00B2032F /* LPCustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE462110723A00B2032F /* LPCustomTabBarController.swift */; };
 		CE80DE492110723A00B2032F /* LPCustomTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE80DE472110723A00B2032F /* LPCustomTabBarController.xib */; };
+		CEA581F82119A0DD00B88341 /* Link+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F42119A0DD00B88341 /* Link+CoreDataClass.swift */; };
+		CEA581F92119A0DD00B88341 /* Link+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F52119A0DD00B88341 /* Link+CoreDataProperties.swift */; };
+		CEA581FA2119A0DD00B88341 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F62119A0DD00B88341 /* Category+CoreDataClass.swift */; };
+		CEA581FB2119A0DD00B88341 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F72119A0DD00B88341 /* Category+CoreDataProperties.swift */; };
+		CEA581FE2119A10200B88341 /* LPCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581FD2119A10200B88341 /* LPCategoryModel.swift */; };
+		CEA582002119A10D00B88341 /* LPLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581FF2119A10D00B88341 /* LPLinkModel.swift */; };
+		CEA582042119A1C200B88341 /* LPCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA582032119A1C200B88341 /* LPCoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +102,13 @@
 		CE80DE4421106DD900B2032F /* LPParentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPParentNavigationController.swift; sourceTree = "<group>"; };
 		CE80DE462110723A00B2032F /* LPCustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPCustomTabBarController.swift; sourceTree = "<group>"; };
 		CE80DE472110723A00B2032F /* LPCustomTabBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPCustomTabBarController.xib; sourceTree = "<group>"; };
+		CEA581F42119A0DD00B88341 /* Link+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Link+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CEA581F52119A0DD00B88341 /* Link+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Link+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CEA581F62119A0DD00B88341 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CEA581F72119A0DD00B88341 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CEA581FD2119A10200B88341 /* LPCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPCategoryModel.swift; sourceTree = "<group>"; };
+		CEA581FF2119A10D00B88341 /* LPLinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLinkModel.swift; sourceTree = "<group>"; };
+		CEA582032119A1C200B88341 /* LPCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPCoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +179,7 @@
 		4CFB8BA82107064E00E0259B /* LinkPocket */ = {
 			isa = PBXGroup;
 			children = (
+				CEA581E921199EC700B88341 /* CoreData */,
 				CE80DE3621106C1400B2032F /* Global */,
 				CE80DE3721106C2600B2032F /* CustomTabBarController */,
 				CE80DE4C211074FB00B2032F /* Storyboard */,
@@ -263,7 +278,6 @@
 			children = (
 				4CFB8BA92107064E00E0259B /* LPAppDelegate.swift */,
 				4CFB8BB82107064E00E0259B /* Info.plist */,
-				4CFB8BB02107064E00E0259B /* LinkPocket.xcdatamodeld */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -275,6 +289,54 @@
 				4CFB8BB52107064E00E0259B /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		CEA581E921199EC700B88341 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CEA582022119A1A500B88341 /* Model */,
+				CEA581F32119A0AD00B88341 /* Entities */,
+				4CFB8BB02107064E00E0259B /* LinkPocket.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		CEA581F32119A0AD00B88341 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				CEA581F42119A0DD00B88341 /* Link+CoreDataClass.swift */,
+				CEA581F52119A0DD00B88341 /* Link+CoreDataProperties.swift */,
+				CEA581F62119A0DD00B88341 /* Category+CoreDataClass.swift */,
+				CEA581F72119A0DD00B88341 /* Category+CoreDataProperties.swift */,
+			);
+			name = Entities;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		CEA581FC2119A0F200B88341 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEA581FD2119A10200B88341 /* LPCategoryModel.swift */,
+				CEA581FF2119A10D00B88341 /* LPLinkModel.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		CEA582012119A19C00B88341 /* TaskModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEA582032119A1C200B88341 /* LPCoreDataManager.swift */,
+			);
+			path = TaskModel;
+			sourceTree = "<group>";
+		};
+		CEA582022119A1A500B88341 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEA582012119A19C00B88341 /* TaskModel */,
+				CEA581FC2119A0F200B88341 /* DataModel */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -479,10 +541,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE80DE3E21106D5F00B2032F /* LPRecentViewController.swift in Sources */,
+				CEA581F92119A0DD00B88341 /* Link+CoreDataProperties.swift in Sources */,
 				CE80DE482110723A00B2032F /* LPCustomTabBarController.swift in Sources */,
 				4CFB8BB22107064E00E0259B /* LinkPocket.xcdatamodeld in Sources */,
 				CE80DE4521106DD900B2032F /* LPParentNavigationController.swift in Sources */,
+				CEA581F82119A0DD00B88341 /* Link+CoreDataClass.swift in Sources */,
 				CE80DE4221106D6E00B2032F /* LPCategoryViewController.swift in Sources */,
+				CEA581FE2119A10200B88341 /* LPCategoryModel.swift in Sources */,
+				CEA582042119A1C200B88341 /* LPCoreDataManager.swift in Sources */,
+				CEA581FB2119A0DD00B88341 /* Category+CoreDataProperties.swift in Sources */,
+				CEA582002119A10D00B88341 /* LPLinkModel.swift in Sources */,
+				CEA581FA2119A0DD00B88341 /* Category+CoreDataClass.swift in Sources */,
 				4CFB8BAA2107064E00E0259B /* LPAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
