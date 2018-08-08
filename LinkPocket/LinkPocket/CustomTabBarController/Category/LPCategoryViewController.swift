@@ -10,6 +10,8 @@ import UIKit
 
 class LPCategoryViewController: UIViewController {
 
+    var mCategoryV: LPCategoryV!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let pasteboard = UIPasteboard.general
@@ -20,6 +22,9 @@ class LPCategoryViewController: UIViewController {
                 print("\(string) is not url")
             }
         }
+        
+        mCategoryV = LPCategoryV(frame: R(0,0,W,H-statusH))
+        self.view.addSubview(mCategoryV)
 
         // Do any additional setup after loading the view.
     }
@@ -27,6 +32,10 @@ class LPCategoryViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func show(_ model: [CategoryModel]) {
+        
     }
 }
 

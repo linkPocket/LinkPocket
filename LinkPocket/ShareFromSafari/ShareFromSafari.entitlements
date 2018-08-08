@@ -5,6 +5,7 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.CoreDataTest2</string>
+		<string>group.CoreDataTest3</string>
 	</array>
 </dict>
 </plist>
