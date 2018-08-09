@@ -26,6 +26,7 @@ protocol LPCoreDataManager {
 }
 
 extension LPCoreDataManager {
+    
     var managedObjectContext: NSManagedObjectContext {
         return (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext
     }
@@ -74,7 +75,7 @@ extension LPCoreDataManager {
         contact.g = valueCategory.g!
         contact.b = valueCategory.b!
         contact.alpha = valueCategory.alpha!
-
+        
         return saveIfCanSave
     }
     
@@ -145,7 +146,7 @@ extension LPCoreDataManager {
                 match?.setValue(valueCategory.g, forKey: "g")
                 match?.setValue(valueCategory.b, forKey: "b")
                 match?.setValue(valueCategory.alpha, forKey: "alpha")
-
+                
                 if match?.name != valueCategory.name {
                     let isUpdateDataIsExist = objects.filter { $0.name == valueCategory.name }.first
                     
@@ -165,7 +166,7 @@ extension LPCoreDataManager {
             
             return true
         })
-
+        
     }
     
     func deleteFromCategoryWhere(nameIs: String) -> Bool {
@@ -187,6 +188,26 @@ extension LPCoreDataManager {
             }
         })
     }
+    
+    func selectCategoryFromCategoryWhere(nameIs: String) -> Category? {
+        return executeCategoryQuery(query: { (request) -> Category? in
+            do {
+                let objects = try managedObjectContext.fetch(request) // as! [NSManagedObject]
+                let match = objects.filter {$0.name == nameIs}.first
+                
+                guard match != nil else {
+                    print("FindContact => Nothing founded!!")
+                    return nil
+                }
+                
+                return match
+                
+            } catch _ as NSError  {
+                print("findContact => managedObjectContext find function failed!!")
+                return nil
+            }
+        })
+    }
 }
 
 // Extension Link Query
@@ -200,17 +221,19 @@ extension LPCoreDataManager {
         let entityDescription = NSEntityDescription.entity(forEntityName: "Link", in: managedObjectContext)
         let contact = Link(entity: entityDescription!, insertInto: managedObjectContext)
         
-        executeCategoryQuery(query: { (request) -> Void in
+        let optionalMatch = executeCategoryQuery(query: { (request) -> Category? in
             do {
                 let objects = try managedObjectContext.fetch(request)
                 let match = objects.filter {$0.name == valueLink.category?.name}.first
                 guard match != nil else {
                     print("FindContact => Nothing founded!!")
-                    return
+                    return nil
                 }
                 contact.category = match
+                return match
             } catch _ as NSError  {
                 print("findContact => managedObjectContext find function failed!!")
+                return nil
             }
         })
         
@@ -218,6 +241,10 @@ extension LPCoreDataManager {
         contact.date = valueLink.date
         contact.imageName = valueLink.imageName
         contact.url = valueLink.url
+        
+        if let match = optionalMatch {
+            match.link.insert(contact)
+        }
         
         return saveIfCanSave
     }
@@ -286,7 +313,6 @@ extension LPCoreDataManager {
             
             return link
         })
-
     }
     
     func updateLinkSet(valueLink: LPLinkModel, whereUrlIs: String) -> Bool {
@@ -301,19 +327,32 @@ extension LPCoreDataManager {
                 
                 match?.setValue(valueLink.title, forKey: "title")
                 match?.setValue(valueLink.date, forKey: "date")
-                match?.setValue(valueLink.imageName, forKey: "image_name")
+                match?.setValue(valueLink.imageName, forKey: "imageName")
                 
-                if let name = valueLink.category?.name {
-                    if selectObjectFromCategoryWhere(nameIs: name) == nil {
-                        print("[info] .... \(name) category not exist")
-                    } else {
-                        match?.category?.setValue(valueLink.category?.r, forKey: "r")
-                        match?.category?.setValue(valueLink.category?.g, forKey: "g")
-                        match?.category?.setValue(valueLink.category?.b, forKey: "b")
-                        match?.category?.setValue(valueLink.category?.alpha, forKey: "alpha")
-                        match?.category?.setValue(valueLink.category?.name, forKey: "name")
-                    }
+                let optionalName = match?.category?.name
+                if let name = optionalName {
+                    let categoryMatch = selectCategoryFromCategoryWhere(nameIs: name)
+                    categoryMatch?.link.remove(match!)
                 }
+                
+                let changeName = valueLink.category?.name
+                if let name = changeName {
+                    let categoryMatch = selectCategoryFromCategoryWhere(nameIs: name)
+                    match?.category = categoryMatch
+                    categoryMatch?.link.insert(match!)
+                }
+                
+                //                if let name = valueLink.category?.name {
+                //                    if selectObjectFromCategoryWhere(nameIs: name) == nil {
+                //                        print("[info] .... \(name) category not exist")
+                //                    } else {
+                //                        match?.category?.setValue(valueLink.category?.r, forKey: "r")
+                //                        match?.category?.setValue(valueLink.category?.g, forKey: "g")
+                //                        match?.category?.setValue(valueLink.category?.b, forKey: "b")
+                //                        match?.category?.setValue(valueLink.category?.alpha, forKey: "alpha")
+                //                        match?.category?.setValue(valueLink.category?.name, forKey: "name")
+                //                    }
+                //                }
                 
                 if match?.url != valueLink.url {
                     let isUpdateDataIsExist = objects.filter { $0.url == valueLink.url }.first
@@ -334,7 +373,7 @@ extension LPCoreDataManager {
             }
             return true
         })
-
+        
     }
     
     func deleteFromLinkWhere(urlIs: String) -> Bool {
