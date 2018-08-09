@@ -13,10 +13,10 @@ class LPCategoryV: UIView, LPCategoryListListener {
     var mCategoryList: LPCategoryList!
     var mCategoryTable: LPCategoryTable!
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, categorys: [LPCategoryModel], urls: [LPLinkModel]) {
         super.init(frame: frame)
         
-        mCategoryList = LPCategoryList(frame: rR( 0, 0, W, 84), categoryNs: testCategorys, categorys: testUrls) //수정 필요
+        mCategoryList = LPCategoryList(frame: rR( 0, 0, W, 84), categorys: categorys, urls: urls) //수정 필요
         mCategoryList.listener = self
         self.addSubview(mCategoryList)
         
@@ -29,7 +29,7 @@ class LPCategoryV: UIView, LPCategoryListListener {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func displayCategoryTable(categoryN: String, urls: [CategoryModel]) {
+    func displayCategoryTable(categoryN: String, urls: [LPLinkModel]) {
         mCategoryTable.displayTableContent(categoryN: categoryN, urls: urls)
     }
     
@@ -37,7 +37,4 @@ class LPCategoryV: UIView, LPCategoryListListener {
         print("카테고리를 추가해주세요")
     }
     
-    func show(_ model: [CategoryModel]){
-        
-    }
 }
