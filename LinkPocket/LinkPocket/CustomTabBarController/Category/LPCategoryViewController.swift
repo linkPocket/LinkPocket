@@ -26,35 +26,6 @@ class LPCategoryViewController: UIViewController, LPCoreDataManager {
             }
         }
         
-        //코어데이터 전부다 삭제하고 싶을때
-       /* let delegate = UIApplication.shared.delegate as! LPAppDelegate
-        let context = delegate.persistentContainer.viewContext
-        
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        let deleteFetch1 = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
-        let deleteRequest1 = NSBatchDeleteRequest(fetchRequest: deleteFetch1)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.execute(deleteRequest1)
-            try context.save()
-        } catch {
-            print ("There was an error")
-        }*/
-    
-        // 코어데이터 추가하고 싶을때
-        /*
-        for i in 1 ... 2 {
-            let categoryModel: LPCategoryModel = LPCategoryModel(name: "햄버거 \(i)", r: 247, g: 0, b: 0, alpha: 1)
-            if insertIntoCategory(valueCategory: categoryModel) {
-                for j in 1 ... 10 {
-                    let linkModel: LPLinkModel = LPLinkModel(url: "https://\(j)", title: "링크 타이틀\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
-                    insertIntoLink(valueLink: linkModel)
-                }
-            }
-        }*/
-        
         urls = selectAllObjectFromLink() as! [LPLinkModel]
         categorys = selectAllObjectFromCategory() as! [LPCategoryModel]
         
