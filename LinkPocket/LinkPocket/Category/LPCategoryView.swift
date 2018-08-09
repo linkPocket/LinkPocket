@@ -20,7 +20,7 @@ class LPCategoryV: UIView, LPCategoryListListener {
         mCategoryList.listener = self
         self.addSubview(mCategoryList)
         
-        mCategoryTable = LPCategoryTable(frame: rR( 0, 80, W, H-80))
+        mCategoryTable = LPCategoryTable(frame: rR( 0, 80, W, H-80), urls: urls)
         self.addSubview(mCategoryTable)
         
     }

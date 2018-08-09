@@ -8,11 +8,23 @@
 
 import UIKit
 
-class LPRecentViewController: UIViewController {
+class LPRecentViewController: UIViewController, LPCoreDataManager {
+    
+    var mLPRecentView: LPRecentView!
+    
+    var urls: [LPLinkModel] = []
+    var categorys: [LPCategoryModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        urls = selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = selectAllObjectFromCategory() as! [LPCategoryModel]
+        
+        mLPRecentView = LPRecentView(frame: R(0,0,W,H), urls: urls)
+        self.view.addSubview(mLPRecentView)
+        
+        
         // Do any additional setup after loading the view.
     }
 

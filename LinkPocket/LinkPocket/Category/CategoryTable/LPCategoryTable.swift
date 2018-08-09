@@ -13,7 +13,7 @@ class LPCategoryTable: UIView, UITableViewDataSource, UITableViewDelegate {
     var items: [LPLinkModel] = []
     var mTable: UITableView!
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, urls: [LPLinkModel]) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         
@@ -23,6 +23,9 @@ class LPCategoryTable: UIView, UITableViewDataSource, UITableViewDelegate {
         mTable.delegate = self
         addSubview(mTable)
         mTable.separatorStyle = .none
+        
+        items = urls
+        mTable.reloadData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,7 +63,7 @@ class LPCategoryTable: UIView, UITableViewDataSource, UITableViewDelegate {
         cell?.categoryL.layer.masksToBounds = true
         cell?.categoryL.layer.cornerRadius = 6.5*r
         
-        cell?.categoryL.backgroundColor = UIColor.init(red: CGFloat(item.category!.r!), green: CGFloat(item.category!.g!), blue: CGFloat(item.category!.b!), alpha: CGFloat((item.category?.alpha)!))
+        //cell?.categoryL.backgroundColor = UIColor.init(red: CGFloat(item.category!.r!), green: CGFloat(item.category!.g!), blue: CGFloat(item.category!.b!), alpha: CGFloat((item.category?.alpha)!))
         
         return cell!
     }
