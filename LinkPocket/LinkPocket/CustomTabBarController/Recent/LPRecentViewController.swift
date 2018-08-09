@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
+<<<<<<< HEAD
 class LPRecentViewController: UIViewController, LPCoreDataManager {
     
     var mLPRecentView: LPRecentView!
@@ -25,6 +27,37 @@ class LPRecentViewController: UIViewController, LPCoreDataManager {
         self.view.addSubview(mLPRecentView)
         
         
+=======
+
+class LPRecentViewController: UIViewController, LPCoreDataManager {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetch)
+
+        do {
+            try (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext.execute(deleteRequest)
+            try (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext.save()
+        } catch {
+            print ("There was an error")
+        }
+
+        for i in 1 ... 4 {
+            let categoryModel: LPCategoryModel = LPCategoryModel(name: "햄버거 \(i)", r: 0, g: 0, b: 0, alpha: 0)
+            insertIntoCategory(valueCategory: categoryModel)
+            for j in 1 ... 10 {
+                let linkModel: LPLinkModel = LPLinkModel(url: "https://\(j + (i - 1) * 10)", title: "링크 타이틀\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
+                insertIntoLink(valueLink: linkModel)
+            }
+        }
+        
+        let links = selectAllObjectFromLink() as? [LPLinkModel]
+        for link in links! {
+            link.printLinks()
+        }
+
+>>>>>>> b26371dad28fb363125c6528e4a85087f7264fd2
         // Do any additional setup after loading the view.
     }
 
