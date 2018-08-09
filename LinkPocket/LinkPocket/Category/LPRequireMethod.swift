@@ -11,7 +11,7 @@ import UIKit
 import UIKit
 
 let W = UIScreen.main.bounds.width
-let H = UIScreen.main.bounds.width
+let H = UIScreen.main.bounds.height
 let statusH = UIApplication.shared.statusBarFrame.height
 let r = W/375
 
@@ -92,5 +92,19 @@ public func R(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -
 
 public func rR(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
     return CGRect(x: x*r, y: y*r, width: width*r, height: height*r)
+}
+
+extension UIView {
+    func Shadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offSet
+        layer.shadowRadius = radius //얘가 블러역할
+        
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
 }
 

@@ -10,10 +10,10 @@ import UIKit
 
 class LPCategoryTable: UIView, UITableViewDataSource, UITableViewDelegate {
     
-    var items: [CategoryModel] = []
+    var items: [LPLinkModel] = []
     var mTable: UITableView!
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, urls: [LPLinkModel]) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         
@@ -22,7 +22,10 @@ class LPCategoryTable: UIView, UITableViewDataSource, UITableViewDelegate {
         mTable.dataSource = self
         mTable.delegate = self
         addSubview(mTable)
-        //mTable.separatorStyle = .none
+        mTable.separatorStyle = .none
+        
+        items = urls
+        mTable.reloadData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,17 +44,42 @@ class LPCategoryTable: UIView, UITableViewDataSource, UITableViewDelegate {
             sv.removeFromSuperview()
         }
         
-        cell?.testLabel = UILabel(frame: R(0,0,(cell?.contentView.bounds.width)!, (cell?.contentView.bounds.height)!))
-        cell?.testLabel.text = items[indexPath.row].url
-        cell?.textLabel?.textAlignment = .center
-        cell?.contentView.addSubview((cell?.testLabel)!)
+        let item = items[indexPath.row]
+        
+        cell?.urlL = UILabel(frame: rR(37,5,150, 12))
+        cell?.urlL.text = items[indexPath.row].url
+        cell?.urlL.font = UIFont(name: "Roboto-Medium", size: 10*r)
+        cell?.contentView.addSubview((cell?.urlL)!)
+        cell?.urlL.sizeToFit()
+        
+        let categoryX = (37*r) + (cell?.urlL.bounds.width)! + (15*r)
+        
+        cell?.categoryL = UILabel(frame: rR( categoryX, 5, 57, 12))
+        cell?.categoryL.text = items[indexPath.row].category?.name
+        cell?.categoryL.textAlignment = .center
+        cell?.categoryL.textColor = UIColor.white
+        cell?.categoryL.font = UIFont(name: "Roboto-Medium", size: 10*r)
+        cell?.contentView.addSubview((cell?.categoryL)!)
+        cell?.categoryL.layer.masksToBounds = true
+        cell?.categoryL.layer.cornerRadius = 6.5*r
+        
+        cell?.categoryL.backgroundColor = UIColor.init(red: CGFloat(item.category!.r!), green: CGFloat(item.category!.g!), blue: CGFloat(item.category!.b!), alpha: CGFloat((item.category?.alpha)!))
         
         return cell!
     }
     
-    func displayTableContent(categoryN: String, urls: [CategoryModel]) {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40*r
+    }
+    
+    func displayTableContent(categoryN: String, urls: [LPLinkModel]) {
         print("여기는 \(categoryN) 카테고리 테이블입니다")
         self.items = urls
         mTable.reloadData()
     }
 }
+
+let blue = UIColor.colorFromRGB(0x008eff)
+let purple = UIColor.colorFromRGB(0x9013FE)
+let red = UIColor.colorFromRGB(0xF70000)
+let yellow = UIColor.colorFromRGB(0xF8E71C)

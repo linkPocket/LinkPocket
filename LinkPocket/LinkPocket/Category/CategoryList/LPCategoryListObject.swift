@@ -12,26 +12,31 @@ class LPCategoryListObject: View {
     
     var clickIndex = 0
     var categoryN = ""
-    var listener: (([CategoryModel]) -> ())?
+    var listener: (([LPLinkModel]) -> ())?
     
     var categoryNL: UILabel!
     var urlCountL: UILabel!
+    let fontC = UIColor.colorFromRGB(0x707070)
     
-    var urls: [CategoryModel] = []
-    init(frame: CGRect, categroyN: String, urls: [CategoryModel]) { // categoryName, urlCount(갯수)
+    var urls: [LPLinkModel] = []
+    init(frame: CGRect, categroyN: String, urls: [LPLinkModel]) { // categoryName, urlCount(갯수)
         super.init(frame: frame)
-        
+        self.clipsToBounds = true
         self.backgroundColor = UIColor.colorFromRGB(0xfdfdfd)
-        self.layer.cornerRadius = 5*r
+        self.layer.cornerRadius = 2*r
         self.urls = urls
         self.categoryN = categroyN
         let w = self.bounds.width
         
-        categoryNL = UILabel(frame: rR(0,18,w,16))
+        categoryNL = UILabel(frame: rR(0,7.26,w,16))
         categoryNL.text = categoryN
         categoryNL.textAlignment = .center
-        urlCountL = UILabel(frame: rR(0,36,w,11))
+        categoryNL.font = UIFont(name: "Roboto-Bold", size: 12*r)
+        categoryNL.textColor = fontC
+        urlCountL = UILabel(frame: rR(0,24.12,w,11))
         urlCountL.text = "\(urls.count)"
+        urlCountL.font = UIFont(name: "Roboto-Regular", size: 9*r)
+        urlCountL.textColor = fontC
         urlCountL.textAlignment = .center
         
         addSubview(categoryNL); addSubview(urlCountL)
@@ -50,8 +55,8 @@ class LPCategoryListObject: View {
     
     private func onClicked(){
         UIView.animate(withDuration: 0.1, animations: {
-            self.layer.cornerRadius = 10*r
-            self.backgroundColor = UIColor.red
+            self.layer.cornerRadius = 2*r
+            self.backgroundColor = UIColor.colorFromRGB(0x008EFF)
             self.categoryNL.textColor = UIColor.white
             self.urlCountL.textColor = UIColor.white
         })
@@ -60,11 +65,11 @@ class LPCategoryListObject: View {
     }
     
     public func onUnclicked(){
-        UIView.animate(withDuration: 0.2, animations: {
-            self.layer.cornerRadius = 5*r
-            self.backgroundColor = UIColor.colorFromRGB(0xfdfdfd)
-            self.categoryNL.textColor = UIColor.gray
-            self.urlCountL.textColor = UIColor.gray
+        UIView.animate(withDuration: 0.1, animations: {
+            self.layer.cornerRadius = 2*r
+            self.backgroundColor = UIColor.colorFromRGB(0xf5f5f5)
+            self.categoryNL.textColor = self.fontC
+            self.urlCountL.textColor = self.fontC
         })
         self.clickIndex = 0
         

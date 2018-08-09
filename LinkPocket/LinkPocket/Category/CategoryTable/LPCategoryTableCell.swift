@@ -9,6 +9,6 @@
 import UIKit
 
 class LPCategoryTableCell: UITableViewCell {
-    var testLabel: UILabel!
-    
+    var urlL: UILabel!
+    var categoryL: UILabel!
 }

@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
-class LPCategoryViewController: UIViewController {
+class LPCategoryViewController: UIViewController, LPCoreDataManager {
 
     var mCategoryV: LPCategoryV!
+    var urls: [LPLinkModel] = []
+    var categorys: [LPCategoryModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +26,10 @@ class LPCategoryViewController: UIViewController {
             }
         }
         
-        mCategoryV = LPCategoryV(frame: R(0,0,W,H-statusH))
+        urls = selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = selectAllObjectFromCategory() as! [LPCategoryModel]
+        
+        mCategoryV = LPCategoryV(frame: R(0,0,W,H-statusH), categorys: categorys, urls: urls)
         self.view.addSubview(mCategoryV)
 
         // Do any additional setup after loading the view.
@@ -34,9 +40,6 @@ class LPCategoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func show(_ model: [CategoryModel]) {
-        
-    }
 }
 
 extension String {

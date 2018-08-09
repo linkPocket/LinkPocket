@@ -9,25 +9,25 @@
 import UIKit
 
 protocol LPCategoryListListener {
-    func displayCategoryTable(categoryN: String, urls: [CategoryModel])
+    func displayCategoryTable(categoryN: String, urls: [LPLinkModel])
     func addCategory()
 }
 
 class LPCategoryList: UIView {
     
-    var categorysN: [CategoryModel] = []
+    var categorysN: [LPLinkModel] = []
     var listener: LPCategoryListListener!
     
     var scrollV: UIScrollView!
     var scrollVw: CGFloat = 0
-    init(frame: CGRect, categoryNs: [String], categorys: [CategoryModel]) { //Sting -> LPCategoryModel
+    init(frame: CGRect, categorys: [LPCategoryModel], urls: [LPLinkModel]) {
         super.init(frame: frame)
         
         scrollV = UIScrollView(frame: bounds)
         scrollV.contentSize = CGSize(width: 0, height: 0)
         addSubview(scrollV)
         
-        let bt = ImageView(frame: rR(40,0,85,64), named: "add")
+        let bt = ImageView(frame: rR(40,0,100,42), named: "add")
         bt.backgroundColor = UIColor.colorFromRGB(0xfdfdfd)
         scrollV.addSubview(bt)
         
@@ -35,22 +35,23 @@ class LPCategoryList: UIView {
             self.listener?.addCategory()
         }
         
-        for i in 0..<categoryNs.count{
+        for i in 0..<categorys.count{
             
-            var urls: [CategoryModel] = []
-            for j in 0..<categorys.count { //전체유알엘에서
+            var mUrls: [LPLinkModel] = []
+            for j in 0..<urls.count { //전체유알엘에서
                 
-                if categorys[j].name == categoryNs[i] {
-                    urls.append(testUrls[j])
+                if urls[j].category?.name == categorys[i].name {
+                    mUrls.append(urls[j])
                 }
-                let mCategoryListObject = LPCategoryListObject(frame: rR(CGFloat(40 + ((85+16)*(i+1))),0,85,64), categroyN: categoryNs[i], urls: urls)
+                let mCategoryListObject = LPCategoryListObject(frame: rR(CGFloat(40 + ((100+16)*(i+1))),0,100,42), categroyN: categorys[i].name!, urls: mUrls)
                 self.scrollV.addSubview(mCategoryListObject)
+                //mCategoryListObject.Shadow(color: UIColor.colorFromRGB(0xe4e4e4), opacity: 0.2, offSet: CGSize(width: 0.1, height: 0.1), radius: 20*r, scale: true)
                 
                 mCategoryListObject.listener = { urls in
-                    self.listener?.displayCategoryTable(categoryN: categoryNs[i], urls: urls)
+                    self.listener?.displayCategoryTable(categoryN: categorys[i].name!, urls: urls)
                     
                     for sv in self.scrollV.subviews {
-                        if sv is LPCategoryListObject && (sv as! LPCategoryListObject).categoryN != categoryNs[i]  {
+                        if sv is LPCategoryListObject && (sv as! LPCategoryListObject).categoryN != categorys[i].name  {
                             (sv as! LPCategoryListObject).onUnclicked()
                         }
                     }
@@ -59,7 +60,7 @@ class LPCategoryList: UIView {
                 scrollVw = CGFloat(80 + ((85+16)*(i+2)))
             }
             
-            urls.removeAll()
+            mUrls.removeAll()
         }
         
         let h = self.bounds.height
