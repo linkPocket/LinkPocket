@@ -22,6 +22,6 @@ extension Category {
     @NSManaged public var g: Double
     @NSManaged public var b: Double
     @NSManaged public var alpha: Double
-    @NSManaged public var link: Link?
+    @NSManaged public var link: Set<Link>
 
 }
