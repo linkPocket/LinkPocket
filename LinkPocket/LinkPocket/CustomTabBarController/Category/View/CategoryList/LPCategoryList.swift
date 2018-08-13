@@ -35,32 +35,25 @@ class LPCategoryList: UIView {
             self.listener?.addCategory()
         }
         
-        for i in 0..<categorys.count{
+        for i in 0..<categorys.count {
+            let mUrls = urls.filter { $0.category?.name == categorys[i].name }
+            let mCategoryListObject = LPCategoryListObject(frame: rR(CGFloat(40 + ((100 + 16) * (i + 1))), 0, 100, 42), categroyN: categorys[i].name!, urls: mUrls)
+            self.scrollV.addSubview(mCategoryListObject)
             
-            var mUrls: [LPLinkModel] = []
-            for j in 0..<urls.count { //전체유알엘에서
+            mCategoryListObject.listener = { urls in
+                self.listener?.displayCategoryTable(categoryN: categorys[i].name!, urls: urls)
                 
-                if urls[j].category?.name == categorys[i].name {
-                    mUrls.append(urls[j])
-                }
-                let mCategoryListObject = LPCategoryListObject(frame: rR(CGFloat(40 + ((100+16)*(i+1))),0,100,42), categroyN: categorys[i].name!, urls: mUrls)
-                self.scrollV.addSubview(mCategoryListObject)
-                //mCategoryListObject.Shadow(color: UIColor.colorFromRGB(0xe4e4e4), opacity: 0.2, offSet: CGSize(width: 0.1, height: 0.1), radius: 20*r, scale: true)
-                
-                mCategoryListObject.listener = { urls in
-                    self.listener?.displayCategoryTable(categoryN: categorys[i].name!, urls: urls)
-                    
-                    for sv in self.scrollV.subviews {
-                        if sv is LPCategoryListObject && (sv as! LPCategoryListObject).categoryN != categorys[i].name  {
-                            (sv as! LPCategoryListObject).onUnclicked()
-                        }
+                for sv in self.scrollV.subviews {
+                    if let subView = sv as? LPCategoryListObject, subView.categoryN != categorys[i].name {
+                        subView.onUnclicked()
                     }
-                    
                 }
-                scrollVw = CGFloat(80 + ((85+16)*(i+2)))
+              //  mCategoryListObject.frame = R(self.bounds.origin.x, mCategoryListObject.frame.origin.y, mCategoryListObject.frame.width, mCategoryListObject.frame.height)
             }
             
-            mUrls.removeAll()
+            
+            
+            scrollVw = CGFloat(80 + ((85 + 16) * (i + 2)))
         }
         
         let h = self.bounds.height

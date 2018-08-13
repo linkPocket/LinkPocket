@@ -14,6 +14,7 @@ let W = UIScreen.main.bounds.width
 let H = UIScreen.main.bounds.height
 let statusH = UIApplication.shared.statusBarFrame.height
 let r = W/375
+let wColor = UIColor.colorFromRGB(0xefefef)
 
 open class View : UIView {
     

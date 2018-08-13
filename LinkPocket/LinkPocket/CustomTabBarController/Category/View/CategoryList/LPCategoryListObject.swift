@@ -35,7 +35,7 @@ class LPCategoryListObject: View {
         categoryNL.textColor = fontC
         urlCountL = UILabel(frame: rR(0,24.12,w,11))
         urlCountL.text = "\(urls.count)"
-        urlCountL.font = UIFont(name: "Roboto-Regular", size: 9*r)
+        urlCountL.font = UIFont(name: "Roboto-Medium", size: 9*r)
         urlCountL.textColor = fontC
         urlCountL.textAlignment = .center
         
