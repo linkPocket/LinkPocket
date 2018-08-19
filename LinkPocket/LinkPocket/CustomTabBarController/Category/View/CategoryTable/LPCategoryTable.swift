@@ -94,8 +94,10 @@ class LPCategoryTable: UIView, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if sections.count != 0 {
         return sections[section].urls.count
+            
         } else {
             return 0
+            
         }
     }
 
