@@ -87,12 +87,26 @@ extension UIColor {
     }
 }
 
+let blue = UIColor.colorFromRGB(0x008eff)
+let purple = UIColor.colorFromRGB(0x9013FE)
+let red = UIColor.colorFromRGB(0xF70000)
+let yellow = UIColor.colorFromRGB(0xF8E71C)
+
 public func R(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
     return CGRect(x: x, y: y, width: width, height: height)
 }
 
 public func rR(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
     return CGRect(x: x*r, y: y*r, width: width*r, height: height*r)
+}
+
+public func date(_ formatter: String) -> String {
+    let updateDate = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "YYYY MM dd"
+    let dateString = formatter.string(from: updateDate)
+    
+    return dateString
 }
 
 extension UIView {

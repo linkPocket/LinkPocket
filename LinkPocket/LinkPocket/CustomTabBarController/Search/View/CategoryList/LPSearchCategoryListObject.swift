@@ -30,6 +30,9 @@ class LPSearchCategoryListObject: View {
         addSubview(label)
         label.isUserInteractionEnabled = false
         
+        self.onClick = {
+            print("\(category.name!)로 이동합니다")
+        }
     }
     
     required public init?(coder aDecoder: NSCoder) {

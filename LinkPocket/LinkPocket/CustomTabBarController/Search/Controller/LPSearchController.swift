@@ -11,14 +11,16 @@ import UIKit
 class LPSearchController: UIViewController, LPCoreDataManager {
 
     var categorys: [LPCategoryModel] = []
+    var urls: [LPLinkModel] = []
     var mLPSearchView: LPSearchView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         categorys = selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls = selectAllObjectFromLink() as! [LPLinkModel]
         
-        mLPSearchView = LPSearchView(frame: R(0,0,W,H), categorys: categorys)
+        mLPSearchView = LPSearchView(frame: R(0,0,W,H), urls: urls , categorys: categorys)
         self.view.addSubview(mLPSearchView)
         // Do any additional setup after loading the view.
     }

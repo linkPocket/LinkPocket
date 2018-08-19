@@ -28,7 +28,6 @@ class LPCategoryList: UIView {
         addSubview(scrollV)
         
         let bt = ImageView(frame: rR(40,0,100,42), named: "add")
-        bt.backgroundColor = UIColor.colorFromRGB(0xfdfdfd)
         scrollV.addSubview(bt)
         
         bt.onClick = {
@@ -48,12 +47,10 @@ class LPCategoryList: UIView {
                         subView.onUnclicked()
                     }
                 }
-              //  mCategoryListObject.frame = R(self.bounds.origin.x, mCategoryListObject.frame.origin.y, mCategoryListObject.frame.width, mCategoryListObject.frame.height)
+                
             }
             
-            
-            
-            scrollVw = CGFloat(80 + ((85 + 16) * (i + 2)))
+            scrollVw = CGFloat(80 + ((100 + 16) * (i + 2)))
         }
         
         let h = self.bounds.height

@@ -24,6 +24,21 @@ class LPRecentViewController: UIViewController, LPCoreDataManager {
         mLPRecentView = LPRecentView(frame: R(0,0,W,H), urls: urls)
         self.view.addSubview(mLPRecentView)
         
+//        let delegate = UIApplication.shared.delegate as! LPAppDelegate
+//        let context = delegate.persistentContainer.viewContext
+//
+//        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+//
+//        do {
+//            try context.execute(deleteRequest)
+//            try context.save()
+//        } catch {
+//            print ("There was an error")
+//        }
+//
+        
+        
 //        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Link")
 //        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetch)
 //
@@ -33,10 +48,10 @@ class LPRecentViewController: UIViewController, LPCoreDataManager {
 //        } catch {
 //            print ("There was an error")
 //        }
-
-        
+//
+//
 //        for i in 1 ... 4 {
-//            let categoryModel: LPCategoryModel = LPCategoryModel(name: "햄버거 \(i)", r: 0, g: 0, b: 255, alpha: 1)
+//            let categoryModel: LPCategoryModel = LPCategoryModel(name: "피자 \(i)", r: 55, g: 88, b: 97, alpha: 1)
 //            insertIntoCategory(valueCategory: categoryModel)
 //            for j in 1 ... 10 {
 //                let linkModel: LPLinkModel = LPLinkModel(url: "https://\(j + (i - 1) * 10)", title: "링크 타이틀\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
@@ -48,8 +63,6 @@ class LPRecentViewController: UIViewController, LPCoreDataManager {
 //        for link in links! {
 //            link.printLinks()
 //        }
-        
-        
 
         // Do any additional setup after loading the view.
     }

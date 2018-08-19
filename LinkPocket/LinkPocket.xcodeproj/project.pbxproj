@@ -23,6 +23,12 @@
 		4C98C17721210FE5004CF7CB /* LPSearchCategoryListObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98C17621210FE5004CF7CB /* LPSearchCategoryListObject.swift */; };
 		4C98C17921210FFC004CF7CB /* LPSearchCategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98C17821210FFC004CF7CB /* LPSearchCategoryList.swift */; };
 		4C98C17C21211496004CF7CB /* LPSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98C17B21211496004CF7CB /* LPSearchController.swift */; };
+		4C98C18021211CB9004CF7CB /* LPSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98C17F21211CB9004CF7CB /* LPSearchBar.swift */; };
+		4C98C18221250A69004CF7CB /* LPSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98C18121250A69004CF7CB /* LPSearchTable.swift */; };
+		4C98C1842125DD4B004CF7CB /* LPSearchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98C1832125DD4B004CF7CB /* LPSearchTableCell.swift */; };
+		4C98C1872127C61C004CF7CB /* LPSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98C1862127C61B004CF7CB /* LPSearchModel.swift */; };
+		4C98C1892127EF16004CF7CB /* LPGroupingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98C1882127EF16004CF7CB /* LPGroupingTable.swift */; };
+		4C98C18C2127FE0A004CF7CB /* LPTableSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98C18B2127FE0A004CF7CB /* LPTableSectionModel.swift */; };
 		4CFB8BAA2107064E00E0259B /* LPAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BA92107064E00E0259B /* LPAppDelegate.swift */; };
 		4CFB8BAF2107064E00E0259B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CFB8BAD2107064E00E0259B /* Main.storyboard */; };
 		4CFB8BB22107064E00E0259B /* LinkPocket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BB02107064E00E0259B /* LinkPocket.xcdatamodeld */; };
@@ -108,6 +114,12 @@
 		4C98C17621210FE5004CF7CB /* LPSearchCategoryListObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSearchCategoryListObject.swift; sourceTree = "<group>"; };
 		4C98C17821210FFC004CF7CB /* LPSearchCategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSearchCategoryList.swift; sourceTree = "<group>"; };
 		4C98C17B21211496004CF7CB /* LPSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSearchController.swift; sourceTree = "<group>"; };
+		4C98C17F21211CB9004CF7CB /* LPSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSearchBar.swift; sourceTree = "<group>"; };
+		4C98C18121250A69004CF7CB /* LPSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSearchTable.swift; sourceTree = "<group>"; };
+		4C98C1832125DD4B004CF7CB /* LPSearchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSearchTableCell.swift; sourceTree = "<group>"; };
+		4C98C1862127C61B004CF7CB /* LPSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSearchModel.swift; sourceTree = "<group>"; };
+		4C98C1882127EF16004CF7CB /* LPGroupingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPGroupingTable.swift; sourceTree = "<group>"; };
+		4C98C18B2127FE0A004CF7CB /* LPTableSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPTableSectionModel.swift; sourceTree = "<group>"; };
 		4CFB8BA62107064E00E0259B /* LinkPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CFB8BA92107064E00E0259B /* LPAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPAppDelegate.swift; sourceTree = "<group>"; };
 		4CFB8BAE2107064E00E0259B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -250,7 +262,7 @@
 		4C98C171212108D9004CF7CB /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				4C98C17D21211B4E004CF7CB /* SearchBar */,
+				4C98C1852127C5B2004CF7CB /* SearchModel */,
 				4C98C17421210F61004CF7CB /* View */,
 				4C98C17A2121147C004CF7CB /* Controller */,
 			);
@@ -261,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				4C98C17221210F51004CF7CB /* LPSearchView.swift */,
+				4C98C17E21211C9C004CF7CB /* SearchTable */,
+				4C98C17D21211B4E004CF7CB /* SearchBar */,
 				4C98C17521210F6A004CF7CB /* CategoryList */,
 			);
 			path = View;
@@ -269,8 +283,8 @@
 		4C98C17521210F6A004CF7CB /* CategoryList */ = {
 			isa = PBXGroup;
 			children = (
-				4C98C17621210FE5004CF7CB /* LPSearchCategoryListObject.swift */,
 				4C98C17821210FFC004CF7CB /* LPSearchCategoryList.swift */,
+				4C98C17621210FE5004CF7CB /* LPSearchCategoryListObject.swift */,
 			);
 			path = CategoryList;
 			sourceTree = "<group>";
@@ -286,8 +300,43 @@
 		4C98C17D21211B4E004CF7CB /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
+				4C98C17F21211CB9004CF7CB /* LPSearchBar.swift */,
 			);
 			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		4C98C17E21211C9C004CF7CB /* SearchTable */ = {
+			isa = PBXGroup;
+			children = (
+				4C98C18121250A69004CF7CB /* LPSearchTable.swift */,
+				4C98C1832125DD4B004CF7CB /* LPSearchTableCell.swift */,
+			);
+			path = SearchTable;
+			sourceTree = "<group>";
+		};
+		4C98C1852127C5B2004CF7CB /* SearchModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C98C1862127C61B004CF7CB /* LPSearchModel.swift */,
+			);
+			path = SearchModel;
+			sourceTree = "<group>";
+		};
+		4C98C18A2127FDF6004CF7CB /* LPTableSectionModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C98C18B2127FE0A004CF7CB /* LPTableSectionModel.swift */,
+			);
+			path = LPTableSectionModel;
+			sourceTree = "<group>";
+		};
+		4C98C18D2127FE33004CF7CB /* GroupingTable */ = {
+			isa = PBXGroup;
+			children = (
+				4C98C1882127EF16004CF7CB /* LPGroupingTable.swift */,
+				4C98C18A2127FDF6004CF7CB /* LPTableSectionModel */,
+			);
+			path = GroupingTable;
 			sourceTree = "<group>";
 		};
 		4CFB8B9D2107064E00E0259B = {
@@ -374,6 +423,7 @@
 		CE80DE3421106BFE00B2032F /* Recent */ = {
 			isa = PBXGroup;
 			children = (
+				4C98C18D2127FE33004CF7CB /* GroupingTable */,
 				4C0C2F86211C622E001585DF /* View */,
 				4C0C2F85211C6225001585DF /* Controller */,
 			);
@@ -693,6 +743,7 @@
 				4C0C2F55211AEBE6001585DF /* LPCategoryTable.swift in Sources */,
 				CE80DE3E21106D5F00B2032F /* LPRecentViewController.swift in Sources */,
 				4C0C2F5D211AEC25001585DF /* LPCategoryView.swift in Sources */,
+				4C98C18C2127FE0A004CF7CB /* LPTableSectionModel.swift in Sources */,
 				CEA581F92119A0DD00B88341 /* Link+CoreDataProperties.swift in Sources */,
 				4C98C17021210896004CF7CB /* LPShareExtentionView.swift in Sources */,
 				CE80DE482110723A00B2032F /* LPCustomTabBarController.swift in Sources */,
@@ -701,6 +752,7 @@
 				4C0C2F59211AEC0D001585DF /* LPCategoryList.swift in Sources */,
 				CE80DE4521106DD900B2032F /* LPParentNavigationController.swift in Sources */,
 				CEA581F82119A0DD00B88341 /* Link+CoreDataClass.swift in Sources */,
+				4C98C1872127C61C004CF7CB /* LPSearchModel.swift in Sources */,
 				CE80DE4221106D6E00B2032F /* LPCategoryViewController.swift in Sources */,
 				CEA581FE2119A10200B88341 /* LPCategoryModel.swift in Sources */,
 				4C98C17C21211496004CF7CB /* LPSearchController.swift in Sources */,
@@ -711,8 +763,12 @@
 				4C98C17321210F52004CF7CB /* LPSearchView.swift in Sources */,
 				CEA582002119A10D00B88341 /* LPLinkModel.swift in Sources */,
 				CEA581FA2119A0DD00B88341 /* Category+CoreDataClass.swift in Sources */,
+				4C98C18221250A69004CF7CB /* LPSearchTable.swift in Sources */,
 				4CFB8BAA2107064E00E0259B /* LPAppDelegate.swift in Sources */,
 				4C98C17721210FE5004CF7CB /* LPSearchCategoryListObject.swift in Sources */,
+				4C98C1892127EF16004CF7CB /* LPGroupingTable.swift in Sources */,
+				4C98C1842125DD4B004CF7CB /* LPSearchTableCell.swift in Sources */,
+				4C98C18021211CB9004CF7CB /* LPSearchBar.swift in Sources */,
 				4C0C2F5B211AEC1A001585DF /* LPCategoryListObject.swift in Sources */,
 				4C0C2F57211AEBF9001585DF /* LPCategoryTableCell.swift in Sources */,
 			);

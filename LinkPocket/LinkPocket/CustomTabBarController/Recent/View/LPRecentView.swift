@@ -10,12 +10,16 @@ import UIKit
 
 class LPRecentView: UIView {
     
+    var mSearchBar: LPSearchBar!
     var mLPCategoryTable: LPCategoryTable!
     
     init(frame: CGRect, urls: [LPLinkModel]) {
         super.init(frame: frame)
         
-        mLPCategoryTable = LPCategoryTable(frame: bounds, urls: urls)
+        mSearchBar = LPSearchBar(frame: rR(0,0,W,40), urls: [], categorys: [])
+        addSubview(mSearchBar)
+        
+        mLPCategoryTable = LPCategoryTable(frame: rR(0,50,W,self.bounds.height - 50), urls: urls)
         addSubview(mLPCategoryTable)
     }
     
