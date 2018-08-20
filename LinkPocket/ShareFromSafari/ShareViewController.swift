@@ -31,8 +31,8 @@ class ShareViewController: UIViewController { //SLComposeServiceViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let testVC = Test2ViewController(nibName: "Test2ViewController", bundle: nil)
-        self.present(testVC, animated: true, completion: nil)
+//        let testVC = Test2ViewController(nibName: "Test2ViewController", bundle: nil)
+//        self.present(testVC, animated: true, completion: nil)
         self.view.backgroundColor = .white
         
         let store = LPCoreDataManager.store
@@ -91,20 +91,25 @@ class ShareViewController: UIViewController { //SLComposeServiceViewController {
     }
     
     @IBAction func closeBtnClicked(_ sender: UIButton) {
+        let categoryModel: LPCategoryModel? = LPCoreDataManager.store.selectObjectFromCategoryWhere(nameIs: self.category1.text!)
+        let linkModel: LPLinkModel = LPLinkModel(url: self.titleLabel.text, title: self.contentTextView.text,
+                                                 imageName: String(describing: self.photoURL!), date: Date() as NSDate, category: categoryModel)
         
-        let defaults = UserDefaults(suiteName: "group.CoreDataTest2")
-        let resultDic: [String: String] =
-            ["url": self.titleLabel.text!, "title": self.contentTextView.text!,
-             "date": String(describing: Date()), "category": category1.text!,
-             "imageName": String(describing: self.photoURL!)]
+        LPCoreDataManager.store.insertIntoLink(valueLink: linkModel)
         
-        if var resultArr = defaults?.object(forKey: "link") as? [[String: String]] {
-            resultArr.append(resultDic)
-            defaults?.set(resultArr, forKey: "link")
-        } else {
-            defaults?.set([resultDic], forKey: "link")
-        }
-        defaults?.synchronize()
+//        let defaults = UserDefaults(suiteName: "group.CoreDataTest2")
+//        let resultDic: [String: String] =
+//            ["url": self.titleLabel.text!, "title": self.contentTextView.text!,
+//             "date": String(describing: Date()), "category": category1.text!,
+//             "imageName": String(describing: self.photoURL!)]
+//
+//        if var resultArr = defaults?.object(forKey: "link") as? [[String: String]] {
+//            resultArr.append(resultDic)
+//            defaults?.set(resultArr, forKey: "link")
+//        } else {
+//            defaults?.set([resultDic], forKey: "link")
+//        }
+//        defaults?.synchronize()
 
         DispatchQueue.main.async {
             self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
