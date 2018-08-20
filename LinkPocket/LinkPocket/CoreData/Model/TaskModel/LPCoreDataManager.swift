@@ -39,14 +39,14 @@ final class LPCoreDataManager {
         return false
     }
     
-    func executeCategoryQuery<T>(query: (NSFetchRequest<Category>) -> T) -> T {
+    @discardableResult func executeCategoryQuery<T>(query: (NSFetchRequest<Category>) -> T) -> T {
         let entityDescription = NSEntityDescription.entity(forEntityName: "Category", in: managedObjectContext)
         let request: NSFetchRequest<Category> = Category.fetchRequest()
         request.entity = entityDescription
         return query(request)
     }
     
-    func executeLinkQuery<T>(query: (NSFetchRequest<Link>) -> T) -> T {
+    @discardableResult func executeLinkQuery<T>(query: (NSFetchRequest<Link>) -> T) -> T {
         let entityDescription = NSEntityDescription.entity(forEntityName: "Link", in: managedObjectContext)
         let request: NSFetchRequest<Link> = Link.fetchRequest()
         request.entity = entityDescription
@@ -54,7 +54,7 @@ final class LPCoreDataManager {
         return query(request)
     }
     
-    func insertIntoCategory(valueCategory: LPCategoryModel) -> Bool {
+    @discardableResult func insertIntoCategory(valueCategory: LPCategoryModel) -> Bool {
         guard (selectObjectFromCategoryWhere(nameIs: valueCategory.name!) == nil) else {
             print("[info] .... Data is Exist")
             return false
@@ -72,7 +72,7 @@ final class LPCoreDataManager {
         return saveIfCanSave
     }
     
-    func selectAllObjectFromCategory() -> NSArray {
+    @discardableResult func selectAllObjectFromCategory() -> NSArray {
         let categorys: NSMutableArray = NSMutableArray()
         return executeCategoryQuery { (request) -> NSArray in
             do {
@@ -100,7 +100,7 @@ final class LPCoreDataManager {
         }
     }
     
-    func selectObjectFromCategoryWhere(nameIs: String) -> LPCategoryModel? {
+    @discardableResult func selectObjectFromCategoryWhere(nameIs: String) -> LPCategoryModel? {
         var category: LPCategoryModel? = nil
         return executeCategoryQuery(query: { (request) -> LPCategoryModel? in
             do {
@@ -125,7 +125,7 @@ final class LPCoreDataManager {
         })
     }
     
-    func updateCategorySet(valueCategory: LPCategoryModel, whereNameIs: String) -> Bool {
+    @discardableResult func updateCategorySet(valueCategory: LPCategoryModel, whereNameIs: String) -> Bool {
         return executeCategoryQuery(query: { (request) -> Bool in
             do {
                 let objects = try managedObjectContext.fetch(request)
@@ -162,7 +162,7 @@ final class LPCoreDataManager {
         
     }
     
-    func deleteFromCategoryWhere(nameIs: String) -> Bool {
+    @discardableResult func deleteFromCategoryWhere(nameIs: String) -> Bool {
         return executeCategoryQuery(query: { (request) -> Bool in
             do {
                 let objects = try managedObjectContext.fetch(request)
@@ -182,7 +182,7 @@ final class LPCoreDataManager {
         })
     }
     
-    func selectCategoryFromCategoryWhere(nameIs: String) -> Category? {
+    @discardableResult func selectCategoryFromCategoryWhere(nameIs: String) -> Category? {
         return executeCategoryQuery(query: { (request) -> Category? in
             do {
                 let objects = try managedObjectContext.fetch(request) // as! [NSManagedObject]
@@ -202,7 +202,7 @@ final class LPCoreDataManager {
         })
     }
 
-    func insertIntoLink(valueLink: LPLinkModel) -> Bool {
+    @discardableResult func insertIntoLink(valueLink: LPLinkModel) -> Bool {
         guard (selectObjectFromLinkWhere(urlIs: valueLink.url!) == nil) else {
             return false
         }
@@ -238,7 +238,7 @@ final class LPCoreDataManager {
         return saveIfCanSave
     }
     
-    func selectAllObjectFromLink() -> NSArray {
+    @discardableResult func selectAllObjectFromLink() -> NSArray {
         let links: NSMutableArray = NSMutableArray()
         return executeLinkQuery { (request) -> NSArray in
             do {
@@ -277,7 +277,7 @@ final class LPCoreDataManager {
         }
     }
     
-    func selectObjectFromLinkWhere(urlIs: String) -> LPLinkModel? {
+    @discardableResult func selectObjectFromLinkWhere(urlIs: String) -> LPLinkModel? {
         var link: LPLinkModel? = nil
         return executeLinkQuery(query: { (request) -> LPLinkModel? in
             do {
@@ -304,7 +304,7 @@ final class LPCoreDataManager {
         })
     }
     
-    func updateLinkSet(valueLink: LPLinkModel, whereUrlIs: String) -> Bool {
+    @discardableResult func updateLinkSet(valueLink: LPLinkModel, whereUrlIs: String) -> Bool {
         return executeLinkQuery(query: { (request) -> Bool in
             do {
                 let objects = try managedObjectContext.fetch(request)
@@ -353,7 +353,7 @@ final class LPCoreDataManager {
         
     }
     
-    func deleteFromLinkWhere(urlIs: String) -> Bool {
+    @discardableResult func deleteFromLinkWhere(urlIs: String) -> Bool {
         return executeLinkQuery(query: { (request) -> Bool in
             do {
                 let objects = try managedObjectContext.fetch(request)
