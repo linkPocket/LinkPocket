@@ -26,7 +26,7 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
         self.customTabBar.items?[0].title = self.viewControllers[0]?.tabBarItem.title
         self.customTabBar.items?[1].title = self.viewControllers[1]?.tabBarItem.title
         
-        
+
         self.customTabBar.isTranslucent = false
         
         self.viewControllers[0]?.view.frame = self.customView.frame
