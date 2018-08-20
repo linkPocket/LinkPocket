@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class LPCategoryViewController: UIViewController {
 
+    var mCategoryV: LPCategoryV!
+    var urls: [LPLinkModel] = []
+    var categorys: [LPCategoryModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let pasteboard = UIPasteboard.general
@@ -20,6 +25,12 @@ class LPCategoryViewController: UIViewController {
                 print("\(string) is not url")
             }
         }
+        
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        
+        mCategoryV = LPCategoryV(frame: R(0,0,W,H-statusH), categorys: categorys, urls: urls)
+        self.view.addSubview(mCategoryV)
 
         // Do any additional setup after loading the view.
     }
@@ -28,6 +39,7 @@ class LPCategoryViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }
 
 extension String {
