@@ -15,6 +15,11 @@
 		4CFB8BC22107064E00E0259B /* LinkPocketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BC12107064E00E0259B /* LinkPocketTests.swift */; };
 		4CFB8BCD2107064E00E0259B /* LinkPocketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BCC2107064E00E0259B /* LinkPocketUITests.swift */; };
 		A65F8F2068CB82F1A4A9A577 /* libPods-LinkPocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 936C50DC162F949B2C32583F /* libPods-LinkPocket.a */; };
+		CE3BB67E2120473100CEAC7B /* LPCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA582032119A1C200B88341 /* LPCoreDataManager.swift */; };
+		CE3BB67F212049F000CEAC7B /* LinkPocket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB8BB02107064E00E0259B /* LinkPocket.xcdatamodeld */; };
+		CE3BB6812121D96300CEAC7B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3BB6802121D96300CEAC7B /* TestViewController.swift */; };
+		CE3BB6842121DAD400CEAC7B /* Test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3BB6822121DAD400CEAC7B /* Test2ViewController.swift */; };
+		CE3BB6852121DAD400CEAC7B /* Test2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3BB6832121DAD400CEAC7B /* Test2ViewController.xib */; };
 		CE5F8EA92108D6EF00C27671 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F8EA82108D6EF00C27671 /* ShareViewController.swift */; };
 		CE5F8EAC2108D6EF00C27671 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5F8EAA2108D6EF00C27671 /* MainInterface.storyboard */; };
 		CE5F8EB02108D6EF00C27671 /* ShareFromSafari.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE5F8EA62108D6EF00C27671 /* ShareFromSafari.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -25,6 +30,12 @@
 		CE80DE4521106DD900B2032F /* LPParentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE4421106DD900B2032F /* LPParentNavigationController.swift */; };
 		CE80DE482110723A00B2032F /* LPCustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE462110723A00B2032F /* LPCustomTabBarController.swift */; };
 		CE80DE492110723A00B2032F /* LPCustomTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE80DE472110723A00B2032F /* LPCustomTabBarController.xib */; };
+		CE92139A211C987C00E5049C /* LPCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581FD2119A10200B88341 /* LPCategoryModel.swift */; };
+		CE92139B211C987C00E5049C /* LPLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581FF2119A10D00B88341 /* LPLinkModel.swift */; };
+		CE92139D211C9C2100E5049C /* Link+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F42119A0DD00B88341 /* Link+CoreDataClass.swift */; };
+		CE92139E211C9C2100E5049C /* Link+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F52119A0DD00B88341 /* Link+CoreDataProperties.swift */; };
+		CE92139F211C9C2100E5049C /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F62119A0DD00B88341 /* Category+CoreDataClass.swift */; };
+		CE9213A0211C9C2100E5049C /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F72119A0DD00B88341 /* Category+CoreDataProperties.swift */; };
 		CEA581F82119A0DD00B88341 /* Link+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F42119A0DD00B88341 /* Link+CoreDataClass.swift */; };
 		CEA581F92119A0DD00B88341 /* Link+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F52119A0DD00B88341 /* Link+CoreDataProperties.swift */; };
 		CEA581FA2119A0DD00B88341 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA581F62119A0DD00B88341 /* Category+CoreDataClass.swift */; };
@@ -89,6 +100,9 @@
 		4CFB8BCC2107064E00E0259B /* LinkPocketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPocketUITests.swift; sourceTree = "<group>"; };
 		4CFB8BCE2107064F00E0259B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		936C50DC162F949B2C32583F /* libPods-LinkPocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LinkPocket.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE3BB6802121D96300CEAC7B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		CE3BB6822121DAD400CEAC7B /* Test2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2ViewController.swift; sourceTree = "<group>"; };
+		CE3BB6832121DAD400CEAC7B /* Test2ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Test2ViewController.xib; sourceTree = "<group>"; };
 		CE5F8EA62108D6EF00C27671 /* ShareFromSafari.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareFromSafari.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5F8EA82108D6EF00C27671 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		CE5F8EAB2108D6EF00C27671 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -224,6 +238,9 @@
 				CE5F8EA82108D6EF00C27671 /* ShareViewController.swift */,
 				CE5F8EAA2108D6EF00C27671 /* MainInterface.storyboard */,
 				CE5F8EAD2108D6EF00C27671 /* Info.plist */,
+				CE3BB6802121D96300CEAC7B /* TestViewController.swift */,
+				CE3BB6822121DAD400CEAC7B /* Test2ViewController.swift */,
+				CE3BB6832121DAD400CEAC7B /* Test2ViewController.xib */,
 			);
 			path = ShareFromSafari;
 			sourceTree = "<group>";
@@ -509,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5F8EAC2108D6EF00C27671 /* MainInterface.storyboard in Resources */,
+				CE3BB6852121DAD400CEAC7B /* Test2ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,7 +594,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3BB6812121D96300CEAC7B /* TestViewController.swift in Sources */,
 				CE5F8EA92108D6EF00C27671 /* ShareViewController.swift in Sources */,
+				CE92139E211C9C2100E5049C /* Link+CoreDataProperties.swift in Sources */,
+				CE92139F211C9C2100E5049C /* Category+CoreDataClass.swift in Sources */,
+				CE92139D211C9C2100E5049C /* Link+CoreDataClass.swift in Sources */,
+				CE3BB67F212049F000CEAC7B /* LinkPocket.xcdatamodeld in Sources */,
+				CE3BB67E2120473100CEAC7B /* LPCoreDataManager.swift in Sources */,
+				CE3BB6842121DAD400CEAC7B /* Test2ViewController.swift in Sources */,
+				CE92139B211C987C00E5049C /* LPLinkModel.swift in Sources */,
+				CE92139A211C987C00E5049C /* LPCategoryModel.swift in Sources */,
+				CE9213A0211C9C2100E5049C /* Category+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +872,7 @@
 		CE5F8EB12108D6EF00C27671 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
@@ -864,6 +893,7 @@
 		CE5F8EB22108D6EF00C27671 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;

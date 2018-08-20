@@ -42,7 +42,7 @@ class LPAppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.white
         UITabBar.appearance().layer.borderWidth = 0
         UITabBar.appearance().clipsToBounds = true
-
+        
         return true
     }
 

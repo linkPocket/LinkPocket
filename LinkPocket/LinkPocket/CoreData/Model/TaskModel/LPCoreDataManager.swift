@@ -8,27 +8,24 @@
 
 import UIKit
 import CoreData
+import Foundation
 
-protocol LPCoreDataManager {
-    // category query
-    func insertIntoCategory(valueCategory: LPCategoryModel) -> Bool
-    func selectAllObjectFromCategory() -> NSArray
-    func selectObjectFromCategoryWhere(nameIs: String) -> LPCategoryModel?
-    func updateCategorySet(valueCategory: LPCategoryModel, whereNameIs: String) -> Bool
-    func deleteFromCategoryWhere(nameIs: String) -> Bool
+final class LPCoreDataManager {
+    static let store = LPCoreDataManager()
     
-    // link query
-    func insertIntoLink(valueLink: LPLinkModel) -> Bool
-    func selectAllObjectFromLink() -> NSArray
-    func selectObjectFromLinkWhere(urlIs: String) -> LPLinkModel?
-    func updateLinkSet(valueLink: LPLinkModel, whereUrlIs: String) -> Bool
-    func deleteFromLinkWhere(urlIs: String) -> Bool
-}
-
-extension LPCoreDataManager {
+    lazy var persistentContainer: CustomPersistantContainer = {
+        let container = CustomPersistantContainer(name: "LinkPocket")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
     
     var managedObjectContext: NSManagedObjectContext {
-        return (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext
+        return persistentContainer.viewContext
     }
     
     var saveIfCanSave: Bool {
@@ -56,11 +53,7 @@ extension LPCoreDataManager {
         
         return query(request)
     }
-}
-
-// Extension Category Query
-
-extension LPCoreDataManager {
+    
     func insertIntoCategory(valueCategory: LPCategoryModel) -> Bool {
         guard (selectObjectFromCategoryWhere(nameIs: valueCategory.name!) == nil) else {
             print("[info] .... Data is Exist")
@@ -208,11 +201,7 @@ extension LPCoreDataManager {
             }
         })
     }
-}
 
-// Extension Link Query
-
-extension LPCoreDataManager {
     func insertIntoLink(valueLink: LPLinkModel) -> Bool {
         guard (selectObjectFromLinkWhere(urlIs: valueLink.url!) == nil) else {
             return false
@@ -342,18 +331,6 @@ extension LPCoreDataManager {
                     categoryMatch?.link.insert(match!)
                 }
                 
-                //                if let name = valueLink.category?.name {
-                //                    if selectObjectFromCategoryWhere(nameIs: name) == nil {
-                //                        print("[info] .... \(name) category not exist")
-                //                    } else {
-                //                        match?.category?.setValue(valueLink.category?.r, forKey: "r")
-                //                        match?.category?.setValue(valueLink.category?.g, forKey: "g")
-                //                        match?.category?.setValue(valueLink.category?.b, forKey: "b")
-                //                        match?.category?.setValue(valueLink.category?.alpha, forKey: "alpha")
-                //                        match?.category?.setValue(valueLink.category?.name, forKey: "name")
-                //                    }
-                //                }
-                
                 if match?.url != valueLink.url {
                     let isUpdateDataIsExist = objects.filter { $0.url == valueLink.url }.first
                     
@@ -396,3 +373,14 @@ extension LPCoreDataManager {
         })
     }
 }
+
+class CustomPersistantContainer : NSPersistentContainer {
+    
+    static let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.CoreDataTest2")!
+    let storeDescription = NSPersistentStoreDescription(url: url)
+    
+    override class func defaultDirectoryURL() -> URL {
+        return url
+    }
+}
+
