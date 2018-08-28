@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LPSearchController: UIViewController {
+class LPRecentViewController: UIViewController { //LPSearchController
 
     var categorys: [LPCategoryModel] = []
     var urls: [LPLinkModel] = []
@@ -17,12 +17,10 @@ class LPSearchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
-        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
-        
-        mLPSearchView = LPSearchView(frame: R(0,0,W,H), urls: urls , categorys: categorys)
-        self.view.addSubview(mLPSearchView)
-        // Do any additional setup after loading the view.
+        if let mLPSearchView = Bundle.main.loadNibNamed("LPSearchView", owner: self, options: nil)?.first as? LPSearchView {
+            self.view.addSubview(mLPSearchView)
+        }
+
     }
 
     override func didReceiveMemoryWarning() {

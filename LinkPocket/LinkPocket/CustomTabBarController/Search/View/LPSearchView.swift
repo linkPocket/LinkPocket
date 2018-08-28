@@ -8,42 +8,147 @@
 
 import UIKit
 
-class LPSearchView: UIView, SearchBarListener {
+class LPSearchView: UIView {
 
-    var mSearchBar: LPSearchBar!
-    var mSearchCategoryList: LPSearchCategoryList!
-    var mSearchTable: LPSearchTable!
+    @IBOutlet weak var SearchBar: UISearchBar!
+    var inSearchMode: Bool = false
     
-    init(frame: CGRect, urls: [LPLinkModel], categorys: [LPCategoryModel]) {
-        super.init(frame: frame)
+    @IBOutlet weak var SearchCategoryList: UICollectionView!
+    
+    @IBOutlet weak var SearchTable: UITableView!
+    var filteredData: [LPSearchModel] = []
+    
+    var categorys: [LPCategoryModel] = []
+    var urls: [LPLinkModel] = []
+    
+    override func awakeFromNib() {
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         
-        mSearchBar = LPSearchBar(frame: rR(0,0,W,40), urls: urls, categorys: categorys)
-        mSearchBar.listener = self
-        addSubview(mSearchBar)
+        SearchTable.separatorStyle = .none
         
-        let line1 = UIView(frame: rR(0,50,W,1))
-        line1.backgroundColor = wColor
-        addSubview(line1)
-        
-        mSearchCategoryList = LPSearchCategoryList(frame: rR(0, 51, W, 77), categorys: categorys)
-        addSubview(mSearchCategoryList)
-        
-        let line2y = (51*r)+mSearchCategoryList.bounds.height
-        let line2 = UIView(frame: R(0,line2y,W,10))
-        line2.backgroundColor = wColor
-        addSubview(line2)
-        
-        let mSearchTabley = line2y + line2.bounds.height
-        mSearchTable = LPSearchTable(frame: R(0,mSearchTabley,W,self.bounds.height-mSearchTabley))
-        addSubview(mSearchTable)
+        SearchCategoryList.register(UINib(nibName: "LPSearchCategoryListCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+
+    }
+    
+    var recentSearchArray: [LPSearchModel] = []
+}
+
+extension LPSearchView: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = filteredData[indexPath.row]
+        if (self.filteredData[indexPath.row].categorys != nil) {
+            let cell = Bundle.main.loadNibNamed("LPSearchTableCell", owner: self, options: nil)?.first as! LPSearchTableCell
+            cell.selectionStyle = .none
+            let color: UIColor = UIColor.init(red: CGFloat(item.categorys.r!), green: CGFloat(item.categorys.g!), blue: CGFloat(item.categorys.b!), alpha: CGFloat(item.categorys.alpha!))
+
+            cell.modifyCell(color: color , categoryN: item.categorys.name!)
+            return cell
+        } else {
+            let cell = Bundle.main.loadNibNamed("LPLinkTableCell", owner: self, options: nil)?.first as! LPLinkTableCell
+            cell.modifyCell(img: item.urls.imageName!, url: item.urls.url!, title: item.urls.title!, category: item.urls.category!)
+            cell.selectionStyle = .none
+            return cell
+        }
+
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredData.count
     }
     
-    func FilteredReload(filteredData: [LPSearchModel]) {
-        mSearchTable.reloadData(items: filteredData)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //UserDefaults.standard.set(recentSearchArray, forKey: "recentSearch")
+        print("카테고리나 유알엘 있는 곳으로 이동합니다.")
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         return 52 * r
+    }
+    
+    func FilteredReload(filteredData: [LPSearchModel]){
+        self.filteredData = filteredData
+        SearchTable.reloadData()
+    }
+    
+    
+}
+
+
+extension LPSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categorys.count
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell : LPSearchCategoryListCell = SearchCategoryList.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LPSearchCategoryListCell
+        
+        let item = categorys[indexPath.row]
+        cell.modifyCell(r: item.r!, g: item.g!, b: item.b!, alpha: item.alpha!, categoryN: item.name!)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = SearchCategoryList.cellForItem(at: indexPath) as? LPSearchCategoryListCell else {
+            return
+        }
+        
+        for i in 0..<SearchCategoryList.subviews.count - 2 {
+            if i == indexPath.row {
+                (SearchCategoryList.subviews[indexPath.row] as! LPColorCell).onClicked()
+            } else {
+                (SearchCategoryList.subviews[i] as! LPColorCell).onUnclicked()
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 70, height: 55)
+    }
+    
+}
+
+extension LPSearchView: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        var filteredData: [LPSearchModel] = []
+        var urls: [LPLinkModel] = []
+        var categorys: [LPCategoryModel] = []
+        inSearchMode = true
+        
+        urls = self.urls.filter{($0.url?.localizedCaseInsensitiveContains(searchText))!}
+        categorys = self.categorys.filter{($0.name?.localizedCaseInsensitiveContains(searchText))!}
+        
+        for i in 0..<categorys.count {
+            let data = LPSearchModel(categorys: categorys[i])
+            filteredData.append(data)
+        }
+        
+        for i in 0..<urls.count {
+            let data = LPSearchModel(urls: urls[i])
+            filteredData.append(data)
+        }
+        
+        self.FilteredReload(filteredData: filteredData)
+        print("몇갤까 \(filteredData.count)")
+    }
+    
+    
+    func searchFeild(searchField: UISearchBar, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if (string == " ") {
+            return false
+        }
+        return true
     }
 }
+
+
+

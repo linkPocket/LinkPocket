@@ -10,8 +10,17 @@ import UIKit
 
 class LPSearchTableCell: UITableViewCell {
     
-    var mSearchTableCellCategory: LPSearchTableCellCategory!
-    var mSearchTableCellUrls: LPSearchTableCellUrls!
+    @IBOutlet weak var circle: UIView!
+    @IBOutlet weak var label: UILabel!
+    
+    override func awakeFromNib() {
+        circle.layer.cornerRadius = circle.bounds.height/2
+    }
+    
+    func modifyCell(color: UIColor, categoryN: String) {
+        circle.backgroundColor = color
+        label.text = categoryN
+    }
     
 }
 

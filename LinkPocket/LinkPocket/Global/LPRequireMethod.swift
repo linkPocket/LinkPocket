@@ -76,6 +76,26 @@ public class ImageView: View {
     
 }
 
+public class Label: View {
+    
+    var label: UILabel!
+    
+    
+    init(frame: CGRect, content: String) {
+        super.init(frame: frame)
+        
+        label = UILabel(frame: bounds)
+        label.text = content
+        label.isUserInteractionEnabled = false
+        addSubview(label)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
 extension UIColor {
     class func colorFromRGB(_ rgbValue: UInt) -> UIColor {
         return UIColor(
@@ -91,6 +111,7 @@ let blue = UIColor.colorFromRGB(0x008eff)
 let purple = UIColor.colorFromRGB(0x9013FE)
 let red = UIColor.colorFromRGB(0xF70000)
 let yellow = UIColor.colorFromRGB(0xF8E71C)
+let green = UIColor.colorFromRGB(0x10E10E)
 
 public func R(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
     return CGRect(x: x, y: y, width: width, height: height)
@@ -122,4 +143,6 @@ extension UIView {
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
 }
+
+
 

@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-class LPCategoryViewController: UIViewController {
+class LPCategoryViewController: UIViewController, LPCategoryVListener {
 
-    var mCategoryV: LPCategoryV!
+    var mCategoryV: LPCategoryView!
     var urls: [LPLinkModel] = []
     var categorys: [LPCategoryModel] = []
     
@@ -29,15 +29,19 @@ class LPCategoryViewController: UIViewController {
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         
-        mCategoryV = LPCategoryV(frame: R(0,0,W,H-statusH), categorys: categorys, urls: urls)
-        self.view.addSubview(mCategoryV)
-
+        if let mLPRecentView = Bundle.main.loadNibNamed("LPCategoryView", owner: self, options: nil)?.first as? LPCategoryView {
+            self.view.addSubview(mLPRecentView)
+        }
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func startWriteCategory() {
+        print("카테고리를 추가해주세요")
     }
     
 }
