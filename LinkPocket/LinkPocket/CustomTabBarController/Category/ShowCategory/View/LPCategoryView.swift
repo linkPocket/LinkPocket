@@ -38,6 +38,7 @@ class LPCategoryView: UIView {
 //        layout.minimumLineSpacing = 0
 //        mLPCategoryList!.collectionViewLayout = layout
         
+        mLPCategoryTable.separatorStyle = .none
         
         tableItems = LPGroupingTable(urls: urls)
         mLPCategoryTable.reloadData()
