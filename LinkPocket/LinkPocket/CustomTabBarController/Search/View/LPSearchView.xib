@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LPSearchView" customModule="LinkPocket" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="XQc-Eh-GU3">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="XQc-Eh-GU3" secondAttribute="height" multiplier="375:56" id="0Ti-9p-oI3"/>
+                        <constraint firstAttribute="height" constant="56" id="FV8-7g-Hlq"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="buL-jH-dLh"/>
+                    </connections>
+                </searchBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="w6H-v8-eqZ">
+                    <rect key="frame" x="0.0" y="66" width="375" height="77"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="77" id="tGM-0Z-193"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mlr-Kn-VON">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="zv6-Eg-jps"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="OM8-2N-5g2"/>
+                    </connections>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mb8-bw-J84">
+                    <rect key="frame" x="0.0" y="143" width="375" height="10"/>
+                    <color key="backgroundColor" red="0.99215686274509807" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="DIQ-31-uw2"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="djN-pg-fuX">
+                    <rect key="frame" x="0.0" y="153" width="375" height="514"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="aBM-cB-PZC"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="hUT-am-M2o"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="djN-pg-fuX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="EXq-C4-LR1"/>
+                <constraint firstItem="djN-pg-fuX" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WYL-fQ-cRv"/>
+                <constraint firstItem="XQc-Eh-GU3" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WxN-ol-0bq"/>
+                <constraint firstItem="w6H-v8-eqZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YbD-zU-7MU"/>
+                <constraint firstItem="XQc-Eh-GU3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fHc-6q-Cf1"/>
+                <constraint firstItem="mb8-bw-J84" firstAttribute="top" secondItem="w6H-v8-eqZ" secondAttribute="bottom" id="fiY-cS-ySG"/>
+                <constraint firstItem="djN-pg-fuX" firstAttribute="top" secondItem="mb8-bw-J84" secondAttribute="bottom" id="gQ1-FK-tBP"/>
+                <constraint firstItem="mb8-bw-J84" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hp8-F1-gnC"/>
+                <constraint firstItem="w6H-v8-eqZ" firstAttribute="top" secondItem="XQc-Eh-GU3" secondAttribute="bottom" constant="10" id="jiI-nx-DDs"/>
+                <constraint firstItem="XQc-Eh-GU3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qAv-U2-QUH"/>
+                <constraint firstItem="mb8-bw-J84" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="rbo-Te-Iqc"/>
+                <constraint firstItem="djN-pg-fuX" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="shp-9U-aRk"/>
+                <constraint firstItem="w6H-v8-eqZ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="vev-NP-6Mo"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="SearchBar" destination="XQc-Eh-GU3" id="yKn-FU-0rk"/>
+                <outlet property="SearchCategoryList" destination="w6H-v8-eqZ" id="Juh-2i-y5i"/>
+                <outlet property="SearchTable" destination="djN-pg-fuX" id="fcD-GU-XBX"/>
+            </connections>
+            <point key="canvasLocation" x="131.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

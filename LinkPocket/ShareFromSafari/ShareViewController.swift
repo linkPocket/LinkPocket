@@ -76,7 +76,7 @@ class ShareViewController: UIViewController { //SLComposeServiceViewController {
                             }
 
                             if let data = UIImagePNGRepresentation(image) {
-                                self.photoURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.CoreDataTest2")?.appendingPathComponent("NAVER.png")
+                                self.photoURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.CoreDataTest2")?.appendingPathComponent("NAVER")
                                 do {
                                     try data.write(to: self.photoURL!, options: .atomic)
                                 } catch {

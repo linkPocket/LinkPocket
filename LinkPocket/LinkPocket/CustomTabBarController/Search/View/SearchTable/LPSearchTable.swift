@@ -43,14 +43,14 @@ class LPSearchTable: UIView, UITableViewDelegate, UITableViewDataSource {
         }
         let h = cell.bounds.height
         
-        if (self.items[indexPath.row].categorys != nil) {
-            cell.mSearchTableCellCategory = LPSearchTableCellCategory(frame: R(0,0,W,h), category: self.items[indexPath.row].categorys )
-            cell.contentView.addSubview((cell.mSearchTableCellCategory)!)
-        } else {
-            cell.mSearchTableCellUrls = LPSearchTableCellUrls(frame: R(0,0,W,h), url: self.items[indexPath.row].urls )
-            cell.contentView.addSubview((cell.mSearchTableCellUrls)!)
-        }
-        
+//        if (self.items[indexPath.row].categorys != nil) {
+//            cell.mSearchTableCellCategory = LPSearchTableCellCategory(frame: R(0,0,W,h), category: self.items[indexPath.row].categorys )
+//            cell.contentView.addSubview((cell.mSearchTableCellCategory)!)
+//        } else {
+//            cell.mSearchTableCellUrls = LPSearchTableCellUrls(frame: R(0,0,W,h), url: self.items[indexPath.row].urls )
+//            cell.contentView.addSubview((cell.mSearchTableCellUrls)!)
+//        }
+//        
         return cell
     }
     

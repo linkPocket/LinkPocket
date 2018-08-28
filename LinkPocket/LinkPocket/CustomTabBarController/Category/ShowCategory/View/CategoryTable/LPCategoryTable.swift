@@ -1,38 +1,15 @@
 //
-//  LPRecentView.swift
+//  LPCategoryTable.swift
 //  LinkPocket
 //
-//  Created by 내 맥북에어 on 2018. 8. 9..
+//  Created by 내 맥북에어 on 2018. 8. 8..
 //  Copyright © 2018년 LP. All rights reserved.
 //
 
 import UIKit
 
-class LPRecentView: UIView {
+extension LPCategoryView: UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var mSearchBar: UISearchBar!
-    @IBOutlet weak var mLPCategoryTable: UITableView!
-    
-    var tableItems: [LPTableSectionModel] = []
-    
-    var urls: [LPLinkModel] = []
-    var categorys: [LPCategoryModel] = []
-
-    override func awakeFromNib() {
-   
-        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
-        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
-        
-        mLPCategoryTable.register(LPCategoryTableCell.self, forCellReuseIdentifier: "Cell")
-        
-        tableItems = LPGroupingTable(urls: urls)
-        mLPCategoryTable.reloadData()
-        
-    }
-    
-}
-
-extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("LPLinkTableCell", owner: self, options: nil)?.first as! LPLinkTableCell
         let item = tableItems[indexPath.section].urls[indexPath.row]
@@ -73,12 +50,12 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
             
         } else {
             return 0
-            
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 61 * r
     }
+    
     
 }
