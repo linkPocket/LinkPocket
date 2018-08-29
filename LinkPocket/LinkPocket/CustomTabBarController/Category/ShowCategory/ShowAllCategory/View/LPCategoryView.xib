@@ -16,21 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PcK-zs-RB0">
-                    <rect key="frame" x="0.0" y="70" width="375" height="597"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <connections>
-                        <outlet property="dataSource" destination="iN0-l3-epB" id="V2l-U9-1Vq"/>
-                        <outlet property="delegate" destination="iN0-l3-epB" id="G7g-7O-9PU"/>
-                    </connections>
-                </tableView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="evP-LW-0g0">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="ny6-SI-Tbh"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tuN-Id-PrO">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tuN-Id-PrO">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -44,18 +33,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="evP-LW-0g0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8Ga-Fa-2bU"/>
-                <constraint firstItem="PcK-zs-RB0" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="EI7-yM-Ubc"/>
-                <constraint firstItem="PcK-zs-RB0" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="eRa-Oa-4C0"/>
-                <constraint firstItem="PcK-zs-RB0" firstAttribute="top" secondItem="evP-LW-0g0" secondAttribute="bottom" constant="20" id="geD-sZ-9PZ"/>
-                <constraint firstItem="evP-LW-0g0" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="jQ1-iL-zRp"/>
-                <constraint firstItem="evP-LW-0g0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lwe-Wq-mZv"/>
-                <constraint firstItem="PcK-zs-RB0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rbk-es-UPg"/>
+                <constraint firstItem="evP-LW-0g0" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="2On-Vt-Pxa"/>
+                <constraint firstItem="evP-LW-0g0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Q9O-1C-8R9"/>
+                <constraint firstItem="evP-LW-0g0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UHr-lh-HpB"/>
+                <constraint firstItem="evP-LW-0g0" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="vse-yS-QAY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="mLPCategoryList" destination="evP-LW-0g0" id="R0J-b1-caW"/>
-                <outlet property="mLPCategoryTable" destination="PcK-zs-RB0" id="BO8-AH-QQc"/>
             </connections>
             <point key="canvasLocation" x="113.5" y="53.5"/>
         </view>

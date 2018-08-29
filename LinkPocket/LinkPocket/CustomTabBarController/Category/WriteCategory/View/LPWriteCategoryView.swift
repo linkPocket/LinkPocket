@@ -8,23 +8,17 @@
 
 import UIKit
 
-class LPWriteCategoryView: UIView/*, LPCategoryListListener*/ { //LPWriteCategoryView
-    
-    @IBOutlet weak var mCategoryList: UICollectionView!
-
+class LPWriteCategoryView: UIView {
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var cardTextField: UITextField!
     @IBOutlet weak var cardColorCollection: UICollectionView!
+   
     var colorArray: [UIColor] = [blue, red, yellow, green, purple]
     
-   
-    @IBOutlet weak var saveBt: UIButton!
-    
-    var listener: LPCategoryVListener!
+   @IBOutlet weak var saveBt: UIButton!
     
     override func awakeFromNib() {
-     
         saveBt.backgroundColor = blue
         
         cardColorCollection.register(UINib(nibName: "LPColorCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
@@ -33,21 +27,19 @@ class LPWriteCategoryView: UIView/*, LPCategoryListListener*/ { //LPWriteCategor
         cardView.Shadow(color: UIColor.colorFromRGB(0xD3D3D3), opacity: 0.2, offSet: CGSize(width: 0.2, height: 0.2), radius: 5*r, scale: true)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
 
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 21)
+        layout.itemSize = CGSize(width: 19, height: 19)
+        layout.minimumInteritemSpacing = 31
+        layout.minimumLineSpacing = 0
+        cardColorCollection!.collectionViewLayout = layout
     }
     
     
     @IBAction func saveBtAction(_ sender: UIButton) {
+        print("카테고리 이름이랑 색깔 보고 저장해줘야해요 그냥 여기서 바로 저장하면됩니당")
     }
-    
-    func addCategory() {
-        self.listener?.startWriteCategory()
-    }
-    
-    func categorySaveAction(categoryN: String, color: UIColor) {
-        print("그냥 바로 저장하면 됩니다.")
-    }
-    
-    
+ 
     @IBOutlet weak var saveBtBottomConstraint: NSLayoutConstraint!
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
@@ -59,36 +51,3 @@ class LPWriteCategoryView: UIView/*, LPCategoryListListener*/ { //LPWriteCategor
     }
 }
 
-extension LPWriteCategoryView: UICollectionViewDelegate, UICollectionViewDataSource {
-  
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colorArray.count
-    }
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell : LPColorCell = cardColorCollection.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LPColorCell
-        
-        cell.modifyCell(color: colorArray[indexPath.row])
-
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = cardColorCollection.cellForItem(at: indexPath) as? LPColorCell else {
-            return
-        }
-        
-        for i in 0..<cardColorCollection.subviews.count - 2 {
-            if i == indexPath.row {
-                (cardColorCollection.subviews[indexPath.row] as! LPColorCell).onClicked()
-            } else {
-                (cardColorCollection.subviews[i] as! LPColorCell).onUnclicked()
-            }
-        }
-    }
-    
-}

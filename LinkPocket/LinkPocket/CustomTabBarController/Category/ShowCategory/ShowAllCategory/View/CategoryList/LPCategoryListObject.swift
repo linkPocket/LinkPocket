@@ -12,11 +12,25 @@ class LPCategoryListCell: UICollectionViewCell {
     @IBOutlet weak var categoryNL: UILabel!
     @IBOutlet weak var urlCountL: UILabel!
     
+    @IBOutlet weak var image: UIImageView!
     var urls: [LPLinkModel] = []
    
     func modifyCell(categoryN: String, urlCount: String) {
+        image.isHidden = true
+        categoryNL.isHidden = false
+        urlCountL.isHidden = false
+        
         categoryNL.text = categoryN
         urlCountL.text = urlCount
+        
+        self.Shadow(color: UIColor.colorFromRGB(0xEEEEEE), opacity: 0.2, offSet: CGSize(width: 0.2, height: 0.2), radius: 5, scale: true)
+    }
+    
+    func modeifyImageCell(image: String) {
+        self.image.isHidden = false
+        categoryNL.isHidden = true
+        urlCountL.isHidden = true
+        self.image.image = UIImage(named: image)
     }
 
     let fontC = UIColor.colorFromRGB(0x707070)
@@ -42,7 +56,11 @@ class LPCategoryListCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if self.isSelected {
+                if self.image.isHidden == false {
+                    print("카테고리 추가")
+                } else {
                 self.onClicked()
+                }
             } else {
                 self.onUnclicked()
             }

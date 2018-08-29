@@ -28,13 +28,13 @@ class LPLinkTableCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func modifyCell(img: String, url: String, title: String, category: LPCategoryModel){
+    func modifyCell(img: String, url: String, title: String, color: UIColor ,category: LPCategoryModel){
         
         self.img.image = UIImage(named: "Naver")
         self.title.text = title
         self.url.text = url
         self.category.text = "\(category.name!)           "
-        self.category.backgroundColor = UIColor.red
+        self.category.backgroundColor = color
         self.category.layer.masksToBounds = true
         self.category.layer.cornerRadius = 6.5 * r
         

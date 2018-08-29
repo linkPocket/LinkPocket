@@ -41,7 +41,7 @@
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="8WI-w3-tla">
                             <rect key="frame" x="0.0" y="128" width="264" height="19"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lpB-DQ-16K">
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lpB-DQ-16K">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -108,7 +108,6 @@
                 <outlet property="cardColorCollection" destination="8WI-w3-tla" id="bQ1-WF-xLW"/>
                 <outlet property="cardTextField" destination="9Dl-JE-ncR" id="mLy-hb-vD6"/>
                 <outlet property="cardView" destination="SCM-mo-rCN" id="DpQ-jd-a0h"/>
-                <outlet property="mCategoryList" destination="Xlp-Il-Fb7" id="pRc-Lt-vZ9"/>
                 <outlet property="saveBt" destination="Hl9-B5-8Fi" id="vAQ-0M-tnl"/>
                 <outlet property="saveBtBottomConstraint" destination="HRk-yf-NqA" id="osR-ud-dOZ"/>
             </connections>

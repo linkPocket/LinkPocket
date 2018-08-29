@@ -1,19 +1,18 @@
 //
-//  LPCategoryTable.swift
+//  extension_EachCategoryTable.swift
 //  LinkPocket
 //
-//  Created by 내 맥북에어 on 2018. 8. 8..
+//  Created by 내 맥북에어 on 2018. 8. 29..
 //  Copyright © 2018년 LP. All rights reserved.
 //
 
 import UIKit
 
-extension LPCategoryView: UITableViewDelegate, UITableViewDataSource {
-    
+extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("LPLinkTableCell", owner: self, options: nil)?.first as! LPLinkTableCell
         let item = tableItems[indexPath.section].urls[indexPath.row]
-        cell.modifyCell(img: item.imageName!, url: item.url!, title: item.title!, category: item.category!)
+        cell.modifyCell(img: item.imageName!, url: item.url!, title: item.title!, color: (item.category?.color())!, category: item.category!)
         
         return cell
     }
@@ -56,6 +55,4 @@ extension LPCategoryView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 103
     }
-    
-    
 }

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class LPRecentViewController2: UIViewController {
+class LPRecentViewController: UIViewController {
 
     var mLPRecentView: LPRecentView!
     var urls: [LPLinkModel] = []
@@ -17,7 +17,6 @@ class LPRecentViewController2: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         
@@ -32,7 +31,6 @@ class LPRecentViewController2: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

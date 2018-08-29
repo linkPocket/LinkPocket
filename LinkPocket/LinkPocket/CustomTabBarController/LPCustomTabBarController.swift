@@ -17,7 +17,6 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.customTabBar.delegate = self
         let tabBar = self.customTabBar
         tabBar?.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.red, size:

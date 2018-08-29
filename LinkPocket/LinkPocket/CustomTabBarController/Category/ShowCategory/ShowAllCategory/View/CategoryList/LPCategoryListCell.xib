@@ -45,19 +45,28 @@
                         <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7fn-sV-Kt4">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
+                    </imageView>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="zAD-kg-jKS" secondAttribute="trailing" id="1G0-zG-zwW"/>
                 <constraint firstItem="mr9-7Y-wiR" firstAttribute="top" secondItem="VIj-es-6Pn" secondAttribute="top" constant="7" id="1pO-xQ-HRC"/>
                 <constraint firstItem="zAD-kg-jKS" firstAttribute="leading" secondItem="VIj-es-6Pn" secondAttribute="leading" id="2KV-xd-heR"/>
                 <constraint firstItem="mr9-7Y-wiR" firstAttribute="centerX" secondItem="Lg2-KS-6nC" secondAttribute="centerX" id="Wjd-sD-MSl"/>
+                <constraint firstItem="7fn-sV-Kt4" firstAttribute="leading" secondItem="VIj-es-6Pn" secondAttribute="leading" id="Zz4-LS-RwJ"/>
+                <constraint firstAttribute="trailing" secondItem="7fn-sV-Kt4" secondAttribute="trailing" id="ax3-to-3fk"/>
+                <constraint firstAttribute="bottom" secondItem="7fn-sV-Kt4" secondAttribute="bottom" id="cg6-dg-Vl0"/>
                 <constraint firstItem="zAD-kg-jKS" firstAttribute="top" secondItem="mr9-7Y-wiR" secondAttribute="bottom" constant="1" id="gCT-Nb-0hs"/>
+                <constraint firstItem="7fn-sV-Kt4" firstAttribute="top" secondItem="VIj-es-6Pn" secondAttribute="top" id="zxP-yB-ZS7"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Lg2-KS-6nC"/>
             <size key="customSize" width="157" height="95"/>
             <connections>
                 <outlet property="categoryNL" destination="mr9-7Y-wiR" id="evm-23-SYA"/>
+                <outlet property="image" destination="7fn-sV-Kt4" id="ui3-Mr-uH8"/>
                 <outlet property="urlCountL" destination="zAD-kg-jKS" id="Qbg-h7-hFz"/>
             </connections>
             <point key="canvasLocation" x="189" y="178"/>

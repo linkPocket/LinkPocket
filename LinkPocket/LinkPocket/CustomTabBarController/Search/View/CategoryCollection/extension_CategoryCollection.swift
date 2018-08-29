@@ -1,0 +1,53 @@
+//
+//  extension_CategoryCollection.swift
+//  LinkPocket
+//
+//  Created by 내 맥북에어 on 2018. 8. 29..
+//  Copyright © 2018년 LP. All rights reserved.
+//
+
+import UIKit
+
+extension LPSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categorys.count
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell : LPSearchCategoryListCell = SearchCategoryList.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LPSearchCategoryListCell
+        
+        let item = categorys[indexPath.row]
+        var urls: [LPLinkModel] = []
+        for i in 0..<self.urls.count {
+            if self.urls[i].category?.name == item.name {
+                urls.append(self.urls[i])
+            }
+        }
+        
+        cell.modifyCell(color: item.color()! , categoryN: item.name!, urls: urls)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = SearchCategoryList.cellForItem(at: indexPath) as? LPSearchCategoryListCell else {
+            return
+        }
+        
+        let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
+        let grouping = LPGroupingTable(urls: urls)
+        categoryVC.displayCategoryPage(categoryName: cell.categoryN, categoryCount: "\(cell.urls.count)", urls: grouping)
+        LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 70, height: 55)
+    }
+    
+}

@@ -12,24 +12,20 @@ class LPSearchCategoryListCell: UICollectionViewCell {
 
     @IBOutlet weak var color: UIView!
     @IBOutlet weak var label: UILabel!
-
+    
+    var categoryN: String = ""
+    var urls: [LPLinkModel] = []
+    
     override func awakeFromNib() {
         color.layer.cornerRadius = color.bounds.height/2
     }
     
-    func modifyCell(r: Double, g: Double, b: Double, alpha: Double, categoryN: String ) {
+    func modifyCell(color: UIColor, categoryN: String, urls: [LPLinkModel] ) {
     
-        let color = UIColor.init(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: CGFloat(alpha))
         self.color.backgroundColor = color
-        
+        self.categoryN = categoryN
+        self.urls = urls
         label.text = categoryN
-        
-    }
-    
-    func onClicked(){
-    }
-    
-    func onUnclicked(){
         
     }
     

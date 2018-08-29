@@ -15,7 +15,6 @@ protocol LPCategoryVListener {
 class LPCategoryView: UIView {
     
     @IBOutlet weak var mLPCategoryList: UICollectionView!
-    @IBOutlet weak var mLPCategoryTable: UITableView!
     
     var tableItems: [LPTableSectionModel] = []
     
@@ -29,29 +28,34 @@ class LPCategoryView: UIView {
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         
         mLPCategoryList.register(UINib(nibName: "LPCategoryListCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        mLPCategoryTable.register(LPCategoryTableCell.self, forCellReuseIdentifier: "Cell")
-        
-//        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 26, bottom: 0, right: 26)
-//        layout.itemSize = CGSize(width: W, height: H)
-//        layout.minimumInteritemSpacing = 0
-//        layout.minimumLineSpacing = 0
-//        mLPCategoryList!.collectionViewLayout = layout
-        
-        mLPCategoryTable.separatorStyle = .none
-        
         tableItems = LPGroupingTable(urls: urls)
-        mLPCategoryTable.reloadData()
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 21)
+        layout.itemSize = CGSize(width: 100, height: 42)
+        layout.minimumInteritemSpacing = 11
+        layout.minimumLineSpacing = 34
+        mLPCategoryList!.collectionViewLayout = layout
+
+    }
+    
+    func writeCategoryAppear(){
+        let writeCategory = LPWriteCategoryController(nibName: "LPWriteCategoryController", bundle: nil)
+        LPParentNavigationController.sharedInstance.pushViewController(writeCategory, animated: true)
+
     }
 
     func displayCategoryTable(categoryN: String, urls: [LPLinkModel]) {
         tableItems = LPGroupingTable(urls: urls)
-        mLPCategoryTable.reloadData()
+        
+        let eachCategory = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
+        eachCategory.displayCategoryPage(categoryName: categoryN, categoryCount: "\(urls.count)", urls: tableItems)
+        LPParentNavigationController.sharedInstance.pushViewController(eachCategory, animated: true)
+
     }
     
     func addCategory() {
         self.listener?.startWriteCategory()
-
     }
     
 }
