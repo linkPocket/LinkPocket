@@ -14,7 +14,7 @@ class LPParentNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "LINK POCKET"
         // Do any additional setup after loading the view.
     }
 
