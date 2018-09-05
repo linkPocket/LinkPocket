@@ -35,7 +35,7 @@ class LPLinkTableCell: UITableViewCell {
         self.category.text = "\(category.name!)           "
         self.category.backgroundColor = color
         self.category.layer.masksToBounds = true
-        self.category.layer.cornerRadius = 6.5 * r
+        self.category.layer.cornerRadius = self.category.bounds.height/2
         
     }
     
