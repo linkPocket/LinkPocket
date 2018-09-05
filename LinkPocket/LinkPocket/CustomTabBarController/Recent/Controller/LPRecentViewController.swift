@@ -33,31 +33,26 @@ class LPRecentViewController: UIViewController {
 //
 //
 //
-                let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Link")
-                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetch)
-        
-                do {
-                    try (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext.execute(deleteRequest)
-                    try (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext.save()
-                } catch {
-                    print ("There was an error")
-                }
-        
-        
-                    let categoryModel: LPCategoryModel = LPCategoryModel(name: "Movie", r: 55.0, g: 88.0, b: 97.0, alpha: 1.0)
-                    LPCoreDataManager.store.insertIntoCategory(valueCategory: categoryModel)
-                    for j in 1 ... 10 {
-                        let linkModel: LPLinkModel = LPLinkModel(url: "https://\(j)", title: "Music\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
-                        LPCoreDataManager.store.insertIntoLink(valueLink: linkModel)
-                    }
-        
-                let links = LPCoreDataManager.store.selectAllObjectFromLink() as? [LPLinkModel]
-                for link in links! {
-                    link.printLinks()
-                }
+//        
+//    
+//                    var categoryModel = LPCategoryModel()
+//                    categoryModel.name = "Movie2"
+//                    categoryModel.setRGBA(color: .red)
+//        
+//                    LPCoreDataManager.store.insertIntoCategory(valueCategory: categoryModel)
+//                    for j in 1 ... 10 {
+//                        let linkModel: LPLinkModel = LPLinkModel(url: "https://a\(j)", title: "Musica\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
+//                        LPCoreDataManager.store.insertIntoLink(valueLink: linkModel)
+//                    }
+//        
+//                let links = LPCoreDataManager.store.selectAllObjectFromLink() as? [LPLinkModel]
+//                for link in links! {
+//                    link.printLinks()
+//                }
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
         if let mLPRecentView = Bundle.main.loadNibNamed("LPRecentView", owner: self, options: nil)?.first as? LPRecentView {
             self.view.addSubview(mLPRecentView)
