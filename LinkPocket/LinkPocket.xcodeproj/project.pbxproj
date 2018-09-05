@@ -50,6 +50,9 @@
 		4C9B036F2133FA73006B1802 /* LPSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9B036E2133FA73006B1802 /* LPSearchView.xib */; };
 		4C9B037121341E2B006B1802 /* LPSearchCategoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9B037021341E2B006B1802 /* LPSearchCategoryListCell.xib */; };
 		4C9B037521342EDA006B1802 /* LPSearchTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9B037421342EDA006B1802 /* LPSearchTableCell.xib */; };
+		4CC4E640213F8A3400B7FA30 /* LPEditUnderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC4E63F213F8A3400B7FA30 /* LPEditUnderBar.swift */; };
+		4CC4E644213F8A6900B7FA30 /* LPEditUnderBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC4E643213F8A6900B7FA30 /* LPEditUnderBar.xib */; };
+		4CC4E647213FADB500B7FA30 /* extension_EditUnderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC4E646213FADB500B7FA30 /* extension_EditUnderBar.swift */; };
 		4CFB02A0212A93BA007C023B /* LPLinkTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB029E212A93BA007C023B /* LPLinkTableCell.swift */; };
 		4CFB02A1212A93BA007C023B /* LPLinkTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CFB029F212A93BA007C023B /* LPLinkTableCell.xib */; };
 		4CFB02AD212E7358007C023B /* LPWriteCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB02AC212E7358007C023B /* LPWriteCategoryView.swift */; };
@@ -215,6 +218,9 @@
 		4C9B036E2133FA73006B1802 /* LPSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPSearchView.xib; sourceTree = "<group>"; };
 		4C9B037021341E2B006B1802 /* LPSearchCategoryListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPSearchCategoryListCell.xib; sourceTree = "<group>"; };
 		4C9B037421342EDA006B1802 /* LPSearchTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPSearchTableCell.xib; sourceTree = "<group>"; };
+		4CC4E63F213F8A3400B7FA30 /* LPEditUnderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPEditUnderBar.swift; sourceTree = "<group>"; };
+		4CC4E643213F8A6900B7FA30 /* LPEditUnderBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPEditUnderBar.xib; sourceTree = "<group>"; };
+		4CC4E646213FADB500B7FA30 /* extension_EditUnderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension_EditUnderBar.swift; sourceTree = "<group>"; };
 		4CFB029E212A93BA007C023B /* LPLinkTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLinkTableCell.swift; sourceTree = "<group>"; };
 		4CFB029F212A93BA007C023B /* LPLinkTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPLinkTableCell.xib; sourceTree = "<group>"; };
 		4CFB02AC212E7358007C023B /* LPWriteCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPWriteCategoryView.swift; sourceTree = "<group>"; };
@@ -417,6 +423,7 @@
 			children = (
 				4C5A2203213631320048D90F /* EachCategoryView.swift */,
 				4C5A22052136313C0048D90F /* EachCategoryView.xib */,
+				4CC4E641213F8A3D00B7FA30 /* Eidt */,
 				4C5A221F2136998F0048D90F /* Table */,
 			);
 			path = View;
@@ -588,6 +595,32 @@
 				4C98C1882127EF16004CF7CB /* LPGroupingTable.swift */,
 			);
 			path = GroupingTable;
+			sourceTree = "<group>";
+		};
+		4CC4E641213F8A3D00B7FA30 /* Eidt */ = {
+			isa = PBXGroup;
+			children = (
+				4CC4E645213FAD8500B7FA30 /* UnderBar */,
+				4CC4E642213F8A4600B7FA30 /* UnderBarFail */,
+			);
+			path = Eidt;
+			sourceTree = "<group>";
+		};
+		4CC4E642213F8A4600B7FA30 /* UnderBarFail */ = {
+			isa = PBXGroup;
+			children = (
+				4CC4E63F213F8A3400B7FA30 /* LPEditUnderBar.swift */,
+				4CC4E643213F8A6900B7FA30 /* LPEditUnderBar.xib */,
+			);
+			path = UnderBarFail;
+			sourceTree = "<group>";
+		};
+		4CC4E645213FAD8500B7FA30 /* UnderBar */ = {
+			isa = PBXGroup;
+			children = (
+				4CC4E646213FADB500B7FA30 /* extension_EditUnderBar.swift */,
+			);
+			path = UnderBar;
 			sourceTree = "<group>";
 		};
 		4CFB02A4212E6ED3007C023B /* ShowCategory */ = {
@@ -1272,6 +1305,7 @@
 				CE80DE3F21106D5F00B2032F /* LPRecentViewController.xib in Resources */,
 				4CFB8BB72107064E00E0259B /* LaunchScreen.storyboard in Resources */,
 				4C9B036D2133F0A5006B1802 /* LPColorCell.xib in Resources */,
+				4CC4E644213F8A6900B7FA30 /* LPEditUnderBar.xib in Resources */,
 				4C5A2200213630FD0048D90F /* EachCategoryController.xib in Resources */,
 				4C9B03652133E9E6006B1802 /* LPWriteCategoryView.xib in Resources */,
 				4CFB8BB42107064E00E0259B /* Assets.xcassets in Resources */,
@@ -1399,6 +1433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE80DE3E21106D5F00B2032F /* LPRecentViewController.swift in Sources */,
+				4CC4E647213FADB500B7FA30 /* extension_EditUnderBar.swift in Sources */,
 				4CFB02A0212A93BA007C023B /* LPLinkTableCell.swift in Sources */,
 				4C5A2204213631320048D90F /* EachCategoryView.swift in Sources */,
 				4C0C2F5D211AEC25001585DF /* LPCategoryView.swift in Sources */,
@@ -1423,6 +1458,7 @@
 				CEA582042119A1C200B88341 /* LPCoreDataManager.swift in Sources */,
 				CEA581FB2119A0DD00B88341 /* Category+CoreDataProperties.swift in Sources */,
 				4C0C2F63211AEC74001585DF /* LPRequireMethod.swift in Sources */,
+				4CC4E640213F8A3400B7FA30 /* LPEditUnderBar.swift in Sources */,
 				4C5A222A21369BEE0048D90F /* extension_AllCategoryCollection.swift in Sources */,
 				4C98C17321210F52004CF7CB /* LPSearchView.swift in Sources */,
 				4CFB02AD212E7358007C023B /* LPWriteCategoryView.swift in Sources */,

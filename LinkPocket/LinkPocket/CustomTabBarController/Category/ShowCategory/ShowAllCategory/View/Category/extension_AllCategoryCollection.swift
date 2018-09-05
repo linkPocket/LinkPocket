@@ -24,16 +24,16 @@ extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, 
         if indexPath.row == 0 {
             cell.modeifyImageCell(image: "add")
         } else if indexPath.row == 1 {
-            cell.modifyCell(categoryN: "All", urlCount: "\(urls.count)")
+            cell.modifyCell(categoryN: "All", urlCount: "\(urls.count)", urls: urls)
         } else {
         let item = categorys[indexPath.row - 2]
-        var urls: [LPLinkModel] = []
+        var urlsArray: [LPLinkModel] = []
         for i in 0..<self.urls.count {
             if self.urls[i].category?.name == item.name {
-                urls.append(self.urls[i])
+                urlsArray.append(self.urls[i])
             }
         }
-         cell.modifyCell(categoryN: item.name!, urlCount: "\(urls.count)")
+            cell.modifyCell(categoryN: item.name!, urlCount: "\(urlsArray.count)", urls: urlsArray)
         }
         
         return cell
@@ -47,11 +47,10 @@ extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, 
             let writeVC = LPWriteCategoryController(nibName: "LPWriteCategoryController", bundle: nil)
             LPParentNavigationController.sharedInstance.pushViewController(writeVC, animated: true)
         } else {
-        
-        let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
-        let grouping = LPGroupingTable(urls: urls)
-        categoryVC.displayCategoryPage(categoryName: cell.categoryNL.text!, categoryCount: "\(cell.urls.count)", urls: grouping)
-        LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
+            let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
+            let grouping = LPGroupingTable(urls: cell.urls)
+            categoryVC.displayCategoryPage(categoryName: cell.categoryNL.text!, categoryCount: "\(cell.urls.count)", urls: grouping)
+            LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
             
         }
     }

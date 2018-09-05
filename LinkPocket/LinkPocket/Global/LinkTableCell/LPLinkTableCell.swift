@@ -29,7 +29,6 @@ class LPLinkTableCell: UITableViewCell {
     }
     
     func modifyCell(img: String, url: String, title: String, color: UIColor ,category: LPCategoryModel){
-        
         self.img.image = UIImage(named: "Naver")
         self.title.text = title
         self.url.text = url

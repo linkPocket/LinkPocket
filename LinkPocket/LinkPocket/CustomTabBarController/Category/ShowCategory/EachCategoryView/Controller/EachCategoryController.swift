@@ -11,6 +11,7 @@ import UIKit
 class EachCategoryController: UIViewController {
     
     var mEachCategoryView = EachCategoryView()
+    var editStatus: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +28,14 @@ class EachCategoryController: UIViewController {
     }
     
     @objc func editBtAction(){
-        print("수정을 시작합니다.")
+       mEachCategoryView.editBtAction()
     }
     
     func displayCategoryPage(categoryName: String, categoryCount: String, urls: [LPTableSectionModel]) {
         mEachCategoryView = (Bundle.main.loadNibNamed("EachCategoryView", owner: self, options: nil)?.first as? EachCategoryView)!
         self.view.addSubview(mEachCategoryView)
         mEachCategoryView.displayCategoryPage(categoryName: categoryName, categoryCount: categoryCount, urls: urls)
+        print(categoryCount)
     }
     
 }
