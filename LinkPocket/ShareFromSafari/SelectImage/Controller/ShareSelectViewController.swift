@@ -38,7 +38,6 @@ class ShareSelectViewController: UIViewController {
             self.indicator.startAnimating()
             DispatchQueue.global().async {
                 self.htmlParser.startParsing(with: validUrl, parsingType: .LPShareExtension)
-//                self.htmlParser.startParsing(with: validUrl, parsingType: .LPTitle)
             }
         }
     }

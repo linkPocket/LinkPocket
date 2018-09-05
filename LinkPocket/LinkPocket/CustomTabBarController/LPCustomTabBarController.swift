@@ -25,7 +25,6 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
         
         self.customTabBar.items?[0].title = self.viewControllers[0]?.tabBarItem.title
         self.customTabBar.items?[1].title = self.viewControllers[1]?.tabBarItem.title
-        
 
         self.customTabBar.isTranslucent = false
         
@@ -39,6 +38,16 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "LINK POCKET"
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.title = ""
     }
     
     override func didReceiveMemoryWarning() {

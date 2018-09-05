@@ -39,7 +39,7 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
             } else {
                 return tableItems[section].section
             }
-        }else{
+        } else {
             return nil
         }
     }

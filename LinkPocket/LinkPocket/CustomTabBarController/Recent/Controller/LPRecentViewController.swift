@@ -18,50 +18,6 @@ class LPRecentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var addCategory = LPCategoryModel()
-        addCategory.name = "음악"
-        addCategory.setRGBA(color: green)
-        
-        LPCoreDataManager.store.insertIntoCategory(valueCategory: addCategory)
-
-//                let delegate = UIApplication.shared.delegate as! LPAppDelegate
-//                let context = delegate.persistentContainer.viewContext
-//
-//                let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
-//                let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-//
-//                do {
-//                    try context.execute(deleteRequest)
-//                    try context.save()
-//                } catch {
-//                    print ("There was an error")
-//                }
-//
-//
-//
-                let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Link")
-                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetch)
-        
-                do {
-                    try (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext.execute(deleteRequest)
-                    try (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext.save()
-                } catch {
-                    print ("There was an error")
-                }
-        
-        
-                    let categoryModel: LPCategoryModel = LPCategoryModel(name: "Movie", r: 55.0, g: 88.0, b: 97.0, alpha: 1.0)
-                    LPCoreDataManager.store.insertIntoCategory(valueCategory: categoryModel)
-                    for j in 1 ... 10 {
-                        let linkModel: LPLinkModel = LPLinkModel(url: "https://\(j)", title: "Music\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
-                        LPCoreDataManager.store.insertIntoLink(valueLink: linkModel)
-                    }
-        
-                let links = LPCoreDataManager.store.selectAllObjectFromLink() as? [LPLinkModel]
-                for link in links! {
-                    link.printLinks()
-                }
-        
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         
@@ -76,7 +32,7 @@ class LPRecentViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     /*
     // MARK: - Navigation
 

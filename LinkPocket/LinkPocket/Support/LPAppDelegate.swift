@@ -27,11 +27,11 @@ class LPAppDelegate: UIResponder, UIApplicationDelegate {
         tabBarVC.viewControllers = (NSArray(array: [vc1, vc2]) as? [UIViewController])!
         
         parentNavi.pushViewController(tabBarVC, animated: false)
-        parentNavi.navigationBar.topItem?.title = "LINK POCKET"
         parentNavi.navigationBar.isTranslucent = false
         parentNavi.navigationBar.shadowImage = UIImage()
         parentNavi.navigationBar.backIndicatorImage = UIImage()
-        
+        parentNavi.navigationBar.tintColor = .black
+
         window? = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = parentNavi
         
@@ -42,7 +42,7 @@ class LPAppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.white
         UITabBar.appearance().layer.borderWidth = 0
         UITabBar.appearance().clipsToBounds = true
-        
+
         return true
     }
     

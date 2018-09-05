@@ -21,19 +21,19 @@ class LPSearchController: UIViewController { //LPSearchController
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
-        
         dismissKeyboard() // 얘 왜 안되지
         
-        mLPSearchView = (Bundle.main.loadNibNamed("LPSearchView", owner: self, options: nil)?.first as? LPSearchView)!
-        self.view.addSubview(mLPSearchView)
         
         let searchBar = UISearchBar()
         searchBar.sizeToFit()
         searchBar.placeholder = "URL, 카테고리 이름 검색.."
         searchBar.delegate = self
         searchBar.becomeFirstResponder()
-        self.navigationController?.navigationBar.topItem?.titleView = searchBar
+        self.navigationItem.titleView = searchBar
         
+        mLPSearchView = (Bundle.main.loadNibNamed("LPSearchView", owner: self, options: nil)?.first as? LPSearchView)!
+        self.view.addSubview(mLPSearchView)
+
     }
     
     override func didReceiveMemoryWarning() {

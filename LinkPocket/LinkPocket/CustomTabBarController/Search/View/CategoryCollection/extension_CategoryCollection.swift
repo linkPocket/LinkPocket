@@ -42,14 +42,6 @@ extension LPSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UI
         let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
         let grouping = LPGroupingTable(urls: cell.urls)
         categoryVC.displayCategoryPage(categoryName: cell.categoryN, categoryCount: "\(cell.urls.count)", urls: grouping)
-        LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
-        
-        
-        
+        LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)   
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 70, height: 55)
-    }
-    
 }

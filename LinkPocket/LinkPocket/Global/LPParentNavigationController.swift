@@ -14,7 +14,6 @@ class LPParentNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "LINK POCKET"
         // Do any additional setup after loading the view.
     }
 
@@ -22,5 +21,4 @@ class LPParentNavigationController: UINavigationController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
