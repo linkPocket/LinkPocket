@@ -52,7 +52,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="djN-pg-fuX">
-                    <rect key="frame" x="0.0" y="137" width="375" height="494"/>
+                    <rect key="frame" x="0.0" y="137" width="375" height="530"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="iN0-l3-epB" id="aBM-cB-PZC"/>
@@ -66,7 +66,7 @@
                 <constraint firstItem="djN-pg-fuX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="EXq-C4-LR1"/>
                 <constraint firstItem="djN-pg-fuX" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WYL-fQ-cRv"/>
                 <constraint firstItem="w6H-v8-eqZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YbD-zU-7MU"/>
-                <constraint firstItem="djN-pg-fuX" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-36" id="Za2-L7-pm0"/>
+                <constraint firstItem="djN-pg-fuX" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Za2-L7-pm0"/>
                 <constraint firstItem="mb8-bw-J84" firstAttribute="top" secondItem="w6H-v8-eqZ" secondAttribute="bottom" id="fiY-cS-ySG"/>
                 <constraint firstItem="djN-pg-fuX" firstAttribute="top" secondItem="mb8-bw-J84" secondAttribute="bottom" id="gQ1-FK-tBP"/>
                 <constraint firstItem="mb8-bw-J84" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hp8-F1-gnC"/>

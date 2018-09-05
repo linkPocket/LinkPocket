@@ -22,14 +22,14 @@ extension LPSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UI
         let cell : LPSearchCategoryListCell = SearchCategoryList.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LPSearchCategoryListCell
         
         let item = categorys[indexPath.row]
-        var urls: [LPLinkModel] = []
+        var urlsArray: [LPLinkModel] = []
         for i in 0..<self.urls.count {
             if self.urls[i].category?.name == item.name {
-                urls.append(self.urls[i])
+                urlsArray.append(self.urls[i])
             }
         }
         
-        cell.modifyCell(color: item.color()! , categoryN: item.name!, urls: urls)
+        cell.modifyCell(color: item.color()! , categoryN: item.name!, urls: urlsArray)
         
         return cell
     }
@@ -40,9 +40,11 @@ extension LPSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UI
         }
         
         let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
-        let grouping = LPGroupingTable(urls: urls)
+        let grouping = LPGroupingTable(urls: cell.urls)
         categoryVC.displayCategoryPage(categoryName: cell.categoryN, categoryCount: "\(cell.urls.count)", urls: grouping)
         LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
+        
+        
         
     }
     

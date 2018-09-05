@@ -51,7 +51,7 @@
                         <color key="textColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lGk-A1-gdg">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lGk-A1-gdg">
                         <rect key="frame" x="16" y="12" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="lGk-A1-gdg" secondAttribute="height" multiplier="1:1" id="oim-QP-Acs"/>

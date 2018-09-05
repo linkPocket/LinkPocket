@@ -13,6 +13,7 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
         let cell = Bundle.main.loadNibNamed("LPLinkTableCell", owner: self, options: nil)?.first as! LPLinkTableCell
         let item = tableItems[indexPath.section].urls[indexPath.row]
         cell.modifyCell(img: item.imageName!, url: item.url!, title: item.title!, color: (item.category?.color()!)!, category: item.category!)
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -51,6 +52,14 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
             return 0
             
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = mLPCategoryTable.cellForRow(at: indexPath) as? LPLinkTableCell else {
+            return
+        }
+        
+        print("\(cell.url.text!) 로 이동합니다.")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

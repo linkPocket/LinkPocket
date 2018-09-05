@@ -14,6 +14,9 @@ class EachCategoryView: UIView {
     
     var urls: [LPLinkModel] = []
     var categorys: [LPCategoryModel] = []
+    var editSelectedURL: [String] = []
+    
+    var statusEdit: Bool = false
     
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var categoryCount: UILabel!
@@ -28,6 +31,10 @@ class EachCategoryView: UIView {
         
         tableItems = LPGroupingTable(urls: urls)
         categoryTable.reloadData()
+        
+        editCountLabel.layer.borderColor = UIColor.colorFromRGB(0x008EFF).cgColor
+        editCountLabel.layer.borderWidth = 4
+        editCountLabel.layer.cornerRadius = editCountLabel.bounds.height/2
     }
     
     func displayCategoryPage(categoryName: String, categoryCount: String, urls: [LPTableSectionModel]) {
@@ -37,5 +44,30 @@ class EachCategoryView: UIView {
         tableItems = urls
         categoryTable.reloadData()
     }
+    
 
+    func editBtAction() {
+        if statusEdit == false {
+            statusEdit = true
+            preparingEdit()
+        } else {
+            statusEdit = false
+            finishEdit()
+        }
+    }
+    
+    //MARK:- underbar
+    //MAKR:------------------------------------------------
+    @IBOutlet weak var editCountLabel: UILabel!
+    @IBOutlet weak var underBarBottom: NSLayoutConstraint!
+    @IBAction func urlMoveAction(_ sender: UIButton) {
+        print(editSelectedURL)
+        print("이동합니다.")
+    }
+    
+    @IBAction func urlDeleteAction(_ sender: UIButton) {
+        print(editSelectedURL)
+        print("삭제됩니다.")
+    }
+    
 }
