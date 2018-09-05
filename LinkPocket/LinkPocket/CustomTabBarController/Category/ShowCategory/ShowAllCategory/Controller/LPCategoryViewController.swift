@@ -28,6 +28,7 @@ class LPCategoryViewController: UIViewController, LPCategoryVListener {
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
         if let mLPRecentView = Bundle.main.loadNibNamed("LPCategoryView", owner: self, options: nil)?.first as? LPCategoryView {
             self.view.addSubview(mLPRecentView)

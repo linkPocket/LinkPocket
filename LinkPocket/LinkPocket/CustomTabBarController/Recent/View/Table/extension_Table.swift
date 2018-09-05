@@ -23,16 +23,17 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
             headerTitle.contentView.backgroundColor = UIColor.colorFromRGB(0xFCFCFC)
             headerTitle.textLabel?.frame = R(0, 0, headerTitle.bounds.width, headerTitle.bounds.height)
             headerTitle.textLabel?.textColor = UIColor.colorFromRGB(0x4D4D4D)
-            headerTitle.textLabel?.font = UIFont(name: "Roboto-Bold", size: 12*r)
+            headerTitle.textLabel?.font = UIFont(name: "Roboto-Bold", size: 12)
             headerTitle.textLabel?.textAlignment = .center
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return tableItems.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
         if tableItems.count != 0 {
             if (tableItems[section].section) == date("YYYY MM dd") {
                 return "TODAY"
@@ -47,10 +48,8 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableItems.count != 0 {
             return tableItems[section].urls.count
-            
         } else {
             return 0
-            
         }
     }
     

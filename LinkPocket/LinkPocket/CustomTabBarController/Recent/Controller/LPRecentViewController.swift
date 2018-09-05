@@ -17,9 +17,41 @@ class LPRecentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//                let delegate = UIApplication.shared.delegate as! LPAppDelegate
+//                let context = delegate.persistentContainer.viewContext
+//
+//                let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
+//                let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+//
+//                do {
+//                    try context.execute(deleteRequest)
+//                    try context.save()
+//                } catch {
+//                    print ("There was an error")
+//                }
+//
+//
+//
+//        
+//    
+//                    var categoryModel = LPCategoryModel()
+//                    categoryModel.name = "Movie2"
+//                    categoryModel.setRGBA(color: .red)
+//        
+//                    LPCoreDataManager.store.insertIntoCategory(valueCategory: categoryModel)
+//                    for j in 1 ... 10 {
+//                        let linkModel: LPLinkModel = LPLinkModel(url: "https://a\(j)", title: "Musica\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
+//                        LPCoreDataManager.store.insertIntoLink(valueLink: linkModel)
+//                    }
+//        
+//                let links = LPCoreDataManager.store.selectAllObjectFromLink() as? [LPLinkModel]
+//                for link in links! {
+//                    link.printLinks()
+//                }
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
         if let mLPRecentView = Bundle.main.loadNibNamed("LPRecentView", owner: self, options: nil)?.first as? LPRecentView {
             self.view.addSubview(mLPRecentView)

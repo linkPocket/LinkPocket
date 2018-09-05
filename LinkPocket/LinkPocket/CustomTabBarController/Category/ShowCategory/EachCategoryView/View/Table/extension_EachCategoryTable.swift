@@ -23,12 +23,12 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
             headerTitle.contentView.backgroundColor = UIColor.colorFromRGB(0xFCFCFC)
             headerTitle.textLabel?.frame = R(0, 0, headerTitle.bounds.width, headerTitle.bounds.height)
             headerTitle.textLabel?.textColor = UIColor.colorFromRGB(0x4D4D4D)
-            headerTitle.textLabel?.font = UIFont(name: "Roboto-Bold", size: 12*r)
+            headerTitle.textLabel?.font = UIFont(name: "Roboto-Bold", size: 12)
             headerTitle.textLabel?.textAlignment = .center
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return tableItems.count
     }
     

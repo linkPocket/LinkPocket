@@ -26,9 +26,11 @@ class LPCategoryView: UIView {
     override func awakeFromNib() {
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
         mLPCategoryList.register(UINib(nibName: "LPCategoryListCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 21)
@@ -47,6 +49,7 @@ class LPCategoryView: UIView {
 
     func displayCategoryTable(categoryN: String, urls: [LPLinkModel]) {
         tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
         
         let eachCategory = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
         eachCategory.displayCategoryPage(categoryName: categoryN, categoryCount: "\(urls.count)", urls: tableItems)
