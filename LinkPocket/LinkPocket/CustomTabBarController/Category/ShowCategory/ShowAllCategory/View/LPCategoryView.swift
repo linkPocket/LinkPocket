@@ -26,6 +26,7 @@ class LPCategoryView: UIView {
     override func awakeFromNib() {
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
         mLPCategoryList.register(UINib(nibName: "LPCategoryListCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         tableItems = LPGroupingTable(urls: urls)

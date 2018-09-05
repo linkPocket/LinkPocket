@@ -21,6 +21,7 @@ class LPSearchController: UIViewController { //LPSearchController
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
         dismissKeyboard() // 얘 왜 안되지
         

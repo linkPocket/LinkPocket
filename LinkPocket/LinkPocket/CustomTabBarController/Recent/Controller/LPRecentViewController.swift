@@ -33,25 +33,26 @@ class LPRecentViewController: UIViewController {
 //
 //
 //
-        
-    
-                    var categoryModel = LPCategoryModel()
-                    categoryModel.name = "Movie2"
-                    categoryModel.setRGBA(color: .red)
-        
-                    LPCoreDataManager.store.insertIntoCategory(valueCategory: categoryModel)
-                    for j in 1 ... 10 {
-                        let linkModel: LPLinkModel = LPLinkModel(url: "https://a\(j)", title: "Musica\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
-                        LPCoreDataManager.store.insertIntoLink(valueLink: linkModel)
-                    }
-        
-                let links = LPCoreDataManager.store.selectAllObjectFromLink() as? [LPLinkModel]
-                for link in links! {
-                    link.printLinks()
-                }
+//        
+//    
+//                    var categoryModel = LPCategoryModel()
+//                    categoryModel.name = "Movie2"
+//                    categoryModel.setRGBA(color: .red)
+//        
+//                    LPCoreDataManager.store.insertIntoCategory(valueCategory: categoryModel)
+//                    for j in 1 ... 10 {
+//                        let linkModel: LPLinkModel = LPLinkModel(url: "https://a\(j)", title: "Musica\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
+//                        LPCoreDataManager.store.insertIntoLink(valueLink: linkModel)
+//                    }
+//        
+//                let links = LPCoreDataManager.store.selectAllObjectFromLink() as? [LPLinkModel]
+//                for link in links! {
+//                    link.printLinks()
+//                }
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
         if let mLPRecentView = Bundle.main.loadNibNamed("LPRecentView", owner: self, options: nil)?.first as? LPRecentView {
             self.view.addSubview(mLPRecentView)
