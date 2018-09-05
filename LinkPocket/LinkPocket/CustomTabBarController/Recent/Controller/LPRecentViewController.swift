@@ -17,6 +17,13 @@ class LPRecentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var addCategory = LPCategoryModel()
+        addCategory.name = "음악"
+        addCategory.setRGBA(color: green)
+        
+        LPCoreDataManager.store.insertIntoCategory(valueCategory: addCategory)
+        
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         

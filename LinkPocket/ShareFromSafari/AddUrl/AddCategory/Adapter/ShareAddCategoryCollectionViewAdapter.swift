@@ -13,26 +13,19 @@ class ShareAddCategoryCollectionViewAdapter: NSObject, UICollectionViewDelegate,
     var categoriesColor: [UIColor] = [UIColor]()
     let identifier: String = "ShareAddCategoryCollectionViewCell"
     var selectedCellColor: UIColor?
-    
+
+    let blue = UIColor.colorFromRGB(0x008eff)
+    let purple = UIColor.colorFromRGB(0x9013FE)
+    let red = UIColor.colorFromRGB(0xF70000)
+    let yellow = UIColor.colorFromRGB(0xF8E71C)
+    let green = UIColor.colorFromRGB(0x10E10E)
+
     override init() {
-        categoriesColor.append(.black)
-        categoriesColor.append(.darkGray)
-        categoriesColor.append(.gray)
-        categoriesColor.append(.lightGray)
-        categoriesColor.append(.brown)
-
-
-        categoriesColor.append(.red)
-        categoriesColor.append(.magenta)
-        categoriesColor.append(.orange)
-        categoriesColor.append(.yellow)
-        categoriesColor.append(.green)
-
-        categoriesColor.append(.blue)
-        categoriesColor.append(.cyan)
-        categoriesColor.append(.purple)
-        
-        categoriesColor.append(.white)
+        categoriesColor.append(blue)
+        categoriesColor.append(purple)
+        categoriesColor.append(red)
+        categoriesColor.append(yellow)
+        categoriesColor.append(green)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -57,3 +50,13 @@ class ShareAddCategoryCollectionViewAdapter: NSObject, UICollectionViewDelegate,
     }
 }
 
+extension UIColor {
+    class func colorFromRGB(_ rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+}

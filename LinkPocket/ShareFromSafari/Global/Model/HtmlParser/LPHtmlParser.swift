@@ -41,7 +41,7 @@ class LPHtmlParser: NSObject {
         
         switch parsingType {
         case .LPShareExtension:
-            getImages(use: myHTMLString!, parsingType: .LPShareExtension)
+            getTitleAndImageSrcs(use: myHTMLString!, parsingType: .LPShareExtension)
         }
     }
     
@@ -57,8 +57,13 @@ class LPHtmlParser: NSObject {
         }
     }
     
-    func getImages(use htmlString: String, parsingType: ParsingType) {
+    func getTitleAndImageSrcs(use htmlString: String, parsingType: ParsingType) {
         var parsingImages: [UIImage] = [UIImage]()
+        let deadlineTime = DispatchTime.now() + .seconds(2)
+        
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.delegate?.parsingDidFinish(with: parsingType, parsingList: parsingImages)
+        }
 
         do {
             let doc: Document = try SwiftSoup.parse(htmlString)
@@ -69,9 +74,10 @@ class LPHtmlParser: NSObject {
             for png in pngUrls {
                 if let validSrc = png, let parsingImage = urlToImage(imageURL: validSrc) {
                     parsingImages.append(parsingImage)
-                    self.delegate?.parsingDidFinish(with: parsingType, parsingList: parsingImages)
                 }
             }
+            self.delegate?.parsingDidFinish(with: parsingType, parsingList: parsingImages)
+
         } catch Exception.Error( _, let message) {
             print(message)
         } catch {

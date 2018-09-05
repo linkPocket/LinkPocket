@@ -67,6 +67,7 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
             break
         }
     }
+    
     /*
      // MARK: - Navigation
      
@@ -76,7 +77,6 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
      // Pass the selected object to the new view controller.
      }
      */
-    
 }
 
 extension UIImage {
