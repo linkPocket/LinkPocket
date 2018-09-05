@@ -29,6 +29,7 @@ class LPCategoryView: UIView {
         
         mLPCategoryList.register(UINib(nibName: "LPCategoryListCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 21)
@@ -47,6 +48,7 @@ class LPCategoryView: UIView {
 
     func displayCategoryTable(categoryN: String, urls: [LPLinkModel]) {
         tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
         
         let eachCategory = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
         eachCategory.displayCategoryPage(categoryName: categoryN, categoryCount: "\(urls.count)", urls: tableItems)

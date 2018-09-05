@@ -48,7 +48,8 @@ extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, 
             LPParentNavigationController.sharedInstance.pushViewController(writeVC, animated: true)
         } else {
             let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
-            let grouping = LPGroupingTable(urls: cell.urls)
+            var grouping = LPGroupingTable(urls: cell.urls)
+            grouping = grouping.sorted(by: { $0.section > $1.section })
             categoryVC.displayCategoryPage(categoryName: cell.categoryNL.text!, categoryCount: "\(cell.urls.count)", urls: grouping)
             LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
             

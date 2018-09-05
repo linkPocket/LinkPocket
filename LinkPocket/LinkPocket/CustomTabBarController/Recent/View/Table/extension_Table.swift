@@ -28,18 +28,19 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return tableItems.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
         if tableItems.count != 0 {
             if (tableItems[section].section) == date("YYYY MM dd") {
                 return "TODAY"
             } else {
                 return tableItems[section].section
             }
-        }else{
+        } else {
             return nil
         }
     }
@@ -47,10 +48,8 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableItems.count != 0 {
             return tableItems[section].urls.count
-            
         } else {
             return 0
-            
         }
     }
     

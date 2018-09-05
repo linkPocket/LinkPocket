@@ -30,6 +30,7 @@ class EachCategoryView: UIView {
         categoryTable.separatorStyle = .none
         
         tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
         categoryTable.reloadData()
         
         editCountLabel.layer.borderColor = UIColor.colorFromRGB(0x008EFF).cgColor

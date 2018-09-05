@@ -28,7 +28,7 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return tableItems.count
     }
     
