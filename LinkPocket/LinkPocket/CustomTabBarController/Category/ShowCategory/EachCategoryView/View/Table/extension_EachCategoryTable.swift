@@ -13,6 +13,7 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
         let cell = Bundle.main.loadNibNamed("LPLinkTableCell", owner: self, options: nil)?.first as! LPLinkTableCell
         let item = tableItems[indexPath.section].urls[indexPath.row]
         cell.modifyCell(img: item.imageName!, url: item.url!, title: item.title!, color: (item.category?.color())!, category: item.category!)
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -38,7 +39,7 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
             } else {
                 return tableItems[section].section
             }
-        }else{
+        } else {
             return nil
         }
     }
@@ -46,7 +47,6 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableItems.count != 0 {
             return tableItems[section].urls.count
-            
         } else {
             return 0
         }
@@ -54,5 +54,48 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 103
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = categoryTable.cellForRow(at: indexPath) as? LPLinkTableCell else {
+            return
+        }
+        let url = cell.url.text!
+        
+        if statusEdit {
+            if editSelectedURL.contains(url) {
+                cell.contentView.backgroundColor = UIColor.white
+                self.editSelectedURL = self.editSelectedURL.filter {$0 != url}
+            } else {
+                cell.contentView.backgroundColor = UIColor.lightGray
+                self.editSelectedURL.append(url)
+            }
+            editCountLabel.text = "\(editSelectedURL.count)"
+            print(editSelectedURL)
+        } else {
+            print(" \(url) 로 이동합니다.")
+        }
+    }
+    
+
+    func preparingEdit() {
+        categoryTable.allowsSelection = true
+        UIView.animate(withDuration: 0.1, animations: {
+            self.underBarBottom.constant = 0
+            self.layoutIfNeeded()
+        })
+        editCountLabel.isHidden = false
+        print("에딧 세팅을 시작합니다.")
+    }
+    
+    func finishEdit() {
+        categoryTable.allowsSelection = false
+        UIView.animate(withDuration: 0.1, animations: {
+            self.underBarBottom.constant = -70
+            self.layoutIfNeeded()
+        })
+        editCountLabel.isHidden = true
+        print("에딧 세팅을 끝냅니다.")
+        categoryTable.reloadData()
     }
 }

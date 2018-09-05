@@ -15,14 +15,16 @@ class LPCategoryListCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     var urls: [LPLinkModel] = []
    
-    func modifyCell(categoryN: String, urlCount: String) {
+    func modifyCell(categoryN: String, urlCount: String, urls: [LPLinkModel]) {
         image.isHidden = true
         categoryNL.isHidden = false
         urlCountL.isHidden = false
         
         categoryNL.text = categoryN
         urlCountL.text = urlCount
+        print(urlCount + "입니다")
         
+        self.urls = urls
         self.Shadow(color: UIColor.colorFromRGB(0xEEEEEE), opacity: 0.2, offSet: CGSize(width: 0.2, height: 0.2), radius: 5, scale: true)
     }
     
