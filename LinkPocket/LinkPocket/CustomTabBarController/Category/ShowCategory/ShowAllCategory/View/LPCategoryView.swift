@@ -41,7 +41,7 @@ class LPCategoryView: UIView {
 
     }
     
-    func writeCategoryAppear(){
+    func writeCategoryAppear() {
         let writeCategory = LPWriteCategoryController(nibName: "LPWriteCategoryController", bundle: nil)
         LPParentNavigationController.sharedInstance.pushViewController(writeCategory, animated: true)
 

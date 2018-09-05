@@ -50,9 +50,9 @@ extension LPSearchController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        mLPSearchView.searchStatusLabel.text = "검색중.."
-        categoryCollectionAnimation(height: 0)
-        mLPSearchView.emptyReload()
+        mLPSearchView.searchStatusLabel.text = "최근검색"
+        categoryCollectionAnimation(height: 77)
+        mLPSearchView.recentSearchReload()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -65,5 +65,6 @@ extension LPSearchController: UISearchBarDelegate {
         UIView.animate(withDuration: 0.3, animations: {
             self.mLPSearchView.categoryHeightConstraint.constant = height
             self.mLPSearchView.layoutIfNeeded()
-        })    }
+        })
+    }
 }

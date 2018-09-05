@@ -43,14 +43,6 @@ extension LPSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UI
         var grouping = LPGroupingTable(urls: cell.urls)
         grouping = grouping.sorted(by: { $0.section > $1.section })
         categoryVC.displayCategoryPage(categoryName: cell.categoryN, categoryCount: "\(cell.urls.count)", urls: grouping)
-        LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
-        
-        
-        
+        LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)   
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 70, height: 55)
-    }
-    
 }

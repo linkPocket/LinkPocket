@@ -17,7 +17,6 @@ class LPRecentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
 //                let delegate = UIApplication.shared.delegate as! LPAppDelegate
 //                let context = delegate.persistentContainer.viewContext
 //
@@ -65,7 +64,7 @@ class LPRecentViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     /*
     // MARK: - Navigation
 

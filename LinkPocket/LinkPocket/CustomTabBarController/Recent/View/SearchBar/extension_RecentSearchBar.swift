@@ -21,11 +21,9 @@ extension LPRecentView: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         print("검색 시작합니당.")
         mSearchBar.endEditing(true)
-        
+
         let searchVC = LPSearchController(nibName: "LPSearchController", bundle: nil)
-        searchVC.tabBarController?.navigationItem.title = ""
-        LPParentNavigationController.sharedInstance.pushViewController(searchVC, animated: false)
-        
+        LPParentNavigationController.sharedInstance.pushViewController(searchVC, animated: true)
     }
     
 }
