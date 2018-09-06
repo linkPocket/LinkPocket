@@ -33,6 +33,14 @@ class LPSearchView: UIView {
         SearchTable.separatorStyle = .none
         SearchCategoryList.register(UINib(nibName: "LPSearchCategoryListCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        layout.itemSize = CGSize(width: 70, height: 55)
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 0
+        SearchCategoryList!.collectionViewLayout = layout
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
     }
     

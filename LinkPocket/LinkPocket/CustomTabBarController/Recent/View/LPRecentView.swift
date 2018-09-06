@@ -23,8 +23,6 @@ class LPRecentView: UIView {
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
-        
-        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
 
         tableItems = LPGroupingTable(urls: urls)
         tableItems = tableItems.sorted(by: { $0.section > $1.section })

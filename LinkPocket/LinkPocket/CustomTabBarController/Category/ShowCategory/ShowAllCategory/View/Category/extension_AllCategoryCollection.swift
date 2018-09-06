@@ -24,7 +24,8 @@ extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, 
         if indexPath.row == 0 {
             cell.modeifyImageCell(image: "add")
         } else if indexPath.row == 1 {
-            cell.modifyCell(categoryN: "All", urlCount: "\(urls.count)", urls: urls)
+            cell.modifyAllCell(categoryN: "All", urlCount: "\(urls.count)", urls: urls)
+            cell.onClicked()
         } else {
         let item = categorys[indexPath.row - 2]
         var urlsArray: [LPLinkModel] = []
@@ -33,7 +34,7 @@ extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, 
                 urlsArray.append(self.urls[i])
             }
         }
-            cell.modifyCell(categoryN: item.name!, urlCount: "\(urlsArray.count)", urls: urlsArray)
+            cell.modifyCell(category: item, urlCount: "\(urlsArray.count)", urls: urlsArray)
         }
         
         return cell
