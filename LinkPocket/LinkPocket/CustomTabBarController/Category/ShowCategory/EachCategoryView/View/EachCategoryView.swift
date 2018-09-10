@@ -9,7 +9,6 @@
 import UIKit
 
 protocol EachCategoryViewListener {
-
     //About Alert
     func confirmDeleteAlert()
     func confirmMoveAlert()
@@ -41,7 +40,6 @@ class EachCategoryView: UIView {
         
         categoryTable.separatorStyle = .none
         categoryTable.register(UINib(nibName: "LPLinkTableCell", bundle: nil), forCellReuseIdentifier: "Cell")
-        
         
         tableItems = LPGroupingTable(urls: urls)
         tableItems = tableItems.sorted(by: { $0.section > $1.section })
@@ -110,7 +108,6 @@ class EachCategoryView: UIView {
         }
         
         //self.listener?.confirmMoveAlert()
-        
     }
     
     // Alert func about move
@@ -138,13 +135,24 @@ class EachCategoryView: UIView {
         for i in 0..<editSelectedURL.count {
             LPCoreDataManager.store.deleteFromLinkWhere(urlIs: editSelectedURL[i] )
         }
+        editReloadData()
     }
     
     func deleteNoAction() {
         print("아무일도 없습니다")
     }
+
     
-    
-    
-    
+    func editReloadData() {
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        var links: [LPLinkModel] = []
+        for i in 0..<urls.count {
+            if urls[i].category?.name == categoryName.text {
+                links.append(urls[i])
+            }
+        }
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+        tableItems = LPGroupingTable(urls: links)
+        categoryTable.reloadData()
+    }
 }

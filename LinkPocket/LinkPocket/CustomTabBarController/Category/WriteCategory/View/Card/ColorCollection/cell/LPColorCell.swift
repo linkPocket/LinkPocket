@@ -11,6 +11,7 @@ import UIKit
 class LPColorCell: UICollectionViewCell {
 
     @IBOutlet weak var colorView: UIImageView!
+    var selectedColor = UIColor.clear
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +28,7 @@ class LPColorCell: UICollectionViewCell {
     
     func modifyCell(color: UIColor) {
         colorView.backgroundColor = color
+        selectedColor = color
     }
 
 }

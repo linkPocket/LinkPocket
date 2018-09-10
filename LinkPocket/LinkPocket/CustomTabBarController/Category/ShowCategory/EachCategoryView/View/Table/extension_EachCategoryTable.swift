@@ -20,7 +20,6 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
             cell?.selectionStyle = .none
             
         }
-        
         return cell!
     }
     
@@ -68,7 +67,6 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
         }
         
         let url = cell.url.text!
-        
         if statusEdit {
             if editSelectedURL.contains(url) {
                 cell.contentView.backgroundColor = UIColor.white
@@ -84,7 +82,20 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-
+    //이거 도데체 어디가 옵셔널일까
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
+            let item = self.tableItems[indexPath.section].urls[indexPath.row]
+            let editVC = LPEditLinkTitleController(nibName: "LPEditLinkTitleController", bundle: nil)
+            //editVC.mLPEditLinkTitleView.setBaseData(categoryN: (item.category?.name)!, image: "Naver", title: item.title!, url: item.url!, date: item.date!)
+            LPParentNavigationController.sharedInstance.pushViewController(editVC, animated: true)
+            
+            return
+        }
+        edit.backgroundColor = UIColor.gray
+        return [edit]
+    }
+    
     func preparingEdit() {
         categoryTable.allowsSelection = true
         UIView.animate(withDuration: 0.1, animations: {

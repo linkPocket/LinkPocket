@@ -15,8 +15,11 @@ class LPWriteCategoryView: UIView {
     @IBOutlet weak var cardColorCollection: UICollectionView!
    
     var colorArray: [UIColor] = [blue, red, yellow, green, purple]
+    var status: String = "CreatCategory" //CreatCategory || EditCategory
+    var orginCategoryN = ""
+    var selectedColor: UIColor = UIColor.clear
     
-   @IBOutlet weak var saveBt: UIButton!
+    @IBOutlet weak var saveBt: UIButton!
     
     override func awakeFromNib() {
         saveBt.backgroundColor = blue
@@ -37,9 +40,27 @@ class LPWriteCategoryView: UIView {
     
     
     @IBAction func saveBtAction(_ sender: UIButton) {
-        print("카테고리 이름이랑 색깔 보고 저장해줘야해요 그냥 여기서 바로 저장하면됩니당")
+        if status == "CreatCategory" {
+            var categoryModel = LPCategoryModel()
+            categoryModel.name = cardTextField.text!
+            categoryModel.setRGBA(color: self.selectedColor)
+            
+            LPCoreDataManager.store.insertIntoCategory(valueCategory: categoryModel)
+        } else {
+            var categoryModel = LPCategoryModel()
+            categoryModel.name = cardTextField.text!
+            categoryModel.setRGBA(color: self.selectedColor)
+            
+            LPCoreDataManager.store.updateCategorySet(valueCategory: categoryModel, whereNameIs: orginCategoryN)
+        }
     }
  
+    func setBaseData(title: String, color: UIColor) {
+        self.cardTextField.placeholder = title
+        self.orginCategoryN = title
+        self.selectedColor = color
+    }
+    
     @IBOutlet weak var saveBtBottomConstraint: NSLayoutConstraint!
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {

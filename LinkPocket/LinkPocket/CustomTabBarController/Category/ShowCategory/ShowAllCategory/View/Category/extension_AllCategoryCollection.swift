@@ -44,16 +44,30 @@ extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, 
         guard let cell = mLPCategoryList.cellForItem(at: indexPath) as? LPCategoryListCell else {
             return
         }
-        if cell.image.isHidden == false {
-            let writeVC = LPWriteCategoryController(nibName: "LPWriteCategoryController", bundle: nil)
-            LPParentNavigationController.sharedInstance.pushViewController(writeVC, animated: true)
+        
+        if collectionStatus == "finishEdit" {
+            if cell.image.isHidden == false {
+                let writeVC = LPWriteCategoryController(nibName: "LPWriteCategoryController", bundle: nil)
+                writeVC.setBaseData(title: "카테고리 입력", color: UIColor.clear)
+                LPParentNavigationController.sharedInstance.pushViewController(writeVC, animated: true)
+            } else {
+                let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
+                var grouping = LPGroupingTable(urls: cell.urls)
+                grouping = grouping.sorted(by: { $0.section > $1.section })
+                categoryVC.displayCategoryPage(categoryName: cell.categoryNL.text!, categoryCount: "\(cell.urls.count)", urls: grouping)
+                LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
+                
+            }
         } else {
-            let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
-            var grouping = LPGroupingTable(urls: cell.urls)
-            grouping = grouping.sorted(by: { $0.section > $1.section })
-            categoryVC.displayCategoryPage(categoryName: cell.categoryNL.text!, categoryCount: "\(cell.urls.count)", urls: grouping)
-            LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
-            
+            if cell.categoryNL.text != "All" {
+                let writeVC = LPWriteCategoryController(nibName: "LPWriteCategoryController", bundle: nil)
+                let cateogryModel = LPCoreDataManager.store.selectObjectFromCategoryWhere(nameIs: cell.categoryNL.text!)
+                writeVC.status = "EditCategory"
+                writeVC.setBaseData(title: cell.categoryNL.text!, color: (cateogryModel?.color())!)
+                LPParentNavigationController.sharedInstance.pushViewController(writeVC, animated: true)
+            } else {
+                print("올일경우 삭제할 수 없습니다.")
+            }
         }
     }
 

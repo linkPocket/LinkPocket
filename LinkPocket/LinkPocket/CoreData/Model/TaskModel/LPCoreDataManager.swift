@@ -261,7 +261,6 @@ final class LPCoreDataManager {
                                 let categoryModel = LPCategoryModel(name: category?.name, r: category?.r, g: category?.g, b: category?.b, alpha: category?.alpha)
                                 link.category = categoryModel
                             }
-                            
                             links.add(link)
                         }
                     }

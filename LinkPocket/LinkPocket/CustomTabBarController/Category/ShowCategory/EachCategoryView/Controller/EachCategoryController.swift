@@ -8,17 +8,19 @@
 
 import UIKit
 
-class EachCategoryController: LPParentViewController, EachCategoryViewListener {
+class EachCategoryController: LPParentViewController, UINavigationControllerDelegate, EachCategoryViewListener {
 
     var mEachCategoryView = EachCategoryView()
     var editStatus: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         var image = UIImage(named: "edit")
         image = image?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(editBtAction))
+        
+        self.navigationController?.delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -52,7 +54,14 @@ class EachCategoryController: LPParentViewController, EachCategoryViewListener {
         func noAction() { mEachCategoryView.deleteNoAction() }
         
         self.AlertTwo(title: "삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yes: "네", no: "아니요", yesAction: yesAction, noAction: noAction)
+    }
+    
+    //BackBT Event 이거 왜 안되냐
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        let categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         
+        (viewController as? LPCategoryViewController)?.refreshData(urls: urls , categorys: categorys )
     }
     
 }

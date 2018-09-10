@@ -53,5 +53,7 @@ extension EachCategoryView: UICollectionViewDelegate, UICollectionViewDataSource
         for i in 0..<links.count {
             LPCoreDataManager.store.updateLinkSet(valueLink: links[i], whereUrlIs: links[i].url!)
         }
+        
+        self.editReloadData()
     }
 }

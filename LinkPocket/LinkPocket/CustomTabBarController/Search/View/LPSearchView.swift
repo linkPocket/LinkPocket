@@ -49,6 +49,8 @@ class LPSearchView: UIView {
             self.recentSearchArray = RecentSearch
         }
         
+        filteredData = []
+        
         for i in 0..<recentSearchArray.count {
             for j in 0..<urls.count {
                 if urls[j].url == recentSearchArray[i] {
