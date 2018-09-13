@@ -15,6 +15,8 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
     var mLPWriteCategoryView: LPWriteCategoryView!
     var status: String = "CreatCategory" //CreatCategory || EditCategory
     var categoryName: String = ""
+    var writeView: LPWriteCategoryView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,12 +28,6 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
             image = image?.withRenderingMode(.alwaysOriginal)
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(deleteAction))
         }
-    var writeView: LPWriteCategoryView?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.title = "추가 하기"
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
@@ -41,6 +37,7 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
             self.writeView = mLPWriteCategoryView
             self.view.addSubview(writeView!)
         }
+    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -69,6 +66,7 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
     @objc func deleteAction() {
         func yes() {
             LPCoreDataManager.store.deleteFromCategoryWhere(nameIs: categoryName)
+            self.dismiss(animated: true, completion: nil)
         }
         func no() { }
         self.AlertTwo(title: "카테고리를 삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yesAction: yes, noAction: no)
@@ -78,6 +76,7 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
         if mLPWriteCategoryView.cardTextField.text != "" {
             func yes() {
                 mLPWriteCategoryView.saveAlertAction()
+                self.dismiss(animated: true, completion: nil)
             }
             func no() { }
             self.AlertTwo(title: "저장하시겠습니까?", message: "", yesAction: yes, noAction: no)

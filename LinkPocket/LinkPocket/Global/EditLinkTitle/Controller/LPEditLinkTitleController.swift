@@ -35,6 +35,7 @@ class LPEditLinkTitleController: LPParentViewController, LPEditLinkTitleViewList
         if mLPEditLinkTitleView.title.text != "" {
             func yes() {
                 mLPEditLinkTitleView.saveAlertAction()
+                self.dismiss(animated: true, completion: nil)
             }
             func no() { }
             self.AlertTwo(title: "수정하시겠습니까?", message: "", yesAction: yes, noAction: no)

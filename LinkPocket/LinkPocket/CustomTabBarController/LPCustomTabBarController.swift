@@ -42,11 +42,12 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "LINK POCKET"
+        print("뷰열림")
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.title = ""
+        print("뷰사라짐")
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,6 +65,7 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
             
             self.viewControllers[0]?.view.frame = self.customView.frame
             self.customView.insertSubview((self.viewControllers[0]?.view!)!, belowSubview: self.customTabBar)
+            
         case 2:
             if self.viewControllers[1] == nil {
                 self.viewControllers[1] = LPCategoryViewController()
