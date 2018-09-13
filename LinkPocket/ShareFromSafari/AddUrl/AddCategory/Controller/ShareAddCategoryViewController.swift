@@ -32,22 +32,40 @@ class ShareAddCategoryViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { (_) in
+            
+            self.addCategoryView?.margin = size.width > size.height ? 10 : 80
+            self.addCategoryView?.topMargin.constant = (self.addCategoryView?.margin)!
+            self.addCategoryView?.bottomMargin.constant = (self.addCategoryView?.margin)!
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 
 extension ShareAddCategoryViewController: ShareAddCategoryViewDelegate {
     func saveUrlInfo() {
         var category: LPCategoryModel = LPCategoryModel()
         
-        category.name = self.addCategoryView?.categoryNameTextView.text!
-        
+        category.name = self.addCategoryView?.categoryNameTextField.text!
         let color = addCategoryView?.collectionViewAdapter.selectedCellColor
         color == nil ? category.setRGBA(color: .white) : category.setRGBA(color:color!)
         guard LPCoreDataManager.store.insertIntoCategory(valueCategory: category) else {
             createCategoryFailed()
             return
         }
+        
+        let imageNumber = UserDefaults.standard.integer(forKey: "imageNumber")
+        
+        let appendingPathComponent = "\(imageNumber).png"
+        
+        UserDefaults.standard.set(imageNumber + 1, forKey: "imageNumber")
+        UserDefaults.standard.synchronize()
 
-        let appendingPathComponent = "\(String(describing: category.name))/\(String(describing: self.imageInfo?.url)).png"
         let link: LPLinkModel = LPLinkModel(url: self.imageInfo?.url, title: self.imageInfo?.titleText, imageName: writeFile(appendingPathComponent)?.relativeString, date: Date() as NSDate, category: category)
 
         guard LPCoreDataManager.store.insertIntoLink(valueLink: link) else {
@@ -79,6 +97,7 @@ extension ShareAddCategoryViewController: ShareAddCategoryViewDelegate {
         var photoURL: URL? = nil
         if let data = UIImagePNGRepresentation((self.imageInfo?.image)!) {
             photoURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.CoreDataTest2")?.appendingPathComponent(appendingPathComponent)
+            print("photo url : \(String(describing: photoURL))")
             do {
                 try data.write(to: photoURL!, options: .atomic)
             } catch {

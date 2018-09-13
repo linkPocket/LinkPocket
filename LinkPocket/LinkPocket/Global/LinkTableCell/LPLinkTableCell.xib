@@ -27,7 +27,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrY-c3-tte">
-                        <rect key="frame" x="108" y="36" width="65" height="17.5"/>
+                        <rect key="frame" x="108" y="36" width="71" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="xrY-c3-tte" secondAttribute="height" multiplier="25:2" constant="-154" id="ZRC-rb-2qW"/>
                         </constraints>
@@ -36,22 +36,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXb-D0-5ek">
-                        <rect key="frame" x="183" y="36" width="32" height="17.5"/>
+                        <rect key="frame" x="189" y="36" width="32" height="18"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0R-Ix-lJI">
-                        <rect key="frame" x="108" y="65" width="253" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="l0R-Ix-lJI" secondAttribute="height" multiplier="269:11" constant="-138.36363636363637" id="mAb-PM-N1h"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0R-Ix-lJI">
+                        <rect key="frame" x="108" y="69" width="196" height="16"/>
                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
                         <color key="textColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lGk-A1-gdg">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lGk-A1-gdg">
                         <rect key="frame" x="16" y="12" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="lGk-A1-gdg" secondAttribute="height" multiplier="1:1" id="oim-QP-Acs"/>
@@ -59,14 +56,16 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="l0R-Ix-lJI" firstAttribute="top" secondItem="tXb-D0-5ek" secondAttribute="bottom" constant="11.5" id="5Yw-T2-Vus"/>
+                    <constraint firstAttribute="bottom" secondItem="l0R-Ix-lJI" secondAttribute="bottom" constant="17.5" id="6V3-uU-Ep6"/>
+                    <constraint firstItem="l0R-Ix-lJI" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="7NS-Hd-AuH"/>
                     <constraint firstItem="tXb-D0-5ek" firstAttribute="leading" secondItem="xrY-c3-tte" secondAttribute="trailing" constant="10" id="JrT-0c-ble"/>
+                    <constraint firstItem="l0R-Ix-lJI" firstAttribute="leading" secondItem="xrY-c3-tte" secondAttribute="leading" id="NLi-vh-lhW"/>
                     <constraint firstItem="lGk-A1-gdg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Nxb-xw-p84"/>
                     <constraint firstAttribute="bottom" secondItem="lGk-A1-gdg" secondAttribute="bottom" constant="10.5" id="OQc-td-XaJ"/>
                     <constraint firstItem="tXb-D0-5ek" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="25" id="OSr-tv-bpZ"/>
                     <constraint firstItem="lGk-A1-gdg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Rdv-yf-IOg"/>
                     <constraint firstItem="xrY-c3-tte" firstAttribute="leading" secondItem="lGk-A1-gdg" secondAttribute="trailing" constant="12" id="Yuj-ce-Xh2"/>
-                    <constraint firstItem="l0R-Ix-lJI" firstAttribute="leading" secondItem="lGk-A1-gdg" secondAttribute="trailing" constant="12" id="b2J-M7-EhA"/>
+                    <constraint firstItem="l0R-Ix-lJI" firstAttribute="top" secondItem="xrY-c3-tte" secondAttribute="bottom" constant="15" id="l3F-4u-G36"/>
                     <constraint firstItem="xrY-c3-tte" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="25" id="zKX-fZ-Ua2"/>
                 </constraints>
             </tableViewCellContentView>

@@ -66,8 +66,9 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
         guard let cell = categoryTable.cellForRow(at: indexPath) as? LPLinkTableCell else {
             return
         }
-        
+
         let url = cell.url.text!
+
         if statusEdit {
             if editSelectedURL.contains(url) {
                 cell.contentView.backgroundColor = UIColor.white
@@ -79,6 +80,16 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
             editCountLabel.text = "\(editSelectedURL.count)"
         } else {
             print("\(url) 로 이동합니다.")
+            guard let validUrl = URL(string: url) else {
+                return
+            }
+            
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(validUrl, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(validUrl)
+            }            
+            print(" \(url) 로 이동합니다.")
         }
     }
     

@@ -11,7 +11,8 @@ import Kanna
 import SwiftSoup
 
 enum ParsingType {
-    case LPShareExtension
+    case PTShareExtension
+    case PTError
 }
 
 protocol LPHtmlParserDelegate {
@@ -30,22 +31,29 @@ class LPHtmlParser: NSObject {
     func startParsing(with url: URL, parsingType: ParsingType) {
         var myHTMLString: String? = nil
         do {
-            myHTMLString = try String(contentsOf: url, encoding: String.Encoding.utf8)
+            myHTMLString = try String(contentsOf: url, encoding: .utf8)
         }  catch let error {
+            switch parsingType {
+            case .PTShareExtension:
+                self.delegate?.parsingDidFinish(with: .PTError, parsingList: [UIImage]())
+            default:
+                print("")
+            }
             print("Error: \(error)")
-        }
-    
-        guard myHTMLString != nil else {
             return
         }
         
         switch parsingType {
-        case .LPShareExtension:
-            getTitleAndImageSrcs(use: myHTMLString!, parsingType: .LPShareExtension)
+        case .PTShareExtension:
+            getTitleAndImageSrcs(use: myHTMLString!, parsingType: .PTShareExtension)
+        default:
+            print("")
         }
+        
     }
     
     func getTitle(use htmlString: String, parsingType: ParsingType) {
+
         do {
             let doc: Document = try SwiftSoup.parse(htmlString)
             let titleText = try doc.title()
@@ -68,15 +76,46 @@ class LPHtmlParser: NSObject {
         do {
             let doc: Document = try SwiftSoup.parse(htmlString)
             let pngs: Elements = try doc.select("img[src]")
-            let pngUrls: [String?] = pngs.array().map { try? $0.attr("src").description }
-            
+            let metas: Elements = try doc.select("meta[content]")
+            let links: Elements = try doc.select("link[href]")
+
             self.delegate?.parsingDidFinish(with: parsingType, titleText: try doc.title())
-            for png in pngUrls {
-                if let validSrc = png, let parsingImage = urlToImage(imageURL: validSrc) {
-                    parsingImages.append(parsingImage)
+            
+            let linksUrls: [String?] = links.array().map { try? $0.attr("href").description }
+            var tempUrls: [String] = [String]()
+            for link in linksUrls {
+                
+                if let validSrc = link, let parsingImage = urlToImage(imageURL: validSrc) {
+                    if isExistImage(totalImages: tempUrls, findImage: validSrc) == false {
+                        parsingImages.append(parsingImage)
+                        tempUrls.append(validSrc)
+                        self.delegate?.parsingDidFinish(with: parsingType, parsingList: parsingImages)
+                    }
                 }
             }
-            self.delegate?.parsingDidFinish(with: parsingType, parsingList: parsingImages)
+            
+            let metaUrls: [String?] = metas.array().map { try? $0.attr("content").description }
+            for meta in metaUrls {
+                if let validSrc = meta, let parsingImage = urlToImage(imageURL: validSrc) {
+                    if isExistImage(totalImages: tempUrls, findImage: validSrc) == false {
+                        parsingImages.append(parsingImage)
+                        tempUrls.append(validSrc)
+                        self.delegate?.parsingDidFinish(with: parsingType, parsingList: parsingImages)
+                    }
+                }
+            }
+            
+            let pngUrls: [String?] = pngs.array().map { try? $0.attr("src").description }
+            for png in pngUrls {
+                if let validSrc = png, let parsingImage = urlToImage(imageURL: validSrc) {
+                    if isExistImage(totalImages: tempUrls, findImage: validSrc) == false {
+                        parsingImages.append(parsingImage)
+                        tempUrls.append(validSrc)
+                        self.delegate?.parsingDidFinish(with: parsingType, parsingList: parsingImages)
+                    }
+                }
+            }
+        
 
         } catch Exception.Error( _, let message) {
             print(message)
@@ -84,7 +123,16 @@ class LPHtmlParser: NSObject {
             print("error")
         }
     }
-
+    
+    func isExistImage(totalImages: [String], findImage: String) -> Bool{
+        for image in totalImages {
+            if image == findImage {
+                return true
+            }
+        }
+        return false
+    }
+    
     func urlToImage(imageURL: String) -> UIImage? {
         print("image url : \(imageURL)")
         if let validURL = URL(string: imageURL) {

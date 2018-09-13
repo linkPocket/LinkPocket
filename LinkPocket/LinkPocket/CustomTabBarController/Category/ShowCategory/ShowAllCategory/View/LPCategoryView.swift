@@ -41,7 +41,7 @@ class LPCategoryView: UIView {
         layout.minimumInteritemSpacing = 11
         layout.minimumLineSpacing = 40
         mLPCategoryList!.collectionViewLayout = layout
-        
+
         let baseBTHeight = baseBT.bounds.height
         
         baseBT.layer.cornerRadius = baseBTHeight/2
@@ -55,7 +55,7 @@ class LPCategoryView: UIView {
         LPParentNavigationController.sharedInstance.pushViewController(writeCategory, animated: true)
 
     }
-
+    
     func displayCategoryTable(categoryN: String, urls: [LPLinkModel]) {
         tableItems = LPGroupingTable(urls: urls)
         tableItems = tableItems.sorted(by: { $0.section > $1.section })

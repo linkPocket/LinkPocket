@@ -109,6 +109,7 @@
 		CE5F8EA92108D6EF00C27671 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F8EA82108D6EF00C27671 /* ShareViewController.swift */; };
 		CE5F8EAC2108D6EF00C27671 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5F8EAA2108D6EF00C27671 /* MainInterface.storyboard */; };
 		CE5F8EB02108D6EF00C27671 /* ShareFromSafari.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE5F8EA62108D6EF00C27671 /* ShareFromSafari.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE62ACD42147AFD60007FA17 /* LPRequireMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C2F62211AEC74001585DF /* LPRequireMethod.swift */; };
 		CE80DE3E21106D5F00B2032F /* LPRecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE3C21106D5F00B2032F /* LPRecentViewController.swift */; };
 		CE80DE3F21106D5F00B2032F /* LPRecentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE80DE3D21106D5F00B2032F /* LPRecentViewController.xib */; };
 		CE80DE4221106D6E00B2032F /* LPCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE80DE4021106D6E00B2032F /* LPCategoryViewController.swift */; };
@@ -1533,6 +1534,7 @@
 				CE5F8EA92108D6EF00C27671 /* ShareViewController.swift in Sources */,
 				CE92139E211C9C2100E5049C /* Link+CoreDataProperties.swift in Sources */,
 				CE14A58D212EE2D400657421 /* ShareAddUrlViewController.swift in Sources */,
+				CE62ACD42147AFD60007FA17 /* LPRequireMethod.swift in Sources */,
 				CE14A58B212EDD4600657421 /* ShareEditTitleViewController.swift in Sources */,
 				CE92139F211C9C2100E5049C /* Category+CoreDataClass.swift in Sources */,
 				CE3BB6B6212BF30600CEAC7B /* ShareSelectCollectionViewCell.swift in Sources */,
