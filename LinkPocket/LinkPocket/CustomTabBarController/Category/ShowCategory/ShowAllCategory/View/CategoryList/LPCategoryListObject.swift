@@ -14,15 +14,31 @@ class LPCategoryListCell: UICollectionViewCell {
     
     @IBOutlet weak var image: UIImageView!
     var urls: [LPLinkModel] = []
+    var categoryColor: UIColor = UIColor.colorFromRGB(0x008EFF)
    
-    func modifyCell(categoryN: String, urlCount: String, urls: [LPLinkModel]) {
+    func modifyCell(category: LPCategoryModel, urlCount: String, urls: [LPLinkModel]) {
+        image.isHidden = true
+        categoryNL.isHidden = false
+        urlCountL.isHidden = false
+        
+        categoryNL.text = category.name!
+        urlCountL.text = urlCount
+        categoryColor = category.color()!
+        categoryNL.textColor = categoryColor
+        
+        self.urls = urls
+        self.Shadow(color: UIColor.colorFromRGB(0xEEEEEE), opacity: 0.2, offSet: CGSize(width: 0.2, height: 0.2), radius: 5, scale: true)
+    }
+    
+    func modifyAllCell(categoryN: String, urlCount: String, urls: [LPLinkModel]) {
         image.isHidden = true
         categoryNL.isHidden = false
         urlCountL.isHidden = false
         
         categoryNL.text = categoryN
         urlCountL.text = urlCount
-        print(urlCount + "입니다")
+        categoryColor = UIColor.gray
+        categoryNL.textColor = categoryColor
         
         self.urls = urls
         self.Shadow(color: UIColor.colorFromRGB(0xEEEEEE), opacity: 0.2, offSet: CGSize(width: 0.2, height: 0.2), radius: 5, scale: true)
@@ -40,7 +56,7 @@ class LPCategoryListCell: UICollectionViewCell {
     func onClicked(){
         UIView.animate(withDuration: 0.1, animations: {
             self.layer.cornerRadius = 2*r
-            self.backgroundColor = UIColor.colorFromRGB(0x008EFF)
+            self.backgroundColor = self.categoryColor
             self.categoryNL.textColor = UIColor.white
             self.urlCountL.textColor = UIColor.white
         })
@@ -50,7 +66,7 @@ class LPCategoryListCell: UICollectionViewCell {
         UIView.animate(withDuration: 0.1, animations: {
             self.layer.cornerRadius = 2*r
             self.backgroundColor = UIColor.white
-            self.categoryNL.textColor = self.fontC
+            self.categoryNL.textColor = self.categoryColor
             self.urlCountL.textColor = self.fontC
         })
     }

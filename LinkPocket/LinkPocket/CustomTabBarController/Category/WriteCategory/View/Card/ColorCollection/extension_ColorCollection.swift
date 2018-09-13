@@ -22,6 +22,10 @@ extension LPWriteCategoryView: UICollectionViewDelegate, UICollectionViewDataSou
         let cell : LPColorCell = cardColorCollection.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LPColorCell
         
         cell.modifyCell(color: colorArray[indexPath.row])
+        if selectedColor == colorArray[indexPath.row] {
+            cell.onClicked()
+            self.selectedColor = cell.selectedColor
+        }
         
         return cell
     }
@@ -34,6 +38,7 @@ extension LPWriteCategoryView: UICollectionViewDelegate, UICollectionViewDataSou
         for i in 0..<cardColorCollection.subviews.count - 2 {
             if i == indexPath.row {
                 (cardColorCollection.subviews[indexPath.row] as! LPColorCell).onClicked()
+                self.selectedColor = (cardColorCollection.subviews[indexPath.row] as! LPColorCell).selectedColor
             } else {
                 (cardColorCollection.subviews[i] as! LPColorCell).onUnclicked()
             }

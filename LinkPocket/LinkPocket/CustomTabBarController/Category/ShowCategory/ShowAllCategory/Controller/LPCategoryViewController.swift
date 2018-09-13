@@ -45,6 +45,20 @@ class LPCategoryViewController: UIViewController, LPCategoryVListener {
         print("카테고리를 추가해주세요")
     }
     
+    func refreshData(urls: [LPLinkModel], categorys: [LPCategoryModel]) {
+        mCategoryV.urls = urls
+        mCategoryV.urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+        mCategoryV.tableItems = LPGroupingTable(urls: urls)
+        
+        mCategoryV.mLPCategoryList.reloadData()
+        
+        print("Hello")
+    }
+    
+    func test() {
+        print("돼라돼라 얍")
+    }
+    
 }
 
 extension String {

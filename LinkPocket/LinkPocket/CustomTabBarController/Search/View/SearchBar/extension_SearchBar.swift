@@ -13,14 +13,15 @@ extension LPSearchController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         var filteredData: [LPSearchModel] = []
         var urls: [LPLinkModel] = []
-        var categorys: [LPCategoryModel] = []
+        var titles: [LPLinkModel] = []
+        //var categorys: [LPCategoryModel] = []
         inSearchMode = true
         
         urls = self.urls.filter{($0.url?.localizedCaseInsensitiveContains(searchText))!}
-        categorys = self.categorys.filter{($0.name?.localizedCaseInsensitiveContains(searchText))!}
+        titles = self.urls.filter{($0.title?.localizedCaseInsensitiveContains(searchText))!}
         
-        for i in 0..<categorys.count {
-            let data = LPSearchModel(categorys: categorys[i])
+        for i in 0..<titles.count {
+            let data = LPSearchModel(urls: titles[i])
             filteredData.append(data)
         }
         

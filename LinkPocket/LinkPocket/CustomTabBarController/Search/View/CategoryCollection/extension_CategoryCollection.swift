@@ -29,7 +29,7 @@ extension LPSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UI
             }
         }
         
-        cell.modifyCell(color: item.color()! , categoryN: item.name!, urls: urlsArray)
+        cell.modifyCell(color: item.color()! , categoryN: item.name!, urls: urlsArray, usePlace: "Search")
         
         return cell
     }

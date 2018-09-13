@@ -10,23 +10,45 @@ import UIKit
 
 class LPSearchCategoryListCell: UICollectionViewCell {
 
-    @IBOutlet weak var color: UIView!
+    @IBOutlet weak var color: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     var categoryN: String = ""
     var urls: [LPLinkModel] = []
+    var usePlace: String = "Search" // "Search" || "Edit"
     
     override func awakeFromNib() {
         color.layer.cornerRadius = color.bounds.height/2
     }
     
-    func modifyCell(color: UIColor, categoryN: String, urls: [LPLinkModel] ) {
+    func modifyCell(color: UIColor, categoryN: String, urls: [LPLinkModel], usePlace: String ) {
     
         self.color.backgroundColor = color
         self.categoryN = categoryN
         self.urls = urls
+        self.usePlace = usePlace
         label.text = categoryN
         
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if usePlace == "Edit" {
+            if self.isSelected {
+                self.onClicked()
+            } else {
+                self.unClicked()
+            }
+        }
+        }
+    }
+    
+    func onClicked() {
+        self.color.image = UIImage(named: "LPCheck")
+    }
+
+    func unClicked() {
+        self.color.image = UIImage(named: "")
     }
     
 }

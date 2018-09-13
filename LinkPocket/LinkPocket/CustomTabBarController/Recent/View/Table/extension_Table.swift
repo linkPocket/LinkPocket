@@ -75,4 +75,18 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
         return 103
     }
     
+    //이거 도데체 어디가 옵셔널일까
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
+            let item = self.tableItems[indexPath.section].urls[indexPath.row]
+            let editVC = LPEditLinkTitleController(nibName: "LPEditLinkTitleController", bundle: nil)
+            editVC.setBaseData(categoryN: (item.category?.name!)!, image: item.imageName!, title: item.title!, url: item.url!, date: item.date!)
+            LPParentNavigationController.sharedInstance.pushViewController(editVC, animated: true)
+            
+            return
+        }
+        edit.backgroundColor = UIColor.gray
+        return [edit]
+    }
+    
 }

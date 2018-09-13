@@ -11,7 +11,7 @@ import UIKit
 extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categorys.count + 2
+        return categorys.count + 1
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -22,18 +22,17 @@ extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, 
         let cell : LPCategoryListCell = mLPCategoryList.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LPCategoryListCell
         
         if indexPath.row == 0 {
-            cell.modeifyImageCell(image: "add")
-        } else if indexPath.row == 1 {
-            cell.modifyCell(categoryN: "All", urlCount: "\(urls.count)", urls: urls)
+            cell.modifyAllCell(categoryN: "All", urlCount: "\(urls.count)", urls: urls)
+            cell.onClicked()
         } else {
-        let item = categorys[indexPath.row - 2]
+        let item = categorys[indexPath.row - 1]
         var urlsArray: [LPLinkModel] = []
         for i in 0..<self.urls.count {
             if self.urls[i].category?.name == item.name {
                 urlsArray.append(self.urls[i])
             }
         }
-            cell.modifyCell(categoryN: item.name!, urlCount: "\(urlsArray.count)", urls: urlsArray)
+            cell.modifyCell(category: item, urlCount: "\(urlsArray.count)", urls: urlsArray)
         }
         
         return cell
@@ -43,16 +42,23 @@ extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, 
         guard let cell = mLPCategoryList.cellForItem(at: indexPath) as? LPCategoryListCell else {
             return
         }
-        if cell.image.isHidden == false {
-            let writeVC = LPWriteCategoryController(nibName: "LPWriteCategoryController", bundle: nil)
-            LPParentNavigationController.sharedInstance.pushViewController(writeVC, animated: true)
+        
+        if collectionStatus == "finishEdit" {
+                let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
+                var grouping = LPGroupingTable(urls: cell.urls)
+                grouping = grouping.sorted(by: { $0.section > $1.section })
+                categoryVC.displayCategoryPage(categoryName: cell.categoryNL.text!, categoryCount: "\(cell.urls.count)", urls: grouping)
+                LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
         } else {
-            let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
-            var grouping = LPGroupingTable(urls: cell.urls)
-            grouping = grouping.sorted(by: { $0.section > $1.section })
-            categoryVC.displayCategoryPage(categoryName: cell.categoryNL.text!, categoryCount: "\(cell.urls.count)", urls: grouping)
-            LPParentNavigationController.sharedInstance.pushViewController(categoryVC, animated: true)
-            
+            if cell.categoryNL.text != "All" {
+                let writeVC = LPWriteCategoryController(nibName: "LPWriteCategoryController", bundle: nil)
+                let cateogryModel = LPCoreDataManager.store.selectObjectFromCategoryWhere(nameIs: cell.categoryNL.text!)
+                writeVC.status = "EditCategory"
+                writeVC.setBaseData(title: cell.categoryNL.text!, color: (cateogryModel?.color())!)
+                LPParentNavigationController.sharedInstance.pushViewController(writeVC, animated: true)
+            } else {
+                print("올일경우 편집할 수 없습니다.")
+            }
         }
     }
 
