@@ -14,7 +14,7 @@ extension LPSearchController: UISearchBarDelegate {
         var filteredData: [LPSearchModel] = []
         var urls: [LPLinkModel] = []
         var titles: [LPLinkModel] = []
-        //var categorys: [LPCategoryModel] = []
+
         inSearchMode = true
         
         urls = self.urls.filter{($0.url?.localizedCaseInsensitiveContains(searchText))!}
@@ -35,9 +35,11 @@ extension LPSearchController: UISearchBarDelegate {
         if searchText == "" {
             mLPSearchView.recentSearchReload()
             mLPSearchView.searchStatusLabel.text = "최근검색"
+            mLPSearchView.removeAllOfCurrentSearchContents.isHidden = false
             categoryCollectionAnimation(height: 77)
         } else {
             mLPSearchView.searchStatusLabel.text = "검색중.."
+            mLPSearchView.removeAllOfCurrentSearchContents.isHidden = true
             categoryCollectionAnimation(height: 0)
         }
     }
