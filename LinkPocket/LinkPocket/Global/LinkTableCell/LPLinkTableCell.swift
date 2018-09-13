@@ -15,8 +15,7 @@ class LPLinkTableCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var url: UILabel!
     @IBOutlet weak var category: UILabel!
-    
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -29,7 +28,10 @@ class LPLinkTableCell: UITableViewCell {
     }
     
     func modifyCell(img: String, url: String, title: String, color: UIColor ,category: LPCategoryModel){
-        self.img.image = UIImage(named: "Naver")
+        if let data = try? Data(contentsOf: URL(string: img)!)
+        {
+            self.img.image = UIImage(data: data)
+        }
         self.title.text = title
         self.url.text = url
         self.category.text = "\(category.name!)           "
@@ -37,6 +39,11 @@ class LPLinkTableCell: UITableViewCell {
         self.category.layer.masksToBounds = true
         self.category.layer.cornerRadius = self.category.bounds.height/2
         
+        self.img.backgroundColor = UIColor(red: 200/255, green: 201/255, blue: 203/255, alpha: 1)
+        self.img.layer.cornerRadius = 8.0
+        self.img.clipsToBounds = true
+        self.img.layer.borderWidth = 1
+        self.img.layer.borderColor = UIColor(red: 200/255, green: 201/255, blue: 203/255, alpha: 1).cgColor
+
     }
-    
 }

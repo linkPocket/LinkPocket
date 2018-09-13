@@ -10,10 +10,15 @@ import UIKit
 
 class LPWriteCategoryView: UIView {
     
+    
+    @IBOutlet weak var bottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var topMargin: NSLayoutConstraint!
+    
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var cardTextField: UITextField!
     @IBOutlet weak var cardColorCollection: UICollectionView!
    
+    var saveBtBottomConstraint: NSLayoutConstraint!
     var colorArray: [UIColor] = [blue, red, yellow, green, purple]
     
    @IBOutlet weak var saveBt: UIButton!
@@ -23,8 +28,6 @@ class LPWriteCategoryView: UIView {
         
         cardColorCollection.register(UINib(nibName: "LPColorCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         cardTextField.becomeFirstResponder()
-        cardView.layer.cornerRadius = 2
-        cardView.Shadow(color: UIColor.colorFromRGB(0xD3D3D3), opacity: 0.2, offSet: CGSize(width: 0.2, height: 0.2), radius: 5*r, scale: true)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
 
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -33,21 +36,31 @@ class LPWriteCategoryView: UIView {
         layout.minimumInteritemSpacing = 31
         layout.minimumLineSpacing = 0
         cardColorCollection!.collectionViewLayout = layout
+
+        saveBtBottomConstraint = saveBt.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        saveBtBottomConstraint.isActive = true
     }
     
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        cardView.layer.cornerRadius = 2
+        cardView.Shadow(color: UIColor.colorFromRGB(0xD3D3D3), opacity: 0.2, offSet: CGSize(width: 0.2, height: 0.2), radius: 5*r, scale: true)
+    }
     
     @IBAction func saveBtAction(_ sender: UIButton) {
         print("카테고리 이름이랑 색깔 보고 저장해줘야해요 그냥 여기서 바로 저장하면됩니당")
     }
  
-    @IBOutlet weak var saveBtBottomConstraint: NSLayoutConstraint!
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-           
-            saveBtBottomConstraint.constant = keyboardHeight
-        }
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardHeight = keyboardSize.cgRectValue.height
+        saveBtBottomConstraint.constant = -10 - keyboardHeight
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        saveBtBottomConstraint.constant = -10
     }
 }
 
