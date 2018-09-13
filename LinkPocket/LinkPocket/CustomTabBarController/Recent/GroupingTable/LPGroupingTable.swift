@@ -20,7 +20,7 @@ func LPGroupingTable(urls: [LPLinkModel]) -> [LPTableSectionModel] {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY MM dd"
         let contentsDate = formatter.string(from: date)
-        
+
         if dateText == contentsDate {
             groupUrls.append(urls[i])
             if i == (urls.count - 1) {
@@ -35,10 +35,17 @@ func LPGroupingTable(urls: [LPLinkModel]) -> [LPTableSectionModel] {
                 groupUrls.removeAll()
             }
             
+            if i == (urls.count - 1) {
+                groupUrls.append(urls[i])
+                let section = LPTableSectionModel(section: dateText, urls: groupUrls)
+                sectionData.append(section)
+                groupUrls.removeAll()
+            }
+
            dateText = contentsDate
            groupUrls.append(urls[i])
         }
-        
+
     }
     
     return sectionData

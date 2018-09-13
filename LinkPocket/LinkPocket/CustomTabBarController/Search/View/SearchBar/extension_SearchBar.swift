@@ -19,7 +19,6 @@ extension LPSearchController: UISearchBarDelegate {
         
         urls = self.urls.filter{($0.url?.localizedCaseInsensitiveContains(searchText))!}
         titles = self.urls.filter{($0.title?.localizedCaseInsensitiveContains(searchText))!}
-        //categorys = self.categorys.filter{($0.name?.localizedCaseInsensitiveContains(searchText))!}
         
         for i in 0..<titles.count {
             let data = LPSearchModel(urls: titles[i])

@@ -9,8 +9,6 @@
 import UIKit
 
 protocol EachCategoryViewListener {
-
-    //About Alert
     func confirmDeleteAlert()
     func confirmMoveAlert()
 }
@@ -27,6 +25,8 @@ class EachCategoryView: UIView {
     
     var statusEdit: Bool = false
     
+    var moveLinks: [LPLinkModel] = []
+    
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var categoryCount: UILabel!
     
@@ -41,7 +41,6 @@ class EachCategoryView: UIView {
         
         categoryTable.separatorStyle = .none
         categoryTable.register(UINib(nibName: "LPLinkTableCell", bundle: nil), forCellReuseIdentifier: "Cell")
-        
         
         tableItems = LPGroupingTable(urls: urls)
         tableItems = tableItems.sorted(by: { $0.section > $1.section })
@@ -59,7 +58,6 @@ class EachCategoryView: UIView {
         layout.minimumLineSpacing = 0
         moveCollection!.collectionViewLayout = layout
         
-        
         editCountLabel.layer.borderColor = UIColor.colorFromRGB(0x008EFF).cgColor
         editCountLabel.layer.borderWidth = 4
         editCountLabel.layer.cornerRadius = editCountLabel.bounds.height/2
@@ -73,7 +71,6 @@ class EachCategoryView: UIView {
         categoryTable.reloadData()
     }
     
-
     func editBtAction() {
         if statusEdit == false {
             statusEdit = true
@@ -110,18 +107,7 @@ class EachCategoryView: UIView {
         }
         
         //self.listener?.confirmMoveAlert()
-        
     }
-    
-    // Alert func about move
-    func moveYesAction() {
-       print("yes")
-    }
-    
-    func moveNoAction() {
-        print("no")
-    }
-    
     
     //MARK:-- 삭제에 관련된 모든거 ( 삭제 에니메이션이랑 alert관련된것들까지)
     @IBAction func urlDeleteAction(_ sender: UIButton) {
@@ -138,13 +124,19 @@ class EachCategoryView: UIView {
         for i in 0..<editSelectedURL.count {
             LPCoreDataManager.store.deleteFromLinkWhere(urlIs: editSelectedURL[i] )
         }
+        editReloadData()
     }
     
-    func deleteNoAction() {
-        print("아무일도 없습니다")
+    func editReloadData() {
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        var links: [LPLinkModel] = []
+        for i in 0..<urls.count {
+            if urls[i].category?.name == categoryName.text {
+                links.append(urls[i])
+            }
+        }
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+        tableItems = LPGroupingTable(urls: links)
+        categoryTable.reloadData()
     }
-    
-    
-    
-    
 }
