@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,17 +26,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrY-c3-tte">
-                        <rect key="frame" x="108" y="36" width="71" height="18"/>
+                        <rect key="frame" x="108" y="36" width="32" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="xrY-c3-tte" secondAttribute="height" multiplier="25:2" constant="-154" id="ZRC-rb-2qW"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="5j8-Ro-B5K"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXb-D0-5ek">
-                        <rect key="frame" x="189" y="36" width="32" height="18"/>
+                        <rect key="frame" x="150" y="36" width="32" height="18"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="90" id="2ZI-h6-T4B"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -51,7 +53,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lGk-A1-gdg">
                         <rect key="frame" x="16" y="12" width="80" height="80"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="lGk-A1-gdg" secondAttribute="height" multiplier="1:1" id="oim-QP-Acs"/>
+                            <constraint firstAttribute="height" constant="80" id="33U-rV-sex"/>
+                            <constraint firstAttribute="width" constant="80" id="vfU-T3-cz7"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -72,8 +75,10 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="category" destination="tXb-D0-5ek" id="FXJ-YE-FDw"/>
+                <outlet property="categoryWidth" destination="2ZI-h6-T4B" id="336-ab-Cmf"/>
                 <outlet property="img" destination="lGk-A1-gdg" id="dSD-bz-Ig5"/>
                 <outlet property="title" destination="xrY-c3-tte" id="MIo-81-j0v"/>
+                <outlet property="titleWidth" destination="5j8-Ro-B5K" id="rAq-X0-bbH"/>
                 <outlet property="url" destination="l0R-Ix-lJI" id="rhd-WB-LCM"/>
             </connections>
             <point key="canvasLocation" x="34" y="83.5"/>
