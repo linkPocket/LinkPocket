@@ -103,8 +103,24 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
             return
         }
         edit.backgroundColor = UIColor.gray
-        return [edit]
+        
+        let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
+            let item = self.tableItems[indexPath.section].urls[indexPath.row]
+            self.deleteSelectedURL = item.url!
+            
+            self.listener?.confirmEachDeleteAlert()
+            
+            return
+        }
+        delete.backgroundColor = UIColor.red
+        return [edit, delete]
     }
+    
+    func deleteAlertAction() {
+        LPCoreDataManager.store.deleteFromLinkWhere(urlIs: deleteSelectedURL)
+        editReloadData()
+    }
+    
     
     func preparingEdit() {
         categoryTable.allowsSelection = true
@@ -120,10 +136,12 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
         categoryTable.allowsSelection = false
         UIView.animate(withDuration: 0.1, animations: {
             self.underBarBottom.constant = -70
+            self.moveCollectionBottom.constant = -88
             self.layoutIfNeeded()
         })
         editCountLabel.isHidden = true
         print("에딧 세팅을 끝냅니다.")
         categoryTable.reloadData()
     }
+    
 }

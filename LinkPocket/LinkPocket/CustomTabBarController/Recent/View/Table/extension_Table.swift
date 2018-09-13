@@ -75,7 +75,6 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
         return 103
     }
     
-    //이거 도데체 어디가 옵셔널일까
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
             let item = self.tableItems[indexPath.section].urls[indexPath.row]
@@ -109,6 +108,8 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
         urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
         tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
+        
         mLPCategoryTable.reloadData()
     }
     

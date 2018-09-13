@@ -28,7 +28,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mr9-7Y-wiR">
-                        <rect key="frame" x="35.5" y="7" width="29.5" height="16"/>
+                        <rect key="frame" x="5" y="7" width="90" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="ZHU-Ny-k5r"/>
                         </constraints>
@@ -55,10 +55,11 @@
                 <constraint firstAttribute="trailing" secondItem="zAD-kg-jKS" secondAttribute="trailing" id="1G0-zG-zwW"/>
                 <constraint firstItem="mr9-7Y-wiR" firstAttribute="top" secondItem="VIj-es-6Pn" secondAttribute="top" constant="7" id="1pO-xQ-HRC"/>
                 <constraint firstItem="zAD-kg-jKS" firstAttribute="leading" secondItem="VIj-es-6Pn" secondAttribute="leading" id="2KV-xd-heR"/>
-                <constraint firstItem="mr9-7Y-wiR" firstAttribute="centerX" secondItem="Lg2-KS-6nC" secondAttribute="centerX" id="Wjd-sD-MSl"/>
+                <constraint firstAttribute="trailing" secondItem="mr9-7Y-wiR" secondAttribute="trailing" constant="5" id="Ivl-vL-71i"/>
                 <constraint firstItem="7fn-sV-Kt4" firstAttribute="leading" secondItem="VIj-es-6Pn" secondAttribute="leading" id="Zz4-LS-RwJ"/>
                 <constraint firstAttribute="trailing" secondItem="7fn-sV-Kt4" secondAttribute="trailing" id="ax3-to-3fk"/>
                 <constraint firstAttribute="bottom" secondItem="7fn-sV-Kt4" secondAttribute="bottom" id="cg6-dg-Vl0"/>
+                <constraint firstItem="mr9-7Y-wiR" firstAttribute="leading" secondItem="VIj-es-6Pn" secondAttribute="leading" constant="5" id="con-Vt-3da"/>
                 <constraint firstItem="zAD-kg-jKS" firstAttribute="top" secondItem="mr9-7Y-wiR" secondAttribute="bottom" constant="1" id="gCT-Nb-0hs"/>
                 <constraint firstItem="7fn-sV-Kt4" firstAttribute="top" secondItem="VIj-es-6Pn" secondAttribute="top" id="zxP-yB-ZS7"/>
             </constraints>

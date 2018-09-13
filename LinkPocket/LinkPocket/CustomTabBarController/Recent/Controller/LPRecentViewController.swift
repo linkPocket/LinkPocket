@@ -55,7 +55,6 @@ class LPRecentViewController: LPParentViewController, LPRecentViewListener {
     func deleteAlertAction() {
         func yes() {
             mLPRecentView.deleteAlertAction()
-            self.dismiss(animated: true, completion: nil)
         }
         func no() { }
         self.AlertTwo(title: "삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yesAction: yes, noAction: no)

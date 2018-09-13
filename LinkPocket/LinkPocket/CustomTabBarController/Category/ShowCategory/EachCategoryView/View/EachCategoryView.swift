@@ -11,6 +11,8 @@ import UIKit
 protocol EachCategoryViewListener {
     func confirmDeleteAlert()
     func confirmMoveAlert()
+    func confirmEachDeleteAlert()
+    
 }
 
 class EachCategoryView: UIView {
@@ -26,11 +28,13 @@ class EachCategoryView: UIView {
     var statusEdit: Bool = false
     
     var moveLinks: [LPLinkModel] = []
+    var deleteSelectedURL: String = ""
     
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var categoryCount: UILabel!
     
     @IBOutlet weak var categoryTable: UITableView!
+    @IBOutlet weak var emptyURLLabel: UILabel!
     
     override func awakeFromNib() {
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
@@ -66,6 +70,10 @@ class EachCategoryView: UIView {
     func displayCategoryPage(categoryName: String, categoryCount: String, urls: [LPTableSectionModel]) {
         self.categoryName.text = categoryName
         self.categoryCount.text = categoryCount + "  All"
+        
+        if categoryCount == "0" {
+            emptyURLLabel.isHidden = false
+        }
         
         tableItems = urls
         categoryTable.reloadData()
@@ -140,9 +148,12 @@ class EachCategoryView: UIView {
             }
             urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
             tableItems = LPGroupingTable(urls: links)
+            tableItems = tableItems.sorted(by: { $0.section > $1.section })
            
         } else {
            tableItems = LPGroupingTable(urls: urls)
+           tableItems = tableItems.sorted(by: { $0.section > $1.section })
+            
         }
         
         categoryTable.reloadData()
