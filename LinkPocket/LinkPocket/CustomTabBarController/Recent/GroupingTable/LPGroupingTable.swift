@@ -28,5 +28,6 @@ func LPGroupingTable(urls: [LPLinkModel]) -> [LPTableSectionModel] {
     for (dateText, linkModels) in sectionData {
         returnValue.append(LPTableSectionModel(section: dateText, urls: linkModels))
     }
+
     return returnValue
 }

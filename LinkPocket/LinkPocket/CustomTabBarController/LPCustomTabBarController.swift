@@ -49,11 +49,12 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
                 reloadCategoryView()
             }
         }
+        print("뷰열림")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.title = ""
+        print("뷰사라짐")
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,6 +72,7 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
             self.viewControllers[0]?.view.frame = self.customView.frame
             reloadRecentView()
             self.customView.insertSubview((self.viewControllers[0]?.view!)!, belowSubview: self.customTabBar)
+            
         case 2:
             if self.viewControllers[1] == nil {
                 self.viewControllers[1] = LPCategoryViewController()

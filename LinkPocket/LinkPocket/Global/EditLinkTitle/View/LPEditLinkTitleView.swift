@@ -38,12 +38,11 @@ class LPEditLinkTitleView: UIView {
     
     func setBaseData(categoryN: String, image: String, title: String, url: String, date: NSDate) {
         self.categoryN = categoryN
-        print(image)
-        self.imageView.image = UIImage(named: image)
         self.imageName = image
         self.title.placeholder = title
         self.date = date
         self.url.text = url
+        self.imageView.image = UIImage(named: imageName)
     }
     
     @IBAction func editSuccessAction(_ sender: UIButton) {

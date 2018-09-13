@@ -86,7 +86,30 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
             return
         }
         edit.backgroundColor = UIColor.gray
-        return [edit]
+        
+        let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
+            let item = self.tableItems[indexPath.section].urls[indexPath.row]
+            self.deleteSelectedURL = item.url!
+            
+            self.listener?.deleteAlertAction()
+            
+            return
+        }
+        delete.backgroundColor = UIColor.red
+        return [edit, delete]
+    }
+    
+    func deleteAlertAction() {
+        LPCoreDataManager.store.deleteFromLinkWhere(urlIs: deleteSelectedURL)
+        reloadTableData()
+    }
+    
+    func reloadTableData() {
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+        
+        tableItems = LPGroupingTable(urls: urls)
+        mLPCategoryTable.reloadData()
     }
     
 }
