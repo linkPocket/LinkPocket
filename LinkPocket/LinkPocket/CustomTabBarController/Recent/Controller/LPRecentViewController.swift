@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class LPRecentViewController: UIViewController {
+class LPRecentViewController: LPParentViewController, LPRecentViewListener {
 
     var mLPRecentView: LPRecentView!
     var urls: [LPLinkModel] = []
@@ -17,52 +17,31 @@ class LPRecentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        var categoryModel = LPCategoryModel()
+        categoryModel.name = "Xcode"
+        categoryModel.setRGBA(color: green)
+
+        LPCoreDataManager.store.insertIntoCategory(valueCategory: categoryModel)
+        for j in 1 ... 2 {
+            let linkModel: LPLinkModel = LPLinkModel(url: "https://h\(j)", title: "Musica\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
+            LPCoreDataManager.store.insertIntoLink(valueLink: linkModel)
+        }
+
+        let links = LPCoreDataManager.store.selectAllObjectFromLink() as? [LPLinkModel]
+        for link in links! {
+            link.printLinks()
+        }
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         
-        mLPRecentView = LPRecentView(frame: R(0,0,W,H), urls: urls)
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+        
+        mLPRecentView = Bundle.main.loadNibNamed("LPRecentView", owner: self, options: nil)?.first as? LPRecentView
+        mLPRecentView.listener = self
         self.view.addSubview(mLPRecentView)
         
-//        let delegate = UIApplication.shared.delegate as! LPAppDelegate
-//        let context = delegate.persistentContainer.viewContext
-//
-//        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-//
-//        do {
-//            try context.execute(deleteRequest)
-//            try context.save()
-//        } catch {
-//            print ("There was an error")
-//        }
-//
-        
-        
-//        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Link")
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetch)
-//
-//        do {
-//            try (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext.execute(deleteRequest)
-//            try (UIApplication.shared.delegate as! LPAppDelegate).persistentContainer.viewContext.save()
-//        } catch {
-//            print ("There was an error")
-//        }
-//
-//
-//        for i in 1 ... 4 {
-//            let categoryModel: LPCategoryModel = LPCategoryModel(name: "피자 \(i)", r: 55, g: 88, b: 97, alpha: 1)
-//            insertIntoCategory(valueCategory: categoryModel)
-//            for j in 1 ... 10 {
-//                let linkModel: LPLinkModel = LPLinkModel(url: "https://\(j + (i - 1) * 10)", title: "링크 타이틀\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
-//                insertIntoLink(valueLink: linkModel)
-//            }
-//        }
-//
-//        let links = selectAllObjectFromLink() as? [LPLinkModel]
-//        for link in links! {
-//            link.printLinks()
-//        }
 
         // Do any additional setup after loading the view.
     }
@@ -71,16 +50,14 @@ class LPRecentViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func deleteAlertAction() {
+        func yes() {
+            mLPRecentView.deleteAlertAction()
+        }
+        func no() { }
+        self.AlertTwo(title: "삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yesAction: yes, noAction: no)
     }
-    */
 
 }

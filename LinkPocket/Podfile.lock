@@ -16,19 +16,40 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - Kanna (4.0.0)
+  - lottie-ios (2.5.0)
+  - SwiftSoup (1.7.1)
 
 DEPENDENCIES:
   - AFNetwork
+  - Kanna (from `https://github.com/tid-kijyun/Kanna.git`, branch `feature/v4.0.0`)
+  - lottie-ios
+  - SwiftSoup
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetwork
     - AFNetworking
+    - lottie-ios
+    - SwiftSoup
+
+EXTERNAL SOURCES:
+  Kanna:
+    :branch: feature/v4.0.0
+    :git: https://github.com/tid-kijyun/Kanna.git
+
+CHECKOUT OPTIONS:
+  Kanna:
+    :commit: 81ce91fd485b637517c340c73590a9b59ac9f7d5
+    :git: https://github.com/tid-kijyun/Kanna.git
 
 SPEC CHECKSUMS:
   AFNetwork: 0dbdb2ffb4a7770b3d1802dc85b50ab31263f2c2
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
+  SwiftSoup: 277f7ef548826e0ca7603a06b30d4a5df3ee0587
 
-PODFILE CHECKSUM: 61ff8bfd3fa0ebdcc45d044b9e541ac57975bc43
+PODFILE CHECKSUM: 2a83eabe7e222ee199a608893799f4f8c85a3c02
 
 COCOAPODS: 1.5.3

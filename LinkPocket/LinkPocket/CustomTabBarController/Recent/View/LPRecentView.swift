@@ -8,23 +8,44 @@
 
 import UIKit
 
+protocol LPRecentViewListener {
+    func deleteAlertAction()
+}
+
 class LPRecentView: UIView {
     
-    var mSearchBar: LPSearchBar!
-    var mLPCategoryTable: LPCategoryTable!
+    @IBOutlet weak var mSearchBar: UISearchBar!
+    @IBOutlet weak var mLPCategoryTable: UITableView!
     
-    init(frame: CGRect, urls: [LPLinkModel]) {
-        super.init(frame: frame)
+    var tableItems: [LPTableSectionModel] = []
+    
+    var urls: [LPLinkModel] = []
+    var categorys: [LPCategoryModel] = []
+    var listener: LPRecentViewListener?
+    
+    var deleteSelectedURL: String = ""
+
+    override func awakeFromNib() {
+   
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+
+        tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
+        mLPCategoryTable.reloadData()
         
-        mSearchBar = LPSearchBar(frame: rR(0,0,W,40), urls: [], categorys: [])
-        addSubview(mSearchBar)
-        
-        mLPCategoryTable = LPCategoryTable(frame: rR(0,50,W,self.bounds.height - 50), urls: urls)
-        addSubview(mLPCategoryTable)
+        mLPCategoryTable.separatorStyle = .none
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func reloadCategoryTable() {
+        print("reload 다!")
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})        
+        tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
+        mLPCategoryTable.reloadData()
     }
     
 }
