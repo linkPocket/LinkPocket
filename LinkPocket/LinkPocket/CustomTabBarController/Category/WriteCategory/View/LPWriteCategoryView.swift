@@ -21,7 +21,7 @@ class LPWriteCategoryView: UIView {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var cardTextField: UITextField!
     @IBOutlet weak var cardColorCollection: UICollectionView!
-   
+    
     var saveBtBottomConstraint: NSLayoutConstraint!
     var colorArray: [UIColor] = [blue, red, yellow, green, purple]
     var status: String = "CreatCategory" //CreatCategory || EditCategory
@@ -38,14 +38,14 @@ class LPWriteCategoryView: UIView {
         cardColorCollection.register(UINib(nibName: "LPColorCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         cardTextField.becomeFirstResponder()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
-
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 21)
         layout.itemSize = CGSize(width: 19, height: 19)
         layout.minimumInteritemSpacing = 31
         layout.minimumLineSpacing = 0
         cardColorCollection!.collectionViewLayout = layout
-
+        
         saveBtBottomConstraint = saveBt.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         saveBtBottomConstraint.isActive = true
     }
@@ -76,14 +76,13 @@ class LPWriteCategoryView: UIView {
             LPCoreDataManager.store.updateCategorySet(valueCategory: categoryModel, whereNameIs: orginCategoryN)
         }
     }
- 
+    
     func setBaseData(title: String, color: UIColor) {
         self.cardTextField.placeholder = title
         self.orginCategoryN = title
         self.selectedColor = color
     }
     
-    @IBOutlet weak var saveBtBottomConstraint: NSLayoutConstraint!
     @objc func keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue
@@ -95,4 +94,3 @@ class LPWriteCategoryView: UIView {
         saveBtBottomConstraint.constant = -10
     }
 }
-

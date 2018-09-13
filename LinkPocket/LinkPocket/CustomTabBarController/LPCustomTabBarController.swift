@@ -12,7 +12,7 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var customView: UIView!
     @IBOutlet weak var customTabBar: UITabBar!
     
-    var viewControllers: [UIViewController?] = [nil]
+    var viewControllers: [UIViewController?] = [LPRecentViewController(), LPCategoryViewController()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
         
         self.customTabBar.items?[0].title = self.viewControllers[0]?.tabBarItem.title
         self.customTabBar.items?[1].title = self.viewControllers[1]?.tabBarItem.title
-
+        
         self.customTabBar.isTranslucent = false
         
         self.viewControllers[0]?.view.frame = self.customView.frame
@@ -42,8 +42,15 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "LINK POCKET"
+        if let tag = self.customTabBar.selectedItem?.tag {
+            if tag == 1 {
+                reloadRecentView()
+            } else {
+                reloadCategoryView()
+            }
+        }
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.title = ""
@@ -60,20 +67,31 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
             if self.viewControllers[0] == nil {
                 self.viewControllers[0] = LPRecentViewController()
             }
-            print("select tab's view frame : \(self.view.frame)")
             
             self.viewControllers[0]?.view.frame = self.customView.frame
+            reloadRecentView()
             self.customView.insertSubview((self.viewControllers[0]?.view!)!, belowSubview: self.customTabBar)
         case 2:
             if self.viewControllers[1] == nil {
                 self.viewControllers[1] = LPCategoryViewController()
             }
             self.viewControllers[1]?.view.frame = self.customView.frame
+
+            reloadCategoryView()
             self.customView.insertSubview((self.viewControllers[1]?.view!)!, belowSubview: self.customTabBar)
-            
         default:
             break
         }
+    }
+    
+    func reloadRecentView() {
+        let categoryView = (self.viewControllers[0] as! LPRecentViewController).view.subviews[0] as! LPRecentView
+        categoryView.reloadCategoryTable()
+    }
+
+    func reloadCategoryView() {
+        let categoryView = (self.viewControllers[1] as! LPCategoryViewController).view.subviews[0] as! LPCategoryView
+        categoryView.reloadCategory()
     }
     
     /*

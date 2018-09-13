@@ -43,7 +43,7 @@ extension LPCategoryView: UICollectionViewDelegate, UICollectionViewDataSource, 
             return
         }
         
-        if collectionStatus == "finishEdit" {
+        if collectionStatus == .ESFinished {
                 let categoryVC = EachCategoryController(nibName: "EachCategoryController", bundle: nil)
                 var grouping = LPGroupingTable(urls: cell.urls)
                 grouping = grouping.sorted(by: { $0.section > $1.section })

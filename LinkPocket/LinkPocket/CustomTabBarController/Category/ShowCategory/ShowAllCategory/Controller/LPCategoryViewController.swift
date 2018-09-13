@@ -58,7 +58,6 @@ class LPCategoryViewController: UIViewController, LPCategoryVListener {
     func test() {
         print("돼라돼라 얍")
     }
-    
 }
 
 extension String {

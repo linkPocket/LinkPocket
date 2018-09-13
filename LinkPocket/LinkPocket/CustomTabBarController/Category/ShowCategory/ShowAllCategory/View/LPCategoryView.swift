@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum LPEditStatus {
+    case ESEdit
+    case ESFinished
+}
+
 protocol LPCategoryVListener {
     func startWriteCategory()
 }
@@ -24,6 +29,7 @@ class LPCategoryView: UIView {
     var listener: LPCategoryVListener!
     
     @IBOutlet weak var labelHeight: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
@@ -66,10 +72,28 @@ class LPCategoryView: UIView {
 
     }
     
+    func reloadCategory() {
+        print("reload category")
+        switch collectionStatus {
+        case .ESEdit:
+            collectionStatus = .ESFinished
+            appearStatusEditLabel(constant: 0)
+            baseBT.setTitle("메뉴", for: .normal)
+            originBbbButton()
+        case .ESFinished:
+            originBbbButton()
+        }
+        
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+        self.mLPCategoryList.reloadData()
+    }
+    
     func addCategory() {
         self.listener?.startWriteCategory()
     }
-    
+   
     //MARK:- 뿅뿅뿅 버튼
     @IBOutlet weak var baseBT: UIButton!
     @IBOutlet weak var addBT: UIButton!
@@ -82,12 +106,13 @@ class LPCategoryView: UIView {
     @IBAction func baseBTAction(_ sender: UIButton) {
         
         if self.addBottom.constant != 20 {
-            if collectionStatus == "Editing" {
-                collectionStatus = "finishEdit"
+            switch collectionStatus {
+            case .ESEdit:
+                collectionStatus = .ESFinished
                 appearStatusEditLabel(constant: 0)
                 baseBT.setTitle("메뉴", for: .normal)
-            } else {
-            appearBbbButton()
+            case .ESFinished:
+                appearBbbButton()
             }
         } else {
             originBbbButton()
@@ -118,10 +143,10 @@ class LPCategoryView: UIView {
         originBbbButton()
     }
     
-    var collectionStatus: String = "finishEdit" // finishEdit || Editing
+    var collectionStatus: LPEditStatus = .ESFinished
     
     @IBAction func editBTAction(_ sender: UIButton) {
-        collectionStatus = "Editing"
+        collectionStatus = .ESEdit
         baseBT.setTitle("완료", for: .normal)
         appearStatusEditLabel(constant: 40)
         originBbbButton()

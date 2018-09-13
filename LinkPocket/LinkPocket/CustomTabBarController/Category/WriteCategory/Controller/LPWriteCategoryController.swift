@@ -9,12 +9,14 @@
 import UIKit
 
 class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewListener {
-
+    
     var urls: [LPLinkModel] = []
     var categorys: [LPCategoryModel] = []
     var mLPWriteCategoryView: LPWriteCategoryView!
     var status: String = "CreatCategory" //CreatCategory || EditCategory
     var categoryName: String = ""
+    var writeView: LPWriteCategoryView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,12 +28,6 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
             image = image?.withRenderingMode(.alwaysOriginal)
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(deleteAction))
         }
-    var writeView: LPWriteCategoryView?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.title = "추가 하기"
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
@@ -41,6 +37,7 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
             self.writeView = mLPWriteCategoryView
             self.view.addSubview(writeView!)
         }
+    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
