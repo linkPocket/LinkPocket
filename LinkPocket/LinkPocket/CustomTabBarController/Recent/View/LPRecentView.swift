@@ -38,4 +38,14 @@ class LPRecentView: UIView {
         mLPCategoryTable.separatorStyle = .none
     }
     
+    func reloadCategoryTable() {
+        print("reload 다!")
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})        
+        tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
+        mLPCategoryTable.reloadData()
+    }
+    
 }

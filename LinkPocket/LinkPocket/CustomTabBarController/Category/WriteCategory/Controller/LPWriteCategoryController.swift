@@ -9,7 +9,7 @@
 import UIKit
 
 class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewListener {
-
+    
     var urls: [LPLinkModel] = []
     var categorys: [LPCategoryModel] = []
     var mLPWriteCategoryView: LPWriteCategoryView!

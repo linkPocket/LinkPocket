@@ -16,6 +16,7 @@ class LPSearchController: UIViewController { //LPSearchController
     
     var mLPSearchView = LPSearchView()
     var searchBarWrapper = SearchBarContainerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,4 +81,3 @@ class SearchBarContainerView: UIView {
         searchBar.frame = bounds
     }
 }
-
