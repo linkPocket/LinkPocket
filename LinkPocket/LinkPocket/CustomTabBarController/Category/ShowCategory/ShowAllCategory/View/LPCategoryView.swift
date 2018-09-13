@@ -29,6 +29,7 @@ class LPCategoryView: UIView {
     var listener: LPCategoryVListener!
     
     @IBOutlet weak var labelHeight: NSLayoutConstraint!
+    @IBOutlet weak var blackView: UIButton!
     
     override func awakeFromNib() {
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
@@ -78,7 +79,8 @@ class LPCategoryView: UIView {
         case .ESEdit:
             collectionStatus = .ESFinished
             appearStatusEditLabel(constant: 0)
-            baseBT.setTitle("메뉴", for: .normal)
+            baseBT.setImage(UIImage(named: "LPAddBT"), for: .normal)
+            baseBT.setTitle(nil, for: .normal)
             originBbbButton()
         case .ESFinished:
             originBbbButton()
@@ -104,38 +106,50 @@ class LPCategoryView: UIView {
     @IBOutlet weak var editBottom: NSLayoutConstraint!
     
     @IBAction func baseBTAction(_ sender: UIButton) {
-        
         if self.addBottom.constant != 20 {
             switch collectionStatus {
             case .ESEdit:
                 collectionStatus = .ESFinished
                 appearStatusEditLabel(constant: 0)
-                baseBT.setTitle("메뉴", for: .normal)
+                baseBT.setImage(UIImage(named: "LPAddBT"), for: .normal)
+                baseBT.setTitle(nil, for: .normal)
+                blackView.isHidden = true
             case .ESFinished:
                 appearBbbButton()
+                blackView.isHidden = false
             }
         } else {
             originBbbButton()
+            blackView.isHidden = true
         }
     }
     
     func originBbbButton() { //이거 세개 겹쳐지게 하는거
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.addBottom.constant = -43
             self.editBottom.constant = -43
             self.layoutIfNeeded()
+            self.baseBT.transform = .identity
         })
     }
     
     func appearBbbButton() {
-        UIView.animate(withDuration: 0.3, animations: {
+        blackView.isHidden = true
+        UIView.animate(withDuration: 0.2, animations: {
             self.addBottom.constant = 20
             self.editBottom.constant = 20
+            self.baseBT.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/4))
             self.layoutIfNeeded()
         })
     }
     
+    @IBAction func blackViewAction(_ sender: UIButton) {
+        originBbbButton()
+    }
+    
+    
     @IBAction func addBTAction(_ sender: UIButton) {
+        blackView.isHidden = true
         let writeVC = LPWriteCategoryController(nibName: "LPWriteCategoryController", bundle: nil)
         writeVC.setBaseData(title: "카테고리 이름 입력", color: UIColor.clear)
         LPParentNavigationController.sharedInstance.pushViewController(writeVC, animated: true)
@@ -146,7 +160,9 @@ class LPCategoryView: UIView {
     var collectionStatus: LPEditStatus = .ESFinished
     
     @IBAction func editBTAction(_ sender: UIButton) {
+        blackView.isHidden = true
         collectionStatus = .ESEdit
+        baseBT.setImage(nil, for: .normal)
         baseBT.setTitle("완료", for: .normal)
         appearStatusEditLabel(constant: 40)
         originBbbButton()

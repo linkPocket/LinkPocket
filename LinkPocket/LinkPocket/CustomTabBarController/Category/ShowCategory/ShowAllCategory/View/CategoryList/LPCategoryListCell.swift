@@ -27,7 +27,7 @@ class LPCategoryListCell: UICollectionViewCell {
         categoryNL.textColor = categoryColor
         
         self.urls = urls
-        self.Shadow(color: UIColor.colorFromRGB(0xDFDFDF), opacity: 0.2, offSet: CGSize(width: 0.2, height: 0.2), radius: 5, scale: true)
+        self.Shadow(color: UIColor.colorFromRGB(0xeeeeee), opacity: 0.3, offSet: CGSize(width: 0.2, height: 0.2), radius: 5, scale: true)
     }
     
     func modifyAllCell(categoryN: String, urlCount: String, urls: [LPLinkModel]) {

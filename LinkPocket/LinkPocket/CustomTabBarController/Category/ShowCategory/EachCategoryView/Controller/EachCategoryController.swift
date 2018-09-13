@@ -9,7 +9,7 @@
 import UIKit
 
 class EachCategoryController: LPParentViewController, EachCategoryViewListener {
-    
+
     var mEachCategoryView = EachCategoryView()
     var editStatus: Bool = false
     
@@ -42,7 +42,7 @@ class EachCategoryController: LPParentViewController, EachCategoryViewListener {
     func confirmMoveAlert() {
         func yesAction() {
             mEachCategoryView.moveAction()
-            self.dismiss(animated: true, completion: nil)
+            mEachCategoryView.finishEdit()
         }
         func noAction() { }
         
@@ -52,19 +52,20 @@ class EachCategoryController: LPParentViewController, EachCategoryViewListener {
     func confirmDeleteAlert() {
         func yesAction() {
             mEachCategoryView.deleteYesAction()
-            self.dismiss(animated: true, completion: nil)
+            mEachCategoryView.finishEdit()
         }
         func noAction() { }
         
         self.AlertTwo(title: "삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yes: "네", no: "아니요", yesAction: yesAction, noAction: noAction)
     }
     
-    //BackBT Event 이거 왜 안되냐
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        let urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
-        let categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+    func confirmEachDeleteAlert() {
+        func yes() {
+            mEachCategoryView.deleteAlertAction()
+        }
+        func no() { }
+        self.AlertTwo(title: "삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yesAction: yes, noAction: no)
         
-        (viewController as? LPCategoryViewController)?.refreshData(urls: urls , categorys: categorys )
     }
     
 }

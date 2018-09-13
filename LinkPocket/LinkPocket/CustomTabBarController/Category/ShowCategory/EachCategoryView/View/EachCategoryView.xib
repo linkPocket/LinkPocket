@@ -144,19 +144,31 @@
                         <constraint firstItem="hjb-cT-tRW" firstAttribute="leading" secondItem="i9l-NW-Hlg" secondAttribute="leading" constant="26" id="vHV-al-Qy5"/>
                     </constraints>
                 </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="저장된 url이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htW-C7-ABp">
+                    <rect key="frame" x="0.0" y="247" width="375" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="iId-hX-b29"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Pg3-xn-RE1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0DQ-NL-K44"/>
                 <constraint firstItem="9ON-qK-uhv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="56" id="0I2-pE-qTn"/>
+                <constraint firstItem="htW-C7-ABp" firstAttribute="top" secondItem="9ON-qK-uhv" secondAttribute="bottom" constant="50" id="ANh-Ej-Pz1"/>
                 <constraint firstItem="Pg3-xn-RE1" firstAttribute="top" secondItem="OeW-TW-fZ9" secondAttribute="bottom" constant="5" id="D54-8S-FxZ"/>
                 <constraint firstItem="i9l-NW-Hlg" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="D7v-zM-N00"/>
                 <constraint firstItem="i9l-NW-Hlg" firstAttribute="top" secondItem="eTT-pa-VZ3" secondAttribute="bottom" constant="-88" id="Ils-zn-yjb"/>
+                <constraint firstItem="htW-C7-ABp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="NNC-y5-fzw"/>
                 <constraint firstAttribute="bottom" secondItem="i9l-NW-Hlg" secondAttribute="bottom" constant="-70" id="NuH-eh-Ys5"/>
                 <constraint firstItem="eTT-pa-VZ3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QMy-5x-Dvh"/>
                 <constraint firstItem="OeW-TW-fZ9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TKy-U6-xSC"/>
                 <constraint firstItem="eTT-pa-VZ3" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WJL-Mn-9WN"/>
                 <constraint firstItem="Pg3-xn-RE1" firstAttribute="top" secondItem="9ON-qK-uhv" secondAttribute="bottom" id="Whr-1N-xQZ"/>
+                <constraint firstItem="htW-C7-ABp" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="XW6-CE-FfU"/>
                 <constraint firstItem="i9l-NW-Hlg" firstAttribute="top" secondItem="Pg3-xn-RE1" secondAttribute="bottom" id="bWG-Ny-5eR"/>
                 <constraint firstItem="OeW-TW-fZ9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gnv-NO-Xvo"/>
                 <constraint firstItem="i9l-NW-Hlg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mrq-yk-vU4"/>
@@ -170,6 +182,7 @@
                 <outlet property="categoryName" destination="Eel-sm-zez" id="bNU-QJ-lgv"/>
                 <outlet property="categoryTable" destination="Pg3-xn-RE1" id="EEX-cM-QFj"/>
                 <outlet property="editCountLabel" destination="hjb-cT-tRW" id="EZv-E0-41a"/>
+                <outlet property="emptyURLLabel" destination="htW-C7-ABp" id="bqs-RB-Agt"/>
                 <outlet property="moveCollection" destination="eTT-pa-VZ3" id="REu-K3-QY1"/>
                 <outlet property="moveCollectionBottom" destination="Ils-zn-yjb" id="ci5-FZ-9yX"/>
                 <outlet property="underBarBottom" destination="NuH-eh-Ys5" id="nZ6-VP-lXq"/>
