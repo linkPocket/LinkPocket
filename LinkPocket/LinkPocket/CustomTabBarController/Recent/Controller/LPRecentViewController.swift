@@ -18,21 +18,6 @@ class LPRecentViewController: LPParentViewController, LPRecentViewListener {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var categoryModel = LPCategoryModel()
-        categoryModel.name = "Xcode"
-        categoryModel.setRGBA(color: green)
-
-        LPCoreDataManager.store.insertIntoCategory(valueCategory: categoryModel)
-        for j in 1 ... 2 {
-            let linkModel: LPLinkModel = LPLinkModel(url: "https://h\(j)", title: "Musica\(j)", imageName: "\(j)", date: NSDate(), category: categoryModel)
-            LPCoreDataManager.store.insertIntoLink(valueLink: linkModel)
-        }
-
-        let links = LPCoreDataManager.store.selectAllObjectFromLink() as? [LPLinkModel]
-        for link in links! {
-            link.printLinks()
-        }
-        
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         

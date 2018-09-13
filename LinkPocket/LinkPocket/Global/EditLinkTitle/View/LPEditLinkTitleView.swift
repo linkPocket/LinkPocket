@@ -18,22 +18,27 @@ class LPEditLinkTitleView: UIView {
     @IBOutlet weak var title: UITextField!
     @IBOutlet weak var url: UILabel!
     
-    @IBOutlet weak var successBottom: NSLayoutConstraint!
+    @IBOutlet weak var finishBtn: UIButton!
     
     var imageName: String = ""
     var date: NSDate!
     var categoryN: String = ""
-    
+
+    var buttonConstraint: NSLayoutConstraint!
     var listener: LPEditLinkTitleViewListener?
     
     override func awakeFromNib() {
-        imageView.image = UIImage(named: "")
         title.placeholder = ""
         url.text = ""
         date = Date() as NSDate
         title.becomeFirstResponder()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        buttonConstraint = finishBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        buttonConstraint.isActive = true
+
+        self.finishBtn.addTarget(self, action: #selector(finishBtnClicked), for: .touchDown)
+        setImageView()
+        subscribeToShowKeyboardNotifications()
     }
     
     func setBaseData(categoryN: String, image: String, title: String, url: String, date: NSDate) {
@@ -42,25 +47,45 @@ class LPEditLinkTitleView: UIView {
         self.title.placeholder = title
         self.date = date
         self.url.text = url
-        self.imageView.image = UIImage(named: imageName)
+        
+        if let data = try? Data(contentsOf: URL(string: imageName)!)
+        {
+            self.imageView.image = UIImage(data: data)
+        }
     }
     
-    @IBAction func editSuccessAction(_ sender: UIButton) {
-        self.listener?.saveAlert()
+    func setImageView() {
+        self.imageView.layer.cornerRadius = 8.0
+        self.imageView.clipsToBounds = true
+        self.imageView.layer.borderWidth = 1
+        self.imageView.backgroundColor = UIColor(red: 200/255, green: 201/255, blue: 203/255, alpha: 1)
+        self.imageView.layer.borderColor = UIColor(red: 200/255, green: 201/255, blue: 203/255, alpha: 1).cgColor
     }
-    
+
     func saveAlertAction() {
         let categoryModel = LPCoreDataManager.store.selectObjectFromCategoryWhere(nameIs: categoryN)
         let updateLink: LPLinkModel = LPLinkModel(url: url.text!, title: title.text!, imageName: imageName, date: self.date, category: categoryModel)
         
         LPCoreDataManager.store.updateLinkSet(valueLink: updateLink, whereUrlIs: url.text!)
     }
+    
+    func subscribeToShowKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func finishBtnClicked() {
+        self.listener?.saveAlert()
+    }
+    
     @objc func keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue
         let keyboardHeight = keyboardSize.cgRectValue.height
-        
-        successBottom.constant = -keyboardHeight
+        buttonConstraint.constant = -10 - keyboardHeight
     }
     
+    @objc func keyboardWillHide(_ notification: Notification) {
+        buttonConstraint.constant = -10
+    }
 }

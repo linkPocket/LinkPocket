@@ -14,13 +14,15 @@ import CoreData
 class LPAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var tabBarVC: LPCustomTabBarController = LPCustomTabBarController()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
+        [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let tabBarVC: LPCustomTabBarController = LPCustomTabBarController()
         let parentNavi = LPParentNavigationController.sharedInstance
         let vc1: LPRecentViewController = LPRecentViewController()
         let vc2: LPCategoryViewController = LPCategoryViewController()
-        
+
         vc1.tabBarItem.title = "RECENT"
         vc2.tabBarItem.title = "CATEGORY"
         
@@ -31,7 +33,7 @@ class LPAppDelegate: UIResponder, UIApplicationDelegate {
         parentNavi.navigationBar.shadowImage = UIImage()
         parentNavi.navigationBar.backIndicatorImage = UIImage()
         parentNavi.navigationBar.tintColor = .black
-
+        
         window? = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = parentNavi
         
@@ -70,6 +72,28 @@ class LPAppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+    {
+        if url.scheme == "OpenLinkPocket"
+        {
+            let eachCategoryVC = EachCategoryController()
+            let urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+            let categoryUrls = urls.filter { $0.category?.name == url.host! }
+            var sectionModel: [LPTableSectionModel] = LPGroupingTable(urls: categoryUrls)
+            sectionModel = sectionModel.sorted(by: { $0.section > $1.section })
+
+            eachCategoryVC.displayCategoryPage(categoryName: url.host!, categoryCount: "\(categoryUrls.count)", urls: sectionModel)
+            
+            for _ in 0 ..< LPParentNavigationController.sharedInstance.viewControllers.count - 1 {
+                LPParentNavigationController.sharedInstance.popViewController(animated: false)
+            }
+            
+            LPParentNavigationController.sharedInstance.pushViewController(eachCategoryVC, animated: true)
+        }
+        
+        return true
+    }
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

@@ -40,7 +40,7 @@ class LPEditLinkTitleController: LPParentViewController, LPEditLinkTitleViewList
             func no() { }
             self.AlertTwo(title: "수정하시겠습니까?", message: "", yesAction: yes, noAction: no)
         } else {
-            self.AlertDisappear()
+            LPParentNavigationController.sharedInstance.popViewController(animated: true)
         }
     }
 

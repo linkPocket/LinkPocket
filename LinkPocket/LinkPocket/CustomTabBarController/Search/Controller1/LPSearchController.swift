@@ -68,14 +68,14 @@ class LPSearchController: LPParentViewController {
 
 extension LPSearchController: LPSearchViewDelegate {
     func removeAllSearchDataBtnClicked() {
-        self.AlertTwo(title: "최근 검색어 삭제", message: "최근 검색어를 모두 삭제하시겠습니까?",yes: "취소", no: "확인", yesAction: {
-            self.dismiss(animated: true, completion: nil)
-        }) {
+        self.AlertTwo(title: "최근 검색어 삭제", message: "최근 검색어를 모두 삭제하시겠습니까?",yes: "확인", no: "취소", yesAction: {
             DispatchQueue.main.async {
                 UserDefaults.standard.removeObject(forKey: "RecentSearch")
                 UserDefaults.standard.synchronize()
                 self.mLPSearchView.recentSearchReload()
             }
+        }) {
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
