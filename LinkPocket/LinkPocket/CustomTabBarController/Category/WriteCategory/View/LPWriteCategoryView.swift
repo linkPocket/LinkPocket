@@ -83,7 +83,6 @@ class LPWriteCategoryView: UIView {
         self.selectedColor = color
     }
     
-    @IBOutlet weak var saveBtBottomConstraint: NSLayoutConstraint!
     @objc func keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue

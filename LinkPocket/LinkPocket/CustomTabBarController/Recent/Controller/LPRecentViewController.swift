@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class LPRecentViewController: UIViewController {
+class LPRecentViewController: LPParentViewController, LPRecentViewListener {
 
     var mLPRecentView: LPRecentView!
     var urls: [LPLinkModel] = []
@@ -38,9 +38,10 @@ class LPRecentViewController: UIViewController {
         
         urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
-        if let mLPRecentView = Bundle.main.loadNibNamed("LPRecentView", owner: self, options: nil)?.first as? LPRecentView {
-            self.view.addSubview(mLPRecentView)
-        }
+        mLPRecentView = Bundle.main.loadNibNamed("LPRecentView", owner: self, options: nil)?.first as? LPRecentView
+        mLPRecentView.listener = self
+        self.view.addSubview(mLPRecentView)
+        
 
         // Do any additional setup after loading the view.
     }
@@ -50,14 +51,13 @@ class LPRecentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func deleteAlertAction() {
+        func yes() {
+            mLPRecentView.deleteAlertAction()
+            self.dismiss(animated: true, completion: nil)
+        }
+        func no() { }
+        self.AlertTwo(title: "삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yesAction: yes, noAction: no)
     }
-    */
 
 }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol LPRecentViewListener {
+    func deleteAlertAction()
+}
+
 class LPRecentView: UIView {
     
     @IBOutlet weak var mSearchBar: UISearchBar!
@@ -17,6 +21,9 @@ class LPRecentView: UIView {
     
     var urls: [LPLinkModel] = []
     var categorys: [LPCategoryModel] = []
+    var listener: LPRecentViewListener?
+    
+    var deleteSelectedURL: String = ""
 
     override func awakeFromNib() {
    

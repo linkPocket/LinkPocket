@@ -8,8 +8,8 @@
 
 import UIKit
 
-class EachCategoryController: LPParentViewController, UINavigationControllerDelegate, EachCategoryViewListener {
-
+class EachCategoryController: LPParentViewController, EachCategoryViewListener {
+    
     var mEachCategoryView = EachCategoryView()
     var editStatus: Bool = false
     
@@ -19,9 +19,7 @@ class EachCategoryController: LPParentViewController, UINavigationControllerDele
         var image = UIImage(named: "edit")
         image = image?.withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(editBtAction))
-        
-        self.navigationController?.delegate = self
-        
+       
         // Do any additional setup after loading the view.
     }
 
@@ -42,14 +40,20 @@ class EachCategoryController: LPParentViewController, UINavigationControllerDele
     }
     
     func confirmMoveAlert() {
-        func yesAction() { mEachCategoryView.moveAction() }
+        func yesAction() {
+            mEachCategoryView.moveAction()
+            self.dismiss(animated: true, completion: nil)
+        }
         func noAction() { }
         
         self.AlertTwo(title: "카테고리 이동", message: "이동하시겠습니까?", yes: "네", no: "아니요", yesAction: yesAction, noAction: noAction)
     }
     
     func confirmDeleteAlert() {
-        func yesAction() { mEachCategoryView.deleteYesAction() }
+        func yesAction() {
+            mEachCategoryView.deleteYesAction()
+            self.dismiss(animated: true, completion: nil)
+        }
         func noAction() { }
         
         self.AlertTwo(title: "삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yes: "네", no: "아니요", yesAction: yesAction, noAction: noAction)

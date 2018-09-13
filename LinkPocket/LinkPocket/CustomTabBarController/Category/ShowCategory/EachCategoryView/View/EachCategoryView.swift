@@ -129,14 +129,28 @@ class EachCategoryView: UIView {
     
     func editReloadData() {
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
-        var links: [LPLinkModel] = []
-        for i in 0..<urls.count {
-            if urls[i].category?.name == categoryName.text {
-                links.append(urls[i])
-            }
-        }
         urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
-        tableItems = LPGroupingTable(urls: links)
+        
+        if categoryName.text != "All" {
+            var links: [LPLinkModel] = []
+            for i in 0..<urls.count {
+                if urls[i].category?.name == categoryName.text {
+                    links.append(urls[i])
+                }
+            }
+            urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+            tableItems = LPGroupingTable(urls: links)
+           
+        } else {
+           tableItems = LPGroupingTable(urls: urls)
+        }
+        
         categoryTable.reloadData()
+        
+        var allOfUrl: Int = 0
+        for i in 0..<tableItems.count {
+            allOfUrl += tableItems[i].urls.count
+        }
+        self.categoryCount.text = "\(allOfUrl)"
     }
 }
