@@ -42,10 +42,22 @@
                             <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체삭제" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nmx-JV-bjl">
+                            <rect key="frame" x="297" y="0.0" width="78" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="78" id="eOo-yF-MpB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="0.5" alpha="0.67179247359154926" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.99215686274509807" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Nmx-JV-bjl" secondAttribute="bottom" id="7gm-yW-DNQ"/>
+                        <constraint firstAttribute="trailing" secondItem="Nmx-JV-bjl" secondAttribute="trailing" id="CUg-XU-8V4"/>
                         <constraint firstAttribute="height" constant="40" id="DIQ-31-uw2"/>
+                        <constraint firstItem="Nmx-JV-bjl" firstAttribute="top" secondItem="mb8-bw-J84" secondAttribute="top" id="JI4-eE-yE0"/>
                         <constraint firstItem="eQf-OI-Ho3" firstAttribute="top" secondItem="mb8-bw-J84" secondAttribute="top" constant="6" id="ezq-lt-mvc"/>
                         <constraint firstAttribute="bottom" secondItem="eQf-OI-Ho3" secondAttribute="bottom" constant="6" id="fWh-Db-B05"/>
                         <constraint firstItem="eQf-OI-Ho3" firstAttribute="leading" secondItem="mb8-bw-J84" secondAttribute="leading" constant="15" id="m2Q-Vr-WfV"/>
@@ -78,8 +90,8 @@
                 <outlet property="SearchCategoryList" destination="w6H-v8-eqZ" id="Juh-2i-y5i"/>
                 <outlet property="SearchTable" destination="djN-pg-fuX" id="fcD-GU-XBX"/>
                 <outlet property="categoryHeightConstraint" destination="tGM-0Z-193" id="U5Q-cJ-tfs"/>
+                <outlet property="removeAllOfCurrentSearchContents" destination="Nmx-JV-bjl" id="ubN-tN-MTT"/>
                 <outlet property="searchStatusLabel" destination="eQf-OI-Ho3" id="QBZ-rd-CT3"/>
-                <outlet property="tableBottomConstraint" destination="Za2-L7-pm0" id="KnZ-34-Phj"/>
             </connections>
             <point key="canvasLocation" x="131.5" y="53.5"/>
         </view>

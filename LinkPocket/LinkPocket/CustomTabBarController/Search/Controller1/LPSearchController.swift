@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LPSearchController: UIViewController { //LPSearchController
+class LPSearchController: LPParentViewController {
     
     var categorys: [LPCategoryModel] = []
     var urls: [LPLinkModel] = []
@@ -19,12 +19,10 @@ class LPSearchController: UIViewController { //LPSearchController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
-        
-        dismissKeyboard() // 얘 왜 안되지
         
         self.title = ""
         
@@ -32,15 +30,24 @@ class LPSearchController: UIViewController { //LPSearchController
         searchBar.sizeToFit()
         searchBar.placeholder = "URL, 카테고리 이름 검색.."
         searchBar.delegate = self
-        searchBar.becomeFirstResponder()
-        
+            
         searchBarWrapper = SearchBarContainerView(customSearchBar: searchBar)
         searchBarWrapper.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
         
         self.navigationItem.titleView = searchBarWrapper
-        
         mLPSearchView = (Bundle.main.loadNibNamed("LPSearchView", owner: self, options: nil)?.first as? LPSearchView)!
+        mLPSearchView.delegate = self
         self.view.addSubview(mLPSearchView)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mLPSearchView.recentSearchReload()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.searchBarWrapper.searchBar.endEditing(true)
 
     }
     
@@ -56,6 +63,20 @@ class LPSearchController: UIViewController { //LPSearchController
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         searchBarWrapper.frame = CGRect(x: 0, y: 0, width: size.width, height: 44)
+    }
+}
+
+extension LPSearchController: LPSearchViewDelegate {
+    func removeAllSearchDataBtnClicked() {
+        self.AlertTwo(title: "최근 검색어 삭제", message: "최근 검색어를 모두 삭제하시겠습니까?",yes: "취소", no: "확인", yesAction: {
+            self.dismiss(animated: true, completion: nil)
+        }) {
+            DispatchQueue.main.async {
+                UserDefaults.standard.removeObject(forKey: "RecentSearch")
+                UserDefaults.standard.synchronize()
+                self.mLPSearchView.recentSearchReload()
+            }
+        }
     }
 }
 

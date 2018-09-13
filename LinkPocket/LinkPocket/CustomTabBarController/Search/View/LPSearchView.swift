@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol LPSearchViewDelegate {
+    func removeAllSearchDataBtnClicked()
+}
+
 class LPSearchView: UIView {
 
     var inSearchMode: Bool = false
+    var delegate: LPSearchViewDelegate? = nil
     
+    @IBOutlet weak var removeAllOfCurrentSearchContents: UILabel!
     @IBOutlet weak var SearchCategoryList: UICollectionView!
     @IBOutlet weak var SearchTable: UITableView!
     @IBOutlet weak var searchStatusLabel: UILabel!
@@ -33,6 +39,9 @@ class LPSearchView: UIView {
         SearchTable.separatorStyle = .none
         SearchCategoryList.register(UINib(nibName: "LPSearchCategoryListCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(removeAllBtnClicked))
+        removeAllOfCurrentSearchContents.addGestureRecognizer(tap)
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         layout.itemSize = CGSize(width: 70, height: 55)
@@ -40,47 +49,49 @@ class LPSearchView: UIView {
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 0
         SearchCategoryList!.collectionViewLayout = layout
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
     }
     
-    func recentSearchReload(){
-        if let RecentSearch = UserDefaults.standard.array(forKey: "RecentSearch") as? [String]{
+    @objc func removeAllBtnClicked() {
+        self.delegate?.removeAllSearchDataBtnClicked()
+    }
+    
+    func recentSearchReload() {
+        self.recentSearchArray = [String]()
+        
+        if let RecentSearch = UserDefaults.standard.object(forKey: "RecentSearch") as? [String] {
             self.recentSearchArray = RecentSearch
         }
         
-        filteredData = []
+        self.removeAllOfCurrentSearchContents.isHidden = self.recentSearchArray.isEmpty ? true : false
         
-        for i in 0..<recentSearchArray.count {
-            for j in 0..<urls.count {
+        filteredData = []
+        var removeIndexs: [Int] = []
+        for i in 0 ..< recentSearchArray.count {
+            var isExist: Bool = false
+            
+            for j in 0 ..< urls.count {
                 if urls[j].url == recentSearchArray[i] {
+                    isExist = true
                     let data = LPSearchModel(urls: urls[j])
                     filteredData.append(data)
                 }
             }
+            
+            if isExist == false {
+                removeIndexs.append(i)
+            }
+        }
+        
+        for i in removeIndexs {
+            recentSearchArray.remove(at: i)
+        }
+        
+        if recentSearchArray.isEmpty == false {
+            UserDefaults.standard.set(recentSearchArray, forKey: "RecentSearch")
+            UserDefaults.standard.synchronize()
         }
         
         SearchTable.reloadData()
-    }
-    
-    func emptyReload() {
-        filteredData.removeAll()
-        SearchTable.reloadData()
-    }
-    
-    // 얘 왜 안되냐
-    @IBOutlet weak var tableBottomConstraint: NSLayoutConstraint!
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            
-            UIView.animate(withDuration: 0.3, animations: {
-            self.tableBottomConstraint.constant = -keyboardHeight
-            self.layoutIfNeeded()
-            })
-        }
-    }
-   
+    }    
 }
 
