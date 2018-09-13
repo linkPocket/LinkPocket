@@ -62,7 +62,6 @@ final class LPCoreDataManager {
         
         let entityDescription = NSEntityDescription.entity(forEntityName: "Category", in: managedObjectContext)
         let contact = Category(entity: entityDescription!, insertInto: managedObjectContext)
-        
         contact.name = valueCategory.name
         contact.r = valueCategory.r!
         contact.g = valueCategory.g!
@@ -262,7 +261,6 @@ final class LPCoreDataManager {
                                 let categoryModel = LPCategoryModel(name: category?.name, r: category?.r, g: category?.g, b: category?.b, alpha: category?.alpha)
                                 link.category = categoryModel
                             }
-                            
                             links.add(link)
                         }
                     }
