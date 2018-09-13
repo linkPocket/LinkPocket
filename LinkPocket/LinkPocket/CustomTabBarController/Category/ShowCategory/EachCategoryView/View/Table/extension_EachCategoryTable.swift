@@ -34,6 +34,7 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        print("요고 \(tableItems.count)")
         return tableItems.count
     }
     
@@ -76,18 +77,16 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
                 self.editSelectedURL.append(url)
             }
             editCountLabel.text = "\(editSelectedURL.count)"
-            print(editSelectedURL)
         } else {
             print("\(url) 로 이동합니다.")
         }
     }
     
-    //이거 도데체 어디가 옵셔널일까
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
             let item = self.tableItems[indexPath.section].urls[indexPath.row]
             let editVC = LPEditLinkTitleController(nibName: "LPEditLinkTitleController", bundle: nil)
-            //editVC.mLPEditLinkTitleView.setBaseData(categoryN: (item.category?.name)!, image: "Naver", title: item.title!, url: item.url!, date: item.date!)
+            editVC.setBaseData(categoryN: (item.category?.name!)!, image: item.imageName!, title: item.title!, url: item.url!, date: item.date!)
             LPParentNavigationController.sharedInstance.pushViewController(editVC, animated: true)
             
             return

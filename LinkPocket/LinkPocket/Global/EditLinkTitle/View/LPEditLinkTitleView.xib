@@ -25,13 +25,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Bz-yG-yyQ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VTK-g5-a1I">
-                            <rect key="frame" x="16" y="24" width="80" height="80"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="VTK-g5-a1I" secondAttribute="height" multiplier="1:1" id="dsc-Dg-UPh"/>
-                                <constraint firstAttribute="height" constant="80" id="mtS-OY-i4V"/>
-                            </constraints>
-                        </imageView>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목이 여기 들어갑니다." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fl6-QI-wbb">
                             <rect key="frame" x="111" y="31" width="232" height="30"/>
                             <constraints>
@@ -42,30 +35,37 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JoO-OO-Xcz">
-                            <rect key="frame" x="111" y="79" width="253" height="16"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Naver" translatesAutoresizingMaskIntoConstraints="NO" id="yzw-s4-iUH">
+                            <rect key="frame" x="16" y="24" width="80" height="80"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="16" id="ZZU-60-ySR"/>
-                                <constraint firstAttribute="width" secondItem="JoO-OO-Xcz" secondAttribute="height" multiplier="253:16" id="dlQ-dk-9H5"/>
+                                <constraint firstAttribute="width" secondItem="yzw-s4-iUH" secondAttribute="height" multiplier="1:1" id="TKo-J1-dDX"/>
+                                <constraint firstAttribute="height" constant="80" id="Z7R-qa-7xr"/>
+                                <constraint firstAttribute="width" constant="80" id="Zjy-IH-wZS"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3u-zc-Myt">
+                            <rect key="frame" x="111" y="75" width="232" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="Ia1-qo-cFE"/>
+                                <constraint firstAttribute="width" secondItem="q3u-zc-Myt" secondAttribute="height" multiplier="29:2" id="UX3-kR-Qoj"/>
+                                <constraint firstAttribute="width" constant="232" id="bUR-K3-IPS"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
-                            <color key="textColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="VTK-g5-a1I" secondAttribute="bottom" constant="24" id="8S1-Se-GbX"/>
-                        <constraint firstItem="JoO-OO-Xcz" firstAttribute="top" secondItem="fl6-QI-wbb" secondAttribute="bottom" constant="18" id="CHs-fm-g4x"/>
-                        <constraint firstItem="JoO-OO-Xcz" firstAttribute="leading" secondItem="VTK-g5-a1I" secondAttribute="trailing" constant="15" id="Cws-V6-IdF"/>
-                        <constraint firstAttribute="trailing" secondItem="fl6-QI-wbb" secondAttribute="trailing" constant="32" id="Mym-St-cwN"/>
+                        <constraint firstItem="q3u-zc-Myt" firstAttribute="top" secondItem="fl6-QI-wbb" secondAttribute="bottom" constant="14" id="1nX-Da-tlT"/>
+                        <constraint firstItem="yzw-s4-iUH" firstAttribute="top" secondItem="9Bz-yG-yyQ" secondAttribute="top" constant="24" id="959-me-A3x"/>
+                        <constraint firstItem="fl6-QI-wbb" firstAttribute="leading" secondItem="yzw-s4-iUH" secondAttribute="trailing" constant="15" id="BJ6-7Z-UcQ"/>
+                        <constraint firstItem="yzw-s4-iUH" firstAttribute="leading" secondItem="9Bz-yG-yyQ" secondAttribute="leading" constant="16" id="DZq-bN-GBh"/>
+                        <constraint firstAttribute="bottom" secondItem="yzw-s4-iUH" secondAttribute="bottom" constant="24" id="IIc-Ng-vvw"/>
+                        <constraint firstItem="q3u-zc-Myt" firstAttribute="leading" secondItem="yzw-s4-iUH" secondAttribute="trailing" constant="15" id="Rf9-BH-Ipd"/>
                         <constraint firstItem="fl6-QI-wbb" firstAttribute="top" secondItem="9Bz-yG-yyQ" secondAttribute="top" constant="31" id="Trr-m2-1nT"/>
                         <constraint firstAttribute="height" constant="128" id="glk-0J-45f"/>
-                        <constraint firstItem="VTK-g5-a1I" firstAttribute="leading" secondItem="9Bz-yG-yyQ" secondAttribute="leading" constant="16" id="jAh-U0-OpR"/>
-                        <constraint firstItem="fl6-QI-wbb" firstAttribute="leading" secondItem="VTK-g5-a1I" secondAttribute="trailing" constant="15" id="m23-Hp-gMF"/>
                         <constraint firstAttribute="width" secondItem="9Bz-yG-yyQ" secondAttribute="height" multiplier="375:128" id="mGw-Li-FWo"/>
-                        <constraint firstAttribute="trailing" secondItem="JoO-OO-Xcz" secondAttribute="trailing" constant="11" id="qXK-nb-7GC"/>
-                        <constraint firstItem="VTK-g5-a1I" firstAttribute="top" secondItem="9Bz-yG-yyQ" secondAttribute="top" constant="24" id="vbN-OG-Bqh"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYo-OQ-Y6R">
@@ -93,11 +93,15 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="imageView" destination="VTK-g5-a1I" id="T2O-hv-0UZ"/>
+                <outlet property="imageView" destination="yzw-s4-iUH" id="tR1-b5-Mny"/>
                 <outlet property="successBottom" destination="rfp-Zg-htt" id="cXe-8F-R6o"/>
                 <outlet property="title" destination="fl6-QI-wbb" id="Bg6-Vj-UE3"/>
-                <outlet property="url" destination="JoO-OO-Xcz" id="pud-rt-vqr"/>
+                <outlet property="url" destination="q3u-zc-Myt" id="xKA-Ly-72U"/>
             </connections>
+            <point key="canvasLocation" x="113.5" y="77.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="Naver" width="539" height="960"/>
+    </resources>
 </document>

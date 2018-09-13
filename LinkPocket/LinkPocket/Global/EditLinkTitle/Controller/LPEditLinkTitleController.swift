@@ -8,17 +8,15 @@
 
 import UIKit
 
-class LPEditLinkTitleController: UIViewController {
+class LPEditLinkTitleController: LPParentViewController, LPEditLinkTitleViewListener {
 
     var mLPEditLinkTitleView: LPEditLinkTitleView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        mLPEditLinkTitleView = Bundle.main.loadNibNamed("LPEditLinkTitleView", owner: self, options: nil)?.first as? LPEditLinkTitleView
-        self.view.addSubview(mLPEditLinkTitleView)
         
-        // Do any additional setup after loading the view.
+        self.navigationItem.title = "수정하기"
+        // Do any additional setup 기 loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +24,24 @@ class LPEditLinkTitleController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setBaseData(categoryN: String, image: String, title: String, url: String, date: NSDate) {
+        mLPEditLinkTitleView = Bundle.main.loadNibNamed("LPEditLinkTitleView", owner: self, options: nil)?.first as? LPEditLinkTitleView
+        mLPEditLinkTitleView.listener = self
+        self.view.addSubview(mLPEditLinkTitleView)
+        mLPEditLinkTitleView.setBaseData(categoryN: categoryN, image: image, title: title, url: url, date: date)
+    }
+    
+    func saveAlert() {
+        if mLPEditLinkTitleView.title.text != "" {
+            func yes() {
+                mLPEditLinkTitleView.saveAlertAction()
+            }
+            func no() { }
+            self.AlertTwo(title: "수정하시겠습니까?", message: "", yesAction: yes, noAction: no)
+        } else {
+            self.AlertDisappear()
+        }
+    }
 
     /*
     // MARK: - Navigation

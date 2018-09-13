@@ -22,7 +22,7 @@ class LPParentViewController: UIViewController {
     }
     
 
-    func AlertTwo(title: String, message: String, yes: String, no: String, yesAction: (@escaping()->()), noAction: (()->())?){
+    func AlertTwo(title: String, message: String, yes: String = "네", no: String = "아니요", yesAction: (@escaping()->()), noAction: (()->())?){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let yesBT = UIAlertAction(title: yes, style: .default) {
@@ -58,7 +58,7 @@ class LPParentViewController: UIViewController {
     }
     
     
-    func AlertDisappear(title: String, message: String){
+    func AlertDisappear(title: String = "빈칸을 채워주세요", message: String = ""){
         
         let alert = UIAlertController(title: title,message: message ,preferredStyle:.alert)
         self.present(alert ,animated: false, completion:{

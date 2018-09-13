@@ -8,20 +8,23 @@
 
 import UIKit
 
-class LPWriteCategoryController: UIViewController {
-    
+class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewListener {
+
     var urls: [LPLinkModel] = []
     var categorys: [LPCategoryModel] = []
     var mLPWriteCategoryView: LPWriteCategoryView!
     var status: String = "CreatCategory" //CreatCategory || EditCategory
+    var categoryName: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         if status == "CreatCategory" {
-        self.navigationItem.title = "추가하기"
+            self.navigationItem.title = "추가하기"
         } else {
             self.navigationItem.title = "수정하기"
+            var image = UIImage(named: "LPTrash")
+            image = image?.withRenderingMode(.alwaysOriginal)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(deleteAction))
         }
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
@@ -38,11 +41,33 @@ class LPWriteCategoryController: UIViewController {
     func setBaseData(title: String, color: UIColor) {
         mLPWriteCategoryView = Bundle.main.loadNibNamed("LPWriteCategoryView", owner: self, options: nil)?.first as? LPWriteCategoryView
         mLPWriteCategoryView.status = self.status
+        mLPWriteCategoryView.listener = self
         self.view.addSubview(mLPWriteCategoryView)
         
         mLPWriteCategoryView.setBaseData(title: title, color: color)
         
+        self.categoryName = title
     }
     
-
+    //MARK:- Alert ===============================================
+    @objc func deleteAction() {
+        func yes() {
+            LPCoreDataManager.store.deleteFromCategoryWhere(nameIs: categoryName)
+        }
+        func no() { }
+        self.AlertTwo(title: "카테고리를 삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yesAction: yes, noAction: no)
+    }
+    
+    func saveAlert() {
+        if mLPWriteCategoryView.cardTextField.text != "" {
+            func yes() {
+                mLPWriteCategoryView.saveAlertAction()
+            }
+            func no() { }
+            self.AlertTwo(title: "저장하시겠습니까?", message: "", yesAction: yes, noAction: no)
+        } else {
+            self.AlertDisappear()
+        }
+    }
+    //==============================================================
 }

@@ -9,7 +9,6 @@
 import UIKit
 
 protocol EachCategoryViewListener {
-    //About Alert
     func confirmDeleteAlert()
     func confirmMoveAlert()
 }
@@ -25,6 +24,8 @@ class EachCategoryView: UIView {
     var listener: EachCategoryViewListener?
     
     var statusEdit: Bool = false
+    
+    var moveLinks: [LPLinkModel] = []
     
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var categoryCount: UILabel!
@@ -57,7 +58,6 @@ class EachCategoryView: UIView {
         layout.minimumLineSpacing = 0
         moveCollection!.collectionViewLayout = layout
         
-        
         editCountLabel.layer.borderColor = UIColor.colorFromRGB(0x008EFF).cgColor
         editCountLabel.layer.borderWidth = 4
         editCountLabel.layer.cornerRadius = editCountLabel.bounds.height/2
@@ -71,7 +71,6 @@ class EachCategoryView: UIView {
         categoryTable.reloadData()
     }
     
-
     func editBtAction() {
         if statusEdit == false {
             statusEdit = true
@@ -110,16 +109,6 @@ class EachCategoryView: UIView {
         //self.listener?.confirmMoveAlert()
     }
     
-    // Alert func about move
-    func moveYesAction() {
-       print("yes")
-    }
-    
-    func moveNoAction() {
-        print("no")
-    }
-    
-    
     //MARK:-- 삭제에 관련된 모든거 ( 삭제 에니메이션이랑 alert관련된것들까지)
     @IBAction func urlDeleteAction(_ sender: UIButton) {
         UIView.animate(withDuration: 0.1, animations: {
@@ -137,11 +126,6 @@ class EachCategoryView: UIView {
         }
         editReloadData()
     }
-    
-    func deleteNoAction() {
-        print("아무일도 없습니다")
-    }
-
     
     func editReloadData() {
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]

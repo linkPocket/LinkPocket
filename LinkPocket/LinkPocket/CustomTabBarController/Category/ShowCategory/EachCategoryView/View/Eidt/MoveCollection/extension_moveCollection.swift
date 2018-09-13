@@ -40,18 +40,22 @@ extension EachCategoryView: UICollectionViewDelegate, UICollectionViewDataSource
         }
         
         moveCategoryN = cell.categoryN
-        var links: [LPLinkModel] = []
+        moveLinks = []
         for i in 0..<self.urls.count {
             if editSelectedURL.contains(self.urls[i].url!) {
                 var url: LPLinkModel = self.urls[i]
                 url.category = LPCoreDataManager.store.selectObjectFromCategoryWhere(nameIs: moveCategoryN)
-                links.append(url)
+                moveLinks.append(url)
             }
             
         }
         
-        for i in 0..<links.count {
-            LPCoreDataManager.store.updateLinkSet(valueLink: links[i], whereUrlIs: links[i].url!)
+        self.listener?.confirmMoveAlert()
+    }
+    
+    func moveAction() {
+        for i in 0..<moveLinks.count {
+            LPCoreDataManager.store.updateLinkSet(valueLink: moveLinks[i], whereUrlIs: moveLinks[i].url!)
         }
         
         self.editReloadData()

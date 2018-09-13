@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol LPEditLinkTitleViewListener {
+    func saveAlert()
+}
+
 class LPEditLinkTitleView: UIView {
     
     @IBOutlet weak var imageView: UIImageView!
@@ -16,10 +20,11 @@ class LPEditLinkTitleView: UIView {
     
     @IBOutlet weak var successBottom: NSLayoutConstraint!
     
-    
     var imageName: String = ""
     var date: NSDate!
     var categoryN: String = ""
+    
+    var listener: LPEditLinkTitleViewListener?
     
     override func awakeFromNib() {
         imageView.image = UIImage(named: "")
@@ -27,14 +32,14 @@ class LPEditLinkTitleView: UIView {
         url.text = ""
         date = Date() as NSDate
         title.becomeFirstResponder()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
     }
     
     func setBaseData(categoryN: String, image: String, title: String, url: String, date: NSDate) {
         self.categoryN = categoryN
         print(image)
-        //self.imageView.image = UIImage(named: "")
+        self.imageView.image = UIImage(named: image)
         self.imageName = image
         self.title.placeholder = title
         self.date = date
@@ -42,12 +47,15 @@ class LPEditLinkTitleView: UIView {
     }
     
     @IBAction func editSuccessAction(_ sender: UIButton) {
+        self.listener?.saveAlert()
+    }
+    
+    func saveAlertAction() {
         let categoryModel = LPCoreDataManager.store.selectObjectFromCategoryWhere(nameIs: categoryN)
         let updateLink: LPLinkModel = LPLinkModel(url: url.text!, title: title.text!, imageName: imageName, date: self.date, category: categoryModel)
         
         LPCoreDataManager.store.updateLinkSet(valueLink: updateLink, whereUrlIs: url.text!)
     }
-    
     @objc func keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue

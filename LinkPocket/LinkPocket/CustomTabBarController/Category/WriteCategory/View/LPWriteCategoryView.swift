@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol LPWriteCategoryViewListener {
+    func saveAlert()
+}
+
 class LPWriteCategoryView: UIView {
     
     @IBOutlet weak var cardView: UIView!
@@ -18,6 +22,8 @@ class LPWriteCategoryView: UIView {
     var status: String = "CreatCategory" //CreatCategory || EditCategory
     var orginCategoryN = ""
     var selectedColor: UIColor = UIColor.clear
+    
+    var listener: LPWriteCategoryViewListener?
     
     @IBOutlet weak var saveBt: UIButton!
     
@@ -40,6 +46,10 @@ class LPWriteCategoryView: UIView {
     
     
     @IBAction func saveBtAction(_ sender: UIButton) {
+        self.listener?.saveAlert()
+    }
+    
+    func saveAlertAction() {
         if status == "CreatCategory" {
             var categoryModel = LPCategoryModel()
             categoryModel.name = cardTextField.text!

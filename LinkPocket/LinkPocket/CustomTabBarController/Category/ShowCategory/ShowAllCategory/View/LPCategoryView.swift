@@ -71,7 +71,6 @@ class LPCategoryView: UIView {
     }
     
     //MARK:- 뿅뿅뿅 버튼
-    
     @IBOutlet weak var baseBT: UIButton!
     @IBOutlet weak var addBT: UIButton!
     @IBOutlet weak var editBT: UIButton!
