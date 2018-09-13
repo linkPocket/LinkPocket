@@ -10,21 +10,27 @@ import UIKit
 
 class LPRecentView: UIView {
     
-    var mSearchBar: LPSearchBar!
-    var mLPCategoryTable: LPCategoryTable!
+    @IBOutlet weak var mSearchBar: UISearchBar!
+    @IBOutlet weak var mLPCategoryTable: UITableView!
     
-    init(frame: CGRect, urls: [LPLinkModel]) {
-        super.init(frame: frame)
-        
-        mSearchBar = LPSearchBar(frame: rR(0,0,W,40), urls: [], categorys: [])
-        addSubview(mSearchBar)
-        
-        mLPCategoryTable = LPCategoryTable(frame: rR(0,50,W,self.bounds.height - 50), urls: urls)
-        addSubview(mLPCategoryTable)
-    }
+    var tableItems: [LPTableSectionModel] = []
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var urls: [LPLinkModel] = []
+    var categorys: [LPCategoryModel] = []
+
+    override func awakeFromNib() {
+   
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+        
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+
+        tableItems = LPGroupingTable(urls: urls)
+        tableItems = tableItems.sorted(by: { $0.section > $1.section })
+        mLPCategoryTable.reloadData()
+        
+        mLPCategoryTable.separatorStyle = .none
     }
     
 }

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LPWriteCategoryView" customModule="LinkPocket" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hl9-B5-8Fi">
+                    <rect key="frame" x="16" y="635" width="343" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="UTn-bf-1J5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
+                    <state key="normal" title="추가">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="saveBtAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="juh-Em-gmp"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCM-mo-rCN">
+                    <rect key="frame" x="56" y="100" width="263" height="455"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="카테고리 입력.." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-JE-ncR">
+                            <rect key="frame" x="0.0" y="0.0" width="263" height="387"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="8WI-w3-tla">
+                            <rect key="frame" x="0.0" y="428" width="264" height="19"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="264" id="2qA-Uq-SrH"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="KB4-cW-geH"/>
+                                <constraint firstAttribute="height" constant="19" id="bOj-ni-qMU"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lpB-DQ-16K">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <connections>
+                                <outlet property="dataSource" destination="iN0-l3-epB" id="mo8-NU-EBx"/>
+                                <outlet property="delegate" destination="iN0-l3-epB" id="oXi-ka-OdS"/>
+                            </connections>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="8WI-w3-tla" firstAttribute="top" secondItem="9Dl-JE-ncR" secondAttribute="bottom" constant="41" id="6NV-hQ-BSG"/>
+                        <constraint firstItem="8WI-w3-tla" firstAttribute="bottom" secondItem="SCM-mo-rCN" secondAttribute="bottomMargin" id="8HN-Ii-8mX"/>
+                        <constraint firstItem="9Dl-JE-ncR" firstAttribute="centerX" secondItem="SCM-mo-rCN" secondAttribute="centerX" id="PCk-jS-onQ"/>
+                        <constraint firstItem="8WI-w3-tla" firstAttribute="centerX" secondItem="SCM-mo-rCN" secondAttribute="centerX" id="Udm-ji-jz2"/>
+                        <constraint firstItem="9Dl-JE-ncR" firstAttribute="leading" secondItem="SCM-mo-rCN" secondAttribute="leading" id="eHy-pq-2jL"/>
+                        <constraint firstItem="9Dl-JE-ncR" firstAttribute="top" secondItem="SCM-mo-rCN" secondAttribute="top" id="nkW-Jd-36h"/>
+                        <constraint firstAttribute="trailing" secondItem="9Dl-JE-ncR" secondAttribute="trailing" id="x5k-CS-B98"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Hl9-B5-8Fi" firstAttribute="top" secondItem="SCM-mo-rCN" secondAttribute="bottom" constant="80" id="3Rg-Ij-rDP"/>
+                <constraint firstItem="Hl9-B5-8Fi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="3uC-4B-f4d"/>
+                <constraint firstItem="SCM-mo-rCN" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Dln-B6-QH4"/>
+                <constraint firstItem="Hl9-B5-8Fi" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="KRp-yP-RZ4"/>
+                <constraint firstItem="SCM-mo-rCN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="80" id="Oe8-pr-HmC"/>
+                <constraint firstItem="SCM-mo-rCN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="56" id="bMz-F6-RAZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SCM-mo-rCN" secondAttribute="trailing" constant="56" id="gjE-Jd-27z"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hl9-B5-8Fi" secondAttribute="trailing" constant="16" id="mod-Sz-rov"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bottomMargin" destination="3Rg-Ij-rDP" id="uC7-dC-t1l"/>
+                <outlet property="cardColorCollection" destination="8WI-w3-tla" id="bQ1-WF-xLW"/>
+                <outlet property="cardTextField" destination="9Dl-JE-ncR" id="mLy-hb-vD6"/>
+                <outlet property="cardView" destination="SCM-mo-rCN" id="DpQ-jd-a0h"/>
+                <outlet property="saveBt" destination="Hl9-B5-8Fi" id="vAQ-0M-tnl"/>
+                <outlet property="topMargin" destination="Oe8-pr-HmC" id="5Pv-ia-Dlw"/>
+            </connections>
+            <point key="canvasLocation" x="88.5" y="53.5"/>
+        </view>
+    </objects>
+</document>
