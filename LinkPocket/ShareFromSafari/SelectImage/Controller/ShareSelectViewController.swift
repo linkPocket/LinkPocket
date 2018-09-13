@@ -37,7 +37,7 @@ class ShareSelectViewController: UIViewController {
         if let validUrl = url {
             self.indicator.startAnimating()
             DispatchQueue.global().async {
-                self.htmlParser.startParsing(with: validUrl, parsingType: .LPShareExtension)
+                self.htmlParser.startParsing(with: validUrl, parsingType: .PTShareExtension)
             }
         }
     }
@@ -80,21 +80,35 @@ extension ShareSelectViewController: LPHtmlParserDelegate {
         }
         
         switch parsingType {
-        case .LPShareExtension:
+        case .PTShareExtension:
             self.collectionViewAdapter.parsingImages = parsingList
             self.collectionViewAdapter.parsingImages.insert(previewImage, at: 0)
             self.collectionViewAdapter.parsingImages.insert(UIImage(color: UIColor(red: 200/255, green: 201/255, blue: 203/255, alpha: 1))!, at: 0)
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
+        case .PTError:
+            self.linkToHtmlFailed()
         }
     }
     
     func parsingDidFinish(with parsingType: ParsingType, titleText: String) {
         switch parsingType {
-        case .LPShareExtension:
+        case .PTShareExtension:
             self.parsingTitle = titleText
+        case .PTError:
+            self.linkToHtmlFailed()
         }
+    }
+    
+    func linkToHtmlFailed() {
+        let alertController = UIAlertController(title: "적합하지 않은 주소입니다.", message: "문의 사항은...", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .cancel) { (alert) in
+            ShareExtensionContext.sharedExtension?.completeRequest(returningItems: [], completionHandler: nil)
+        }
+                                    
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

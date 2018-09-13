@@ -83,7 +83,13 @@ extension ShareAddUrlViewController: ShareAddUrlViewDelegate {
 extension ShareAddUrlViewController: ShareAddUrlTableViewAdapterDelegate {
     
     func cellDidClicked(category: LPCategoryModel) {
-        let appendingPathComponent = "\(String(describing: category.name))/\(String(describing: self.imageInfo.url)).png"
+        let imageNumber = UserDefaults.standard.integer(forKey: "imageNumber")
+        
+        let appendingPathComponent = "\(imageNumber).png"
+        
+        UserDefaults.standard.set(imageNumber + 1, forKey: "imageNumber")
+        UserDefaults.standard.synchronize()
+
         let link: LPLinkModel = LPLinkModel(url: self.imageInfo.url, title: self.imageInfo.titleText, imageName: writeFile(appendingPathComponent)?.relativeString, date: Date() as NSDate, category: category)
         
         guard LPCoreDataManager.store.insertIntoLink(valueLink: link) else {

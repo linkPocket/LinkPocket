@@ -27,7 +27,7 @@ extension LPWriteCategoryView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = cardColorCollection.cellForItem(at: indexPath) as? LPColorCell else {
+        guard (cardColorCollection.cellForItem(at: indexPath) as? LPColorCell) != nil else {
             return
         }
         

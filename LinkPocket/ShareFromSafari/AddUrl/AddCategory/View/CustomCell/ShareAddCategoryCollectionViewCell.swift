@@ -10,7 +10,6 @@ import UIKit
 
 class ShareAddCategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var selectedImageView: UIImageView!
-    @IBOutlet weak var colorImage: UIImageView!
     var color: UIColor?
     
     override func awakeFromNib() {
@@ -20,29 +19,23 @@ class ShareAddCategoryCollectionViewCell: UICollectionViewCell {
     }
 
     func createColorImage() {
-        self.colorImage.layer.cornerRadius = 24
-        self.colorImage.clipsToBounds = true
-        self.colorImage.contentMode = .scaleAspectFit
-
-        self.selectedImageView.layer.cornerRadius = 30
-        self.selectedImageView.layer.borderWidth = 2
-        self.selectedImageView.layer.borderColor = UIColor.red.cgColor
-        self.selectedImageView.isHidden = false
+        self.selectedImageView.layer.cornerRadius = self.selectedImageView.bounds.height/2
         self.selectedImageView.clipsToBounds = true
-        self.selectedImageView.isHidden = true
+        self.selectedImageView.contentMode = .scaleAspectFit
     }
     
     func modifyCell(color: UIColor) {
         self.color = color
-        self.colorImage.image = UIImage(color: color)
+        self.selectedImageView.backgroundColor = color
     }
     
     override var isSelected: Bool {
         didSet {
             if self.isSelected {
-                self.selectedImageView.isHidden = false
+                self.selectedImageView.image = UIImage(named: "LPCheck")
             } else {
-                self.selectedImageView.isHidden = true
+                self.selectedImageView.image = UIImage()
+                
             }
         }
     }

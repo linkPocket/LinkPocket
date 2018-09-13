@@ -57,7 +57,17 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
         guard let cell = mLPCategoryTable.cellForRow(at: indexPath) as? LPLinkTableCell else {
             return
         }
+        let url = cell.url.text!
         
+        guard let validUrl = URL(string: url) else {
+            return
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(validUrl, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(validUrl)
+        }
         print("\(cell.url.text!) 로 이동합니다.")
     }
     
