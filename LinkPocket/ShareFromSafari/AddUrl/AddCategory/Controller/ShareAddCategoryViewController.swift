@@ -53,6 +53,12 @@ extension ShareAddCategoryViewController: ShareAddCategoryViewDelegate {
         
         category.name = self.addCategoryView?.categoryNameTextField.text!
         let color = addCategoryView?.collectionViewAdapter.selectedCellColor
+        
+        if color == nil || category.name == "" {
+            self.emptySpaceExist()
+            return
+        }
+        
         color == nil ? category.setRGBA(color: .white) : category.setRGBA(color:color!)
         guard LPCoreDataManager.store.insertIntoCategory(valueCategory: category) else {
             createCategoryFailed()
@@ -91,6 +97,18 @@ extension ShareAddCategoryViewController: ShareAddCategoryViewDelegate {
         
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func emptySpaceExist(title: String = "빈칸을 채워주세요", message: String = "") {
+        let alert = UIAlertController(title: title,message: message ,preferredStyle:.alert)
+        self.dismissKeyboard()
+        self.present(alert ,animated: false, completion:{
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {_ in
+                self.dismiss(animated: true, completion: {
+                    self.addCategoryView?.categoryNameTextField.becomeFirstResponder()
+                })
+            })
+        })
     }
     
     func writeFile(_ appendingPathComponent: String) -> URL? {

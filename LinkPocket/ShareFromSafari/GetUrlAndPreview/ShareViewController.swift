@@ -38,12 +38,12 @@ class ShareViewController: UIViewController {
                     if attachment.hasItemConformingToTypeIdentifier("public.url") {
                         attachment.loadItem(forTypeIdentifier: "public.url", options: nil, completionHandler: { (url, error) in
                             if let shareURL = url as? NSURL {
-//                                if shareURL.relativeString.validateUrl() {
+                                if UIApplication.shared.canOpenURL(shareURL as URL) {
                                     print("\(String(describing: shareURL.relativeString))")
                                     selectVC.url = shareURL as URL
-//                                } else {
-//                                    self.getUrlFailed()
-//                                }
+                                } else {
+                                    self.getUrlFailed()
+                                }
                                 
                                 attachment.loadPreviewImage(options: nil) { (item, error) in
                                     if let image = item as? UIImage {
@@ -71,12 +71,5 @@ class ShareViewController: UIViewController {
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
-    }
-}
-
-extension String {
-    func validateUrl () -> Bool {
-        let urlRegEx = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
-        return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: self)
     }
 }
