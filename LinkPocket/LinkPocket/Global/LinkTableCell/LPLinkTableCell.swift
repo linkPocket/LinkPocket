@@ -16,8 +16,17 @@ class LPLinkTableCell: UITableViewCell {
     @IBOutlet weak var url: UILabel!
     @IBOutlet weak var category: UILabel!
         
+    @IBOutlet weak var titleWidth: NSLayoutConstraint!
+    @IBOutlet weak var categoryWidth: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        if categoryWidth.constant == 90 {
+            titleWidth.constant = W - (16 + 80 + 12) - 16 - 90
+        } else {
+           titleWidth.constant = W - (16 + 80 + 12) - categoryWidth.constant - 16
+        }
+        
         
     }
 
