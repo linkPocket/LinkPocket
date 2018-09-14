@@ -28,7 +28,7 @@
                         <constraint firstAttribute="height" constant="32" id="UTn-bf-1J5"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                    <state key="normal" title="추가">
+                    <state key="normal" title="완료">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>

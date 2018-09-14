@@ -9,7 +9,9 @@
 import UIKit
 
 class ShareParentNaviController: UINavigationController {
+    
     static let rootNaviController: ShareParentNaviController = ShareParentNaviController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ShareParentNaviController.rootNaviController.navigationBar.isTranslucent = false

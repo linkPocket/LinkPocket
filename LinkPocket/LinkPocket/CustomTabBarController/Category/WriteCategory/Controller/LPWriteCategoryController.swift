@@ -20,10 +20,16 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let mLPWriteCategoryView = Bundle.main.loadNibNamed("LPWriteCategoryView", owner: self, options: nil)?.first as? LPWriteCategoryView {
+            self.writeView = mLPWriteCategoryView
+            self.view.addSubview(writeView!)
+        }
+        
         if status == "CreatCategory" {
             self.navigationItem.title = "추가하기"
         } else {
             self.navigationItem.title = "수정하기"
+
             var image = UIImage(named: "LPTrash")
             image = image?.withRenderingMode(.alwaysOriginal)
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(deleteAction))
@@ -32,11 +38,6 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
         categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
         urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
-        
-        if let mLPWriteCategoryView = Bundle.main.loadNibNamed("LPWriteCategoryView", owner: self, options: nil)?.first as? LPWriteCategoryView {
-            self.writeView = mLPWriteCategoryView
-            self.view.addSubview(writeView!)
-        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

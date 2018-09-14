@@ -49,12 +49,11 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
                 reloadCategoryView()
             }
         }
-        print("뷰열림")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("뷰사라짐")
+        
     }
     
     override func didReceiveMemoryWarning() {
