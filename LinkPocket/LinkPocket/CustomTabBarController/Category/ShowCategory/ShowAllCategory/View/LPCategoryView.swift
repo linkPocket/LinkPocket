@@ -82,8 +82,10 @@ class LPCategoryView: UIView {
             baseBT.setImage(UIImage(named: "LPAddBT"), for: .normal)
             baseBT.setTitle(nil, for: .normal)
             originBbbButton()
+            blackView.isHidden = false
         case .ESFinished:
             originBbbButton()
+            blackView.isHidden = true
         }
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
