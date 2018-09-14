@@ -66,7 +66,7 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
     @objc func deleteAction() {
         func yes() {
             LPCoreDataManager.store.deleteFromCategoryWhere(nameIs: categoryName)
-            self.dismiss(animated: true, completion: nil)
+            LPParentNavigationController.sharedInstance.popViewController(animated: true)
         }
         func no() { }
         self.AlertTwo(title: "카테고리를 삭제하시겠습니까?", message: "영구적으로 삭제됩니다.", yesAction: yes, noAction: no)
@@ -76,7 +76,7 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
         if mLPWriteCategoryView.cardTextField.text != "" {
             func yes() {
                 mLPWriteCategoryView.saveAlertAction()
-                self.dismiss(animated: true, completion: nil)
+                LPParentNavigationController.sharedInstance.popViewController(animated: true)
             }
             func no() { }
             self.AlertTwo(title: "저장하시겠습니까?", message: "", yesAction: yes, noAction: no)
