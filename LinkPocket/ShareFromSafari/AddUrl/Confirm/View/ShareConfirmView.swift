@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol ShareConfirmViewDelegate {
+    func openAppClicked()
+}
+
 class ShareConfirmView: UIView {
     @IBOutlet weak var confirmLabel: UILabel!
     @IBOutlet weak var touchView: UIView!
     
+    var delegate: ShareConfirmViewDelegate? = nil
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -39,9 +45,7 @@ class ShareConfirmView: UIView {
     }
     
     @objc func openApp(tap: UITapGestureRecognizer) {
-        ShareExtensionContext.sharedExtension?.completeRequest(returningItems: [], completionHandler: { (bool) in
-            guard let url = URL(string: "OpenLinkPocket://") else { return }
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        })
+        self.delegate?.openAppClicked()
+
     }
 }

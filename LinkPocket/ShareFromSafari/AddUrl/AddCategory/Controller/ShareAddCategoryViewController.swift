@@ -80,6 +80,7 @@ extension ShareAddCategoryViewController: ShareAddCategoryViewDelegate {
         }
         
         let confirmVC = ShareConfirmViewController(nibName: "ShareConfirmViewController", bundle: nil)
+        confirmVC.categoryName = category.name!
         self.present(confirmVC, animated: false, completion: nil)
     }
     

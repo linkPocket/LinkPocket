@@ -13,6 +13,7 @@ class ShareConfirmViewController: UIViewController {
     
     var confirmView: ShareConfirmView?
     var timer: Timer?
+    var categoryName: String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class ShareConfirmViewController: UIViewController {
         
         confirmView = customView
         confirmView?.confirmLabel.alpha = 0
-
+        confirmView?.delegate = self
         self.view.addSubview(confirmView!)
         
         
@@ -65,5 +66,18 @@ class ShareConfirmViewController: UIViewController {
     
     @objc func finishTimer() {
         ShareExtensionContext.sharedExtension?.completeRequest(returningItems: [], completionHandler: nil)
+    }
+}
+
+extension ShareConfirmViewController: ShareConfirmViewDelegate {
+    func openAppClicked() {
+        ShareExtensionContext.sharedExtension?.completeRequest(returningItems: [], completionHandler: { (bool) in
+            let urlString = "OpenLinkPocket://\(self.categoryName)"
+            let escapedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if let validString = escapedString {
+                guard let url = URL(string: validString) else { return }
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        })
     }
 }

@@ -36,8 +36,8 @@ class LPParentViewController: UIViewController {
             noAction?()
         }
         
-        alert.addAction(yesBT)
         alert.addAction(noBT)
+        alert.addAction(yesBT)
         
         self.present(alert, animated: false, completion: nil)
     }
