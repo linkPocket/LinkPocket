@@ -31,11 +31,12 @@ class LPCategoryViewController: UIViewController, LPCategoryVListener {
         urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
         
         if let mLPRecentView = Bundle.main.loadNibNamed("LPCategoryView", owner: self, options: nil)?.first as? LPCategoryView {
-            self.view.addSubview(mLPRecentView)
+            mCategoryV = mLPRecentView
+            self.view.addSubview(mCategoryV)
         }
         // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

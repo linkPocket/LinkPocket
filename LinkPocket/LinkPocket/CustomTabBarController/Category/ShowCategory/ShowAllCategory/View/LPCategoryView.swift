@@ -75,6 +75,8 @@ class LPCategoryView: UIView {
     
     func reloadCategory() {
         print("reload category")
+        blackView.isHidden = true
+
         switch collectionStatus {
         case .ESEdit:
             collectionStatus = .ESFinished
@@ -82,10 +84,8 @@ class LPCategoryView: UIView {
             baseBT.setImage(UIImage(named: "LPAddBT"), for: .normal)
             baseBT.setTitle(nil, for: .normal)
             originBbbButton()
-            blackView.isHidden = false
         case .ESFinished:
             originBbbButton()
-            blackView.isHidden = true
         }
         
         urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
@@ -128,11 +128,11 @@ class LPCategoryView: UIView {
     
     func originBbbButton() { //이거 세개 겹쳐지게 하는거
         UIView.animate(withDuration: 0.2, animations: {
+            self.blackView.isHidden = true
             self.addBottom.constant = -43
             self.editBottom.constant = -43
             self.layoutIfNeeded()
             self.baseBT.transform = .identity
-            self.blackView.isHidden = true
         })
     }
     
