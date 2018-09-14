@@ -8,42 +8,90 @@
 
 import UIKit
 
-class LPSearchView: UIView, SearchBarListener {
-
-    var mSearchBar: LPSearchBar!
-    var mSearchCategoryList: LPSearchCategoryList!
-    var mSearchTable: LPSearchTable!
-    
-    init(frame: CGRect, urls: [LPLinkModel], categorys: [LPCategoryModel]) {
-        super.init(frame: frame)
-        
-        mSearchBar = LPSearchBar(frame: rR(0,0,W,40), urls: urls, categorys: categorys)
-        mSearchBar.listener = self
-        addSubview(mSearchBar)
-        
-        let line1 = UIView(frame: rR(0,50,W,1))
-        line1.backgroundColor = wColor
-        addSubview(line1)
-        
-        mSearchCategoryList = LPSearchCategoryList(frame: rR(0, 51, W, 77), categorys: categorys)
-        addSubview(mSearchCategoryList)
-        
-        let line2y = (51*r)+mSearchCategoryList.bounds.height
-        let line2 = UIView(frame: R(0,line2y,W,10))
-        line2.backgroundColor = wColor
-        addSubview(line2)
-        
-        let mSearchTabley = line2y + line2.bounds.height
-        mSearchTable = LPSearchTable(frame: R(0,mSearchTabley,W,self.bounds.height-mSearchTabley))
-        addSubview(mSearchTable)
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func FilteredReload(filteredData: [LPSearchModel]) {
-        mSearchTable.reloadData(items: filteredData)
-    }
+protocol LPSearchViewDelegate {
+    func removeAllSearchDataBtnClicked()
 }
+
+class LPSearchView: UIView {
+
+    var inSearchMode: Bool = false
+    var delegate: LPSearchViewDelegate? = nil
+    
+    @IBOutlet weak var removeAllOfCurrentSearchContents: UILabel!
+    @IBOutlet weak var SearchCategoryList: UICollectionView!
+    @IBOutlet weak var SearchTable: UITableView!
+    @IBOutlet weak var searchStatusLabel: UILabel!
+    
+    @IBOutlet weak var categoryHeightConstraint: NSLayoutConstraint! // 검색할때 카테고리 컬렉션 없애주려고 쓰는거
+    
+    var categorys: [LPCategoryModel] = []
+    var urls: [LPLinkModel] = []
+    var filteredData: [LPSearchModel] = [] // 얘가 리로드되는 데이터
+    var recentSearchArray: [String] = [] // Userdefault에 저장되는 데이터 (url)
+    
+    override func awakeFromNib() {
+        urls = LPCoreDataManager.store.selectAllObjectFromLink() as! [LPLinkModel]
+        categorys = LPCoreDataManager.store.selectAllObjectFromCategory() as! [LPCategoryModel]
+        urls.sort(by: { $0.date?.compare($1.date! as Date) == .orderedAscending})
+        
+        recentSearchReload()
+        
+        SearchTable.separatorStyle = .none
+        SearchCategoryList.register(UINib(nibName: "LPSearchCategoryListCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(removeAllBtnClicked))
+        removeAllOfCurrentSearchContents.addGestureRecognizer(tap)
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        layout.itemSize = CGSize(width: 70, height: 55)
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 0
+        SearchCategoryList!.collectionViewLayout = layout
+    }
+    
+    @objc func removeAllBtnClicked() {
+        self.delegate?.removeAllSearchDataBtnClicked()
+    }
+    
+    func recentSearchReload() {
+        self.recentSearchArray = [String]()
+        
+        if let RecentSearch = UserDefaults.standard.object(forKey: "RecentSearch") as? [String] {
+            self.recentSearchArray = RecentSearch
+        }
+        
+        self.removeAllOfCurrentSearchContents.isHidden = self.recentSearchArray.isEmpty ? true : false
+        
+        filteredData = []
+        var removeIndexs: [Int] = []
+        for i in 0 ..< recentSearchArray.count {
+            var isExist: Bool = false
+            
+            for j in 0 ..< urls.count {
+                if urls[j].url == recentSearchArray[i] {
+                    isExist = true
+                    let data = LPSearchModel(urls: urls[j])
+                    filteredData.append(data)
+                }
+            }
+            
+            if isExist == false {
+                removeIndexs.append(i)
+            }
+        }
+        
+        for i in removeIndexs {
+            recentSearchArray.remove(at: i)
+        }
+        
+        if recentSearchArray.isEmpty == false {
+            UserDefaults.standard.set(recentSearchArray, forKey: "RecentSearch")
+            UserDefaults.standard.synchronize()
+        }
+        
+        SearchTable.reloadData()
+    }    
+}
+
