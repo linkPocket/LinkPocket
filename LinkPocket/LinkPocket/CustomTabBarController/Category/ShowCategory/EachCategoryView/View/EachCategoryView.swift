@@ -30,6 +30,9 @@ class EachCategoryView: UIView {
     var moveLinks: [LPLinkModel] = []
     var deleteSelectedURL: String = ""
     
+    @IBOutlet weak var upsideViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var categoryNameTop: NSLayoutConstraint!
+    
     @IBOutlet weak var categoryName: UITextField!
     @IBOutlet weak var categoryCount: UILabel!
     
@@ -66,7 +69,7 @@ class EachCategoryView: UIView {
         editCountLabel.layer.borderWidth = 4
         editCountLabel.layer.cornerRadius = editCountLabel.bounds.height/2
     }
-    
+
     func displayCategoryPage(categoryName: String, categoryCount: String, urls: [LPTableSectionModel]) {
         self.categoryName.text = categoryName
         self.categoryCount.text = categoryCount + "  All"

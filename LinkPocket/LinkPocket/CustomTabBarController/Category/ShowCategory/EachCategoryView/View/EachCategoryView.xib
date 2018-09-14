@@ -53,6 +53,7 @@
                         <constraint firstAttribute="trailing" secondItem="azM-2L-YF3" secondAttribute="trailing" id="9dE-Il-pWu"/>
                         <constraint firstItem="HRp-QX-fX3" firstAttribute="leading" secondItem="OeW-TW-fZ9" secondAttribute="leading" constant="63" id="PAg-2L-AVS"/>
                         <constraint firstItem="azM-2L-YF3" firstAttribute="top" secondItem="Eel-sm-zez" secondAttribute="bottom" constant="19" id="Vm6-0a-WKE"/>
+                        <constraint firstAttribute="height" constant="192" id="aEy-Nj-XDi"/>
                         <constraint firstItem="Eel-sm-zez" firstAttribute="centerX" secondItem="OeW-TW-fZ9" secondAttribute="centerX" id="eXX-ji-o4O"/>
                         <constraint firstItem="HRp-QX-fX3" firstAttribute="top" secondItem="azM-2L-YF3" secondAttribute="bottom" constant="11" id="mVw-bm-40l"/>
                         <constraint firstItem="Eel-sm-zez" firstAttribute="top" secondItem="OeW-TW-fZ9" secondAttribute="top" constant="52" id="uIP-kp-Z3N"/>
@@ -180,12 +181,14 @@
             <connections>
                 <outlet property="categoryCount" destination="azM-2L-YF3" id="PBi-EG-hxa"/>
                 <outlet property="categoryName" destination="Eel-sm-zez" id="bNU-QJ-lgv"/>
+                <outlet property="categoryNameTop" destination="uIP-kp-Z3N" id="Tsk-Nw-jDL"/>
                 <outlet property="categoryTable" destination="Pg3-xn-RE1" id="EEX-cM-QFj"/>
                 <outlet property="editCountLabel" destination="hjb-cT-tRW" id="EZv-E0-41a"/>
                 <outlet property="emptyURLLabel" destination="htW-C7-ABp" id="bqs-RB-Agt"/>
                 <outlet property="moveCollection" destination="eTT-pa-VZ3" id="REu-K3-QY1"/>
                 <outlet property="moveCollectionBottom" destination="Ils-zn-yjb" id="ci5-FZ-9yX"/>
                 <outlet property="underBarBottom" destination="NuH-eh-Ys5" id="nZ6-VP-lXq"/>
+                <outlet property="upsideViewHeight" destination="aEy-Nj-XDi" id="xLQ-1E-kOc"/>
             </connections>
             <point key="canvasLocation" x="121.5" y="57.5"/>
         </view>

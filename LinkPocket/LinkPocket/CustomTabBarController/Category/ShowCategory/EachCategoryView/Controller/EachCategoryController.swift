@@ -28,6 +28,14 @@ class EachCategoryController: LPParentViewController, EachCategoryViewListener {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        let upsideViewHeight: CGFloat = size.width > size.height ? 50 : 192
+        let categoryNameTop: CGFloat = size.width > size.height ? 3 : 52
+        self.mEachCategoryView.upsideViewHeight.constant = upsideViewHeight
+        self.mEachCategoryView.categoryNameTop.constant = categoryNameTop
+    }
+    
     @objc func editBtAction(){
        mEachCategoryView.editBtAction()
     }
