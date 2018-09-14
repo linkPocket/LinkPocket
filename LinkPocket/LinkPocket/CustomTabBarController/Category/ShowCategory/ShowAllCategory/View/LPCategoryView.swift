@@ -132,6 +132,7 @@ class LPCategoryView: UIView {
             self.editBottom.constant = -43
             self.layoutIfNeeded()
             self.baseBT.transform = .identity
+            self.blackView.isHidden = true
         })
     }
     
