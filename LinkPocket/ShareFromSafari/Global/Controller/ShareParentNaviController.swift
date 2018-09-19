@@ -10,7 +10,7 @@ import UIKit
 
 class ShareParentNaviController: UINavigationController {
     
-    static let rootNaviController: ShareParentNaviController = ShareParentNaviController()
+    static var rootNaviController: ShareParentNaviController = ShareParentNaviController()
     
     override func viewDidLoad() {
         super.viewDidLoad()

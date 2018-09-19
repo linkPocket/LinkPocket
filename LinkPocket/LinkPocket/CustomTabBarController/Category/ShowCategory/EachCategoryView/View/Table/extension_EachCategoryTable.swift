@@ -10,16 +10,18 @@ import UIKit
 
 extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = categoryTable.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? LPLinkTableCell
-        
+        var cell = categoryTable.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? LPLinkTableCell
         if cell == nil {
-            
-        } else {
-            let item = tableItems[indexPath.section].urls[indexPath.row]
-            cell?.modifyCell(img: item.imageName!, url: item.url!, title: item.title!, color: (item.category?.color())!, category: item.category!)
-            cell?.selectionStyle = .none
-            
+            cell = LPLinkTableCell(style: .default, reuseIdentifier: "Cell")
         }
+        
+        let item = tableItems[indexPath.section].urls[indexPath.row]
+        cell?.modifyCell(img: item.imageName!, url: item.url!, title: item.title!, color: (item.category?.color())!, category: item.category!)
+        cell?.contentView.backgroundColor = .white
+
+        cell?.selectionStyle = .none
+            
+        
         return cell!
     }
     
@@ -50,6 +52,17 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let url = (cell as! LPLinkTableCell).url.text!
+        if statusEdit {
+            if editSelectedURL.contains(url) {
+                cell.contentView.backgroundColor = UIColor.colorFromRGB(0xdedede)
+            } else {
+                cell.contentView.backgroundColor = .white
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableItems.count != 0 {
             return tableItems[section].urls.count
@@ -61,18 +74,18 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 102.5
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = categoryTable.cellForRow(at: indexPath) as? LPLinkTableCell else {
             return
         }
-
+        
         let url = cell.url.text!
 
         if statusEdit {
             if editSelectedURL.contains(url) {
-                cell.contentView.backgroundColor = UIColor.white
                 self.editSelectedURL = self.editSelectedURL.filter {$0 != url}
+                cell.contentView.backgroundColor = .white
             } else {
                 cell.contentView.backgroundColor = UIColor.colorFromRGB(0xdedede)
                 self.editSelectedURL.append(url)
@@ -102,6 +115,7 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
             
             return
         }
+        
         edit.backgroundColor = UIColor.gray
         
         let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
@@ -123,6 +137,7 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
     
     
     func preparingEdit() {
+        self.listener?.startEdit()
         categoryTable.allowsSelection = true
         UIView.animate(withDuration: 0.1, animations: {
             self.underBarBottom.constant = 0
@@ -133,12 +148,16 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func finishEdit() {
-        categoryTable.allowsSelection = false
+        self.listener?.finishEdit()
+        categoryTable.allowsSelection = true
+        statusEdit = false
+        editSelectedURL = [String]()
         UIView.animate(withDuration: 0.1, animations: {
             self.underBarBottom.constant = -70
             self.moveCollectionBottom.constant = -88
             self.layoutIfNeeded()
         })
+        editCountLabel.text = "\(editSelectedURL.count)"
         editCountLabel.isHidden = true
         print("에딧 세팅을 끝냅니다.")
         categoryTable.reloadData()

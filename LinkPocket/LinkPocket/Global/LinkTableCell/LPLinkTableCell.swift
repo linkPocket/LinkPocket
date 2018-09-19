@@ -29,12 +29,6 @@ class LPLinkTableCell: UITableViewCell {
         
         
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     func modifyCell(img: String, url: String, title: String, color: UIColor ,category: LPCategoryModel){
         if let data = try? Data(contentsOf: URL(string: img)!)
@@ -53,6 +47,5 @@ class LPLinkTableCell: UITableViewCell {
         self.img.clipsToBounds = true
         self.img.layer.borderWidth = 1
         self.img.layer.borderColor = UIColor(red: 200/255, green: 201/255, blue: 203/255, alpha: 1).cgColor
-
     }
 }

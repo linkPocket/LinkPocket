@@ -23,6 +23,8 @@ class ShareEditTitleView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        finishBtn.backgroundColor = blue
         buttonConstraint = finishBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         buttonConstraint.isActive = true
         

@@ -12,7 +12,9 @@ protocol EachCategoryViewListener {
     func confirmDeleteAlert()
     func confirmMoveAlert()
     func confirmEachDeleteAlert()
-    
+    func finishEdit()
+    func startEdit()
+    func noneSeletedCells()
 }
 
 class EachCategoryView: UIView {
@@ -92,6 +94,8 @@ class EachCategoryView: UIView {
         }
     }
     
+    
+    
     //MARK:- underbar
     //MAKR:------------------------------------------------
     @IBOutlet weak var editCountLabel: UILabel!
@@ -103,8 +107,11 @@ class EachCategoryView: UIView {
     //MARK:--  옮기기에 관한 모든것~~!
     var moveCategoryN: String = ""
     @IBAction func urlMoveAction(_ sender: UIButton) {
-        print(editSelectedURL)
-       
+        guard editSelectedURL.count != 0 else {
+            self.listener?.noneSeletedCells()
+            return
+        }
+        
         if self.moveCollectionBottom.constant == 0 {
             UIView.animate(withDuration: 0.1, animations: {
                 self.moveCollectionBottom.constant = -88
@@ -116,12 +123,15 @@ class EachCategoryView: UIView {
                 self.layoutIfNeeded()
             })
         }
-        
-        //self.listener?.confirmMoveAlert()
     }
     
     //MARK:-- 삭제에 관련된 모든거 ( 삭제 에니메이션이랑 alert관련된것들까지)
     @IBAction func urlDeleteAction(_ sender: UIButton) {
+        guard editSelectedURL.count != 0 else {
+            self.listener?.noneSeletedCells()
+            return
+        }
+        
         UIView.animate(withDuration: 0.1, animations: {
             self.moveCollectionBottom.constant = -88
             self.layoutIfNeeded()
@@ -165,6 +175,6 @@ class EachCategoryView: UIView {
         for i in 0..<tableItems.count {
             allOfUrl += tableItems[i].urls.count
         }
-        self.categoryCount.text = "\(allOfUrl)"
+        self.categoryCount.text = "\(allOfUrl) All"
     }
 }
