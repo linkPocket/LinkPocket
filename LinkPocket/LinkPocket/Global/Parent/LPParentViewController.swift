@@ -21,7 +21,18 @@ class LPParentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadViews), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    @objc func reloadViews() { return }
+    
     func AlertTwo(title: String, message: String, yes: String = "네", no: String = "아니요", yesAction: (@escaping()->()), noAction: (()->())?){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

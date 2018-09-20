@@ -39,7 +39,7 @@ class LPSearchCategoryListCell: UICollectionViewCell {
             } else {
                 self.unClicked()
             }
-        }
+            }
         }
     }
     

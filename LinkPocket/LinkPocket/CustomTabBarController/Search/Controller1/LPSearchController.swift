@@ -39,7 +39,7 @@ class LPSearchController: LPParentViewController {
         mLPSearchView.delegate = self
         self.view.addSubview(mLPSearchView)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.mLPSearchView.recentSearchReload()

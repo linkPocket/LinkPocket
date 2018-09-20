@@ -11,12 +11,12 @@ import UIKit
 extension LPSearchController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        inSearchMode = true
         var filteredData: [LPSearchModel] = []
         var urls: [LPLinkModel] = []
         var titles: [LPLinkModel] = []
 
-        inSearchMode = true
-        
         urls = self.urls.filter{($0.url?.localizedCaseInsensitiveContains(searchText))!}
         titles = self.urls.filter{($0.title?.localizedCaseInsensitiveContains(searchText))!}
         
@@ -43,7 +43,6 @@ extension LPSearchController: UISearchBarDelegate {
             categoryCollectionAnimation(height: 0)
         }
     }
-    
     
     func searchFeild(searchField: UISearchBar, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if (string == " ") {

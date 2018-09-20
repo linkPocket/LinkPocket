@@ -27,6 +27,7 @@ class ShareViewController: UIViewController {
 //        UserDefaults.standard.synchronize()
         
         ShareExtensionContext.sharedExtension = self.extensionContext
+        ShareParentNaviController.rootNaviController = ShareParentNaviController()
         setTitleLabel()
     }
 

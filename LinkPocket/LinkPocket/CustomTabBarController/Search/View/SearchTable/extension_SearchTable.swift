@@ -50,7 +50,7 @@ extension LPSearchView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 103
+        return 102.5
     }
     
     func FilteredReload(filteredData: [LPSearchModel]) {

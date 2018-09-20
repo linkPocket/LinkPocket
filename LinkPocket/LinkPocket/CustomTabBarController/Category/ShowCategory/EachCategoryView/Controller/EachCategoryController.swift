@@ -36,6 +36,10 @@ class EachCategoryController: LPParentViewController, EachCategoryViewListener {
         self.mEachCategoryView.categoryNameTop.constant = categoryNameTop
     }
     
+    override func reloadViews() {
+        self.mEachCategoryView.editReloadData()
+    }
+    
     @objc func editBtAction(){
        mEachCategoryView.editBtAction()
     }
@@ -76,4 +80,17 @@ class EachCategoryController: LPParentViewController, EachCategoryViewListener {
         
     }
     
+    func noneSeletedCells() {
+        self.AlertOno(title: "선택된 항목이 없습니다.", message: "편집하려는 항목들을 선택해주세요.", bt: "확인", btAction: nil)
+    }
+    
+    func finishEdit() {
+        var image = UIImage(named: "edit")
+        image = image?.withRenderingMode(.alwaysOriginal)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(editBtAction))
+    }
+    
+    func startEdit() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action:  #selector(editBtAction))
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LPCustomTabBarController: UIViewController, UITabBarDelegate {
+class LPCustomTabBarController: LPParentViewController, UITabBarDelegate {
     @IBOutlet weak var customView: UIView!
     @IBOutlet weak var customTabBar: UITabBar!
     
@@ -34,31 +34,10 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "LINK POCKET"
-        if let tag = self.customTabBar.selectedItem?.tag {
-            if tag == 1 {
-                reloadRecentView()
-            } else {
-                reloadCategoryView()
-            }
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        reloadViews()
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -95,15 +74,15 @@ class LPCustomTabBarController: UIViewController, UITabBarDelegate {
         categoryView.reloadCategory()
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func reloadViews() {
+        if let tag = self.customTabBar.selectedItem?.tag {
+            if tag == 1 {
+                reloadRecentView()
+            } else {
+                reloadCategoryView()
+            }
+        }
+    }
 }
 
 extension UIImage {
