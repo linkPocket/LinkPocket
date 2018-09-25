@@ -11,12 +11,17 @@ import UIKit
 class LPEditLinkTitleController: LPParentViewController, LPEditLinkTitleViewListener {
 
     var mLPEditLinkTitleView: LPEditLinkTitleView!
-
+    var linkModel = LPLinkModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "수정하기"
-        // Do any additional setup 기 loading the view.
+        mLPEditLinkTitleView = Bundle.main.loadNibNamed("LPEditLinkTitleView", owner: self, options: nil)?.first as? LPEditLinkTitleView
+        mLPEditLinkTitleView.listener = self
+        mLPEditLinkTitleView.setBaseData(categoryN: (linkModel.category?.name)!, image: linkModel.imageName!, title: linkModel.title!, url: linkModel.url!, date: linkModel.date!)
+
+        self.view.addSubview(mLPEditLinkTitleView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,10 +30,12 @@ class LPEditLinkTitleController: LPParentViewController, LPEditLinkTitleViewList
     }
     
     func setBaseData(categoryN: String, image: String, title: String, url: String, date: NSDate) {
-        mLPEditLinkTitleView = Bundle.main.loadNibNamed("LPEditLinkTitleView", owner: self, options: nil)?.first as? LPEditLinkTitleView
-        mLPEditLinkTitleView.listener = self
-        self.view.addSubview(mLPEditLinkTitleView)
-        mLPEditLinkTitleView.setBaseData(categoryN: categoryN, image: image, title: title, url: url, date: date)
+        let categoryModel = LPCoreDataManager.store.selectObjectFromCategoryWhere(nameIs: categoryN)
+        self.linkModel.category = categoryModel
+        self.linkModel.imageName = image
+        self.linkModel.date = date
+        self.linkModel.title = title
+        self.linkModel.url = url
     }
     
     func saveAlert() {

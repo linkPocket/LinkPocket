@@ -12,7 +12,7 @@ protocol LPWriteCategoryViewListener {
     func saveAlert()
 }
 
-class LPWriteCategoryView: UIView {
+class LPWriteCategoryView: UIView, UITextFieldDelegate {
     
     
     @IBOutlet weak var bottomMargin: NSLayoutConstraint!
@@ -33,11 +33,16 @@ class LPWriteCategoryView: UIView {
     @IBOutlet weak var saveBt: UIButton!
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         saveBt.backgroundColor = blue
-        
+
+        saveBtBottomConstraint = saveBt.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        saveBtBottomConstraint.isActive = true
         cardColorCollection.register(UINib(nibName: "LPColorCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        
+        cardTextField.delegate = self
         cardTextField.becomeFirstResponder()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 21)
@@ -46,8 +51,7 @@ class LPWriteCategoryView: UIView {
         layout.minimumLineSpacing = 0
         cardColorCollection!.collectionViewLayout = layout
         
-        saveBtBottomConstraint = saveBt.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10)
-        saveBtBottomConstraint.isActive = true
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
     }
     
     
@@ -77,10 +81,13 @@ class LPWriteCategoryView: UIView {
         }
     }
     
-    func setBaseData(title: String, color: UIColor) {
-        self.cardTextField.placeholder = title
-        self.orginCategoryN = title
-        self.selectedColor = color
+    func setBaseData(categoryModel: LPCategoryModel) {
+        self.selectedColor = categoryModel.color()!
+        self.orginCategoryN = categoryModel.name!
+        DispatchQueue.main.async {
+            self.cardTextField.text = self.orginCategoryN
+        }
+
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -92,5 +99,11 @@ class LPWriteCategoryView: UIView {
     
     @objc func keyboardWillHide(_ notification: Notification) {
         saveBtBottomConstraint.constant = -10
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        DispatchQueue.main.async {
+            textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
+        }
     }
 }

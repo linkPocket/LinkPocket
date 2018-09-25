@@ -12,9 +12,8 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
     
     var urls: [LPLinkModel] = []
     var categorys: [LPCategoryModel] = []
-    var mLPWriteCategoryView: LPWriteCategoryView!
     var status: String = "CreatCategory" //CreatCategory || EditCategory
-    var categoryName: String = ""
+    var categoryModel = LPCategoryModel()
     var writeView: LPWriteCategoryView?
     
     override func viewDidLoad() {
@@ -22,14 +21,17 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
         
         if let mLPWriteCategoryView = Bundle.main.loadNibNamed("LPWriteCategoryView", owner: self, options: nil)?.first as? LPWriteCategoryView {
             self.writeView = mLPWriteCategoryView
+            self.writeView?.status = self.status
+            self.writeView?.listener = self
             self.view.addSubview(writeView!)
+            self.writeView?.setBaseData(categoryModel: categoryModel)
+
         }
         
         if status == "CreatCategory" {
             self.navigationItem.title = "추가하기"
         } else {
             self.navigationItem.title = "수정하기"
-
             var image = UIImage(named: "LPTrash")
             image = image?.withRenderingMode(.alwaysOriginal)
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(deleteAction))
@@ -53,20 +55,14 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
     }
     
     func setBaseData(title: String, color: UIColor) {
-        mLPWriteCategoryView = Bundle.main.loadNibNamed("LPWriteCategoryView", owner: self, options: nil)?.first as? LPWriteCategoryView
-        mLPWriteCategoryView.status = self.status
-        mLPWriteCategoryView.listener = self
-        self.view.addSubview(mLPWriteCategoryView)
-        
-        mLPWriteCategoryView.setBaseData(title: title, color: color)
-        
-        self.categoryName = title
+        self.categoryModel.setRGBA(color: color)
+        self.categoryModel.name = title
     }
     
     //MARK:- Alert ===============================================
     @objc func deleteAction() {
         func yes() {
-            LPCoreDataManager.store.deleteFromCategoryWhere(nameIs: categoryName)
+            LPCoreDataManager.store.deleteFromCategoryWhere(nameIs: self.categoryModel.name!)
             LPParentNavigationController.sharedInstance.popViewController(animated: true)
         }
         func no() { }
@@ -74,9 +70,9 @@ class LPWriteCategoryController: LPParentViewController, LPWriteCategoryViewList
     }
     
     func saveAlert() {
-        if mLPWriteCategoryView.cardTextField.text != "" {
+        if writeView?.cardTextField.text != "" {
             func yes() {
-                mLPWriteCategoryView.saveAlertAction()
+                writeView?.saveAlertAction()
                 LPParentNavigationController.sharedInstance.popViewController(animated: true)
             }
             func no() { }

@@ -107,6 +107,8 @@ extension EachCategoryView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if statusEdit { return [] }
+        
         let edit = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
             let item = self.tableItems[indexPath.section].urls[indexPath.row]
             let editVC = LPEditLinkTitleController(nibName: "LPEditLinkTitleController", bundle: nil)

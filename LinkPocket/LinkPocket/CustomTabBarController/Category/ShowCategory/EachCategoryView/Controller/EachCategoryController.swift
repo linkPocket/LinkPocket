@@ -92,5 +92,6 @@ class EachCategoryController: LPParentViewController, EachCategoryViewListener {
     
     func startEdit() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action:  #selector(editBtAction))
+        self.mEachCategoryView.categoryTable.reloadData()
     }
 }
