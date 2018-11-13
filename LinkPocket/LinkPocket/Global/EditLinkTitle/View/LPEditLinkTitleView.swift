@@ -12,7 +12,7 @@ protocol LPEditLinkTitleViewListener {
     func saveAlert()
 }
 
-class LPEditLinkTitleView: UIView {
+class LPEditLinkTitleView: UIView, UITextFieldDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var title: UITextField!
@@ -28,23 +28,23 @@ class LPEditLinkTitleView: UIView {
     var listener: LPEditLinkTitleViewListener?
     
     override func awakeFromNib() {
-        title.placeholder = ""
         url.text = ""
         date = Date() as NSDate
-        title.becomeFirstResponder()
 
         buttonConstraint = finishBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         buttonConstraint.isActive = true
-
+        self.title.becomeFirstResponder()
+        self.title.delegate = self
         self.finishBtn.addTarget(self, action: #selector(finishBtnClicked), for: .touchDown)
         setImageView()
         subscribeToShowKeyboardNotifications()
     }
     
     func setBaseData(categoryN: String, image: String, title: String, url: String, date: NSDate) {
+
         self.categoryN = categoryN
         self.imageName = image
-        self.title.placeholder = title
+        self.title.text = title
         self.date = date
         self.url.text = url
         
@@ -87,5 +87,11 @@ class LPEditLinkTitleView: UIView {
     
     @objc func keyboardWillHide(_ notification: Notification) {
         buttonConstraint.constant = -10
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        DispatchQueue.main.async {
+            textField.selectedTextRange = textField.textRange(from: textField.beginningOfDocument, to: textField.endOfDocument)
+        }
     }
 }

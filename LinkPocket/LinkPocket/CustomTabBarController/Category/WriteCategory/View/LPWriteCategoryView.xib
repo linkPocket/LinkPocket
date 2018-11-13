@@ -38,8 +38,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCM-mo-rCN">
                     <rect key="frame" x="56" y="100" width="263" height="455"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="카테고리 입력.." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-JE-ncR">
-                            <rect key="frame" x="0.0" y="0.0" width="263" height="387"/>
+                        <textField opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="카테고리 입력.." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Dl-JE-ncR">
+                            <rect key="frame" x="0.0" y="0.0" width="263" height="388"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -49,7 +49,6 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="264" id="2qA-Uq-SrH"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="KB4-cW-geH"/>
                                 <constraint firstAttribute="height" constant="19" id="bOj-ni-qMU"/>
                             </constraints>
                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lpB-DQ-16K">
@@ -66,13 +65,13 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="8WI-w3-tla" firstAttribute="top" secondItem="9Dl-JE-ncR" secondAttribute="bottom" constant="41" id="6NV-hQ-BSG"/>
+                        <constraint firstItem="8WI-w3-tla" firstAttribute="top" secondItem="9Dl-JE-ncR" secondAttribute="bottom" constant="40" id="6NV-hQ-BSG"/>
                         <constraint firstItem="8WI-w3-tla" firstAttribute="bottom" secondItem="SCM-mo-rCN" secondAttribute="bottomMargin" id="8HN-Ii-8mX"/>
-                        <constraint firstItem="9Dl-JE-ncR" firstAttribute="centerX" secondItem="SCM-mo-rCN" secondAttribute="centerX" id="PCk-jS-onQ"/>
+                        <constraint firstAttribute="trailing" secondItem="9Dl-JE-ncR" secondAttribute="trailing" id="HAn-6y-Rhl"/>
+                        <constraint firstItem="9Dl-JE-ncR" firstAttribute="leading" secondItem="SCM-mo-rCN" secondAttribute="leading" id="LIN-tK-xb8"/>
+                        <constraint firstItem="9Dl-JE-ncR" firstAttribute="centerX" secondItem="SCM-mo-rCN" secondAttribute="centerX" id="ScO-4O-xqe"/>
                         <constraint firstItem="8WI-w3-tla" firstAttribute="centerX" secondItem="SCM-mo-rCN" secondAttribute="centerX" id="Udm-ji-jz2"/>
-                        <constraint firstItem="9Dl-JE-ncR" firstAttribute="leading" secondItem="SCM-mo-rCN" secondAttribute="leading" id="eHy-pq-2jL"/>
-                        <constraint firstItem="9Dl-JE-ncR" firstAttribute="top" secondItem="SCM-mo-rCN" secondAttribute="top" id="nkW-Jd-36h"/>
-                        <constraint firstAttribute="trailing" secondItem="9Dl-JE-ncR" secondAttribute="trailing" id="x5k-CS-B98"/>
+                        <constraint firstItem="9Dl-JE-ncR" firstAttribute="top" secondItem="SCM-mo-rCN" secondAttribute="top" id="zYU-sV-P1B"/>
                     </constraints>
                 </view>
             </subviews>

@@ -74,7 +74,7 @@ extension LPRecentView : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 102.5
     }
-    
+   
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
             let item = self.tableItems[indexPath.section].urls[indexPath.row]
