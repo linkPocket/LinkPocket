@@ -31,8 +31,45 @@ class LPCustomTabBarController: LPParentViewController, UITabBarDelegate {
         self.customView.insertSubview((self.viewControllers[0]?.view!)!, belowSubview: self.customTabBar)
         self.customTabBar.selectedItem = self.customTabBar.items?[0]
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        willEnterForeground()
+
         // Do any additional setup after loading the view.
     }
+
+    @objc func willEnterForeground() {
+        let pasteboard = UIPasteboard.general
+        if let string = pasteboard.string {
+            if string.isValidURL {
+                let alert = UIAlertController(title: "복사된 URL", message: string, preferredStyle: .alert)
+                let yesBT = UIAlertAction(title: "저장", style: .default) {
+                    (action: UIAlertAction) -> Void in
+                    let addUrlVC = LPSelectViewController(nibName: "LPSelectViewController", bundle: nil)
+                    let encoded = string.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)                    
+                    print("\(encoded!) url")
+                    addUrlVC.url = URL(string: encoded!)
+                    LPParentNavigationController.sharedInstance.pushViewController(addUrlVC, animated: true)
+                }
+                
+                
+                let noBT = UIAlertAction(title: "취소", style: .default) {
+                    (action: UIAlertAction) -> Void in
+                }
+                
+                alert.addAction(noBT)
+                alert.addAction(yesBT)
+                
+                self.present(alert, animated: false, completion: nil)
+
+                print("\(string) is url")
+            } else {
+                print("\(string) is not url")
+            }
+        }
+        UIPasteboard.general.items = []
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
